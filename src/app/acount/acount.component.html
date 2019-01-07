@@ -1,0 +1,77 @@
+<div class="form_acount">
+  <div class="container">
+    <div class="row">
+      <div class="col-4" style="margin-top: 25px;">
+        <ul>
+          <li>
+            <i class="fas fa-box-open"></i>
+            <p>Acount of</p>
+            <span>VÕ THỊ TUYẾT LAN</span>
+          </li>
+          <li>
+            <i class="far fa-user"></i>My Acount</li>
+          <li>
+            <i class="fas fa-address-book"></i>Order management</li>
+        </ul>
+      </div>
+      <form class="col-8">
+        <h3>Information acount</h3>
+        <table>
+          <tr>
+            <td>
+              <label for="username">Username </label>
+            </td>
+            <td>
+              <input type="text" class="form-control" id="username">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="pwd">Address</label>
+            </td>
+            <td>
+              <input type="email" class="form-control" id="email">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="pwd">Phone</label>
+            </td>
+            <td>
+              <input type="text" class="form-control" id="phone">
+            </td>
+
+          </tr>
+         
+        </table>
+          <div style="text-align: center;">
+              <label class="form-check-label" for="check2">
+                  <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something" (click)="ChangePass()">Change password
+                </label>
+          </div>
+          <div *ngIf="show">
+              <table>
+                  <tr>
+                    <td>
+                      <label for="pwd">Enter PassWord</label>
+                    </td>
+                    <td>
+                      <input type="password" class="form-control" id="password">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="re-pwd">Re-Password</label>
+                    </td>
+                    <td>
+                      <input type="password" class="form-control" id="re_password">
+                    </td>
+                  </tr>
+                </table>
+          </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+        
+      </form>
+    </div>
+  </div>
+</div>

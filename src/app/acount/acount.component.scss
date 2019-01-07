@@ -1,0 +1,80 @@
+.form_acount{
+    background: #F4F4F4;
+    color: #807d7d;
+    padding-bottom:70px;
+}
+.form_acount i{
+    float: left;
+    margin-right: 10px;
+    padding-top: 4px;
+    font-size: 16px;
+}
+.form_acount p{
+    margin-bottom: 0px!important;
+}
+.form_acount span{
+    padding-left: 29px;
+}
+.form_acount li{
+    padding: 15px 0px;
+    padding-left: 20px;
+    transition: 0.2s all;
+}
+.form_acount li:hover{
+    background: #c3c0c0;
+    color: #0e0e0e;
+    border: 1px solid #c3c0c0;
+    border-radius: 4px;
+}
+.form_acount li:nth-child(1):hover{
+    background: #F4F4F4;
+    color: #807d7d;
+    border: none;
+}
+.form_acount h3{
+    font-size: 21px;
+    margin-bottom: 22px;
+    padding-top: 21px;
+}
+.form_acount table label{
+    float: left;
+    margin-right: 34px;
+    padding-top: -17px;
+    margin-top: -30px;
+}
+.form_acount table input{
+    width: 100%;
+    margin-bottom: 50px;
+    border: none;
+    background: none;
+    border-bottom: 1px solid #989393;
+    border-radius: 0px;
+}
+.form_acount table input:focus{
+    // border-color: #F4F4F4!important;
+    box-shadow: none;
+    outline: none;
+}
+table{
+    width: 100%;
+}
+.form_acount form{
+    background: #ffffff;
+    padding: 20px;
+}
+.change{
+    float: left;
+    margin-left: -55px;
+}
+.change input{
+    margin: 0px;
+    float: left;
+}
+.form_acount button{
+    cursor: pointer;
+    float: right;
+    background: #F8694A;
+    color: #ffffff;
+    padding: 10px 36px;
+    border: none;
+}

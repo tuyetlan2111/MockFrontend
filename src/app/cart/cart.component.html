@@ -1,0 +1,56 @@
+<div class="bg_cart">
+  <div class="container" style="padding-top: 70px; padding-top: 70px;
+  padding-bottom: 70px;">
+    <div class="row">
+      <table class="table col-8">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Image</th>
+            <th scope="col" style="width: 25%;">Name Product</th>
+            <th scope="col">Price</th>
+            <th scope="col" style="text-align: center;">Quantity</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td style=" width: 24%;">
+              <img src="./assets/img/product01.jpg" alt="Product" style="width: 50%;">
+            </td>
+            <td>San Pham 1</td>
+            <td>200.000</td>
+
+            <td style="text-align: center;">
+              <button type="button" class="soluong">-</button>
+              <input class="qty" type="text" min="1" max="10" value="{{count}}">
+              <button type="button" class="soluong">+</button>
+            </td>
+
+            <td>
+              <button class="del">
+                <i class="far fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="total col-3">
+        <p>Total:
+          <span>600.000</span>
+        </p>
+      </div>
+      <div class="col-6">
+        <button type="button" class="btn btn-info continue">
+          <i class="fas fa-undo"></i>Continue buying</button>
+      </div>
+      <div class="col-6 pay">
+        <button type="button" class="btn btn-success">Payment
+          <i class="fas fa-arrow-alt-circle-right"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
