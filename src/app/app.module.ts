@@ -3,14 +3,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { ProductComponent } from './product/product.component';
-import { DetailComponent } from './detail/detail.component';
-import { CartComponent } from './cart/cart.component';
-import { AcountComponent } from './acount/acount.component';
-import { PaymentComponent } from './payment/payment.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ProductComponent } from './components/product/product.component';
+import { DetailComponent } from './components/product_detail/product_detail.component';
+import { CartComponent } from './components/cart/cart.component';
+import { AcountComponent } from './components/acount/acount.component';
+import { PaymentComponent } from './components/payment/payment.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     DetailComponent,
     CartComponent,
     AcountComponent,
-    PaymentComponent
+    PaymentComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

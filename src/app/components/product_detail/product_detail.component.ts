@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+  templateUrl: './product_detail.component.html',
+  styleUrls: ['./product_detail.component.scss']
 })
 export class DetailComponent implements OnInit {
   @Input() fatherName: string;

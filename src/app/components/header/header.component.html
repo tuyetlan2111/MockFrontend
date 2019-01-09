@@ -1,0 +1,147 @@
+<header>
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark indigo">
+
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href="javascript:;;">ikismail</a>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="javascript:;;" [routerLink]="[ '/' ]">{{this.translate.data["HOME"] | translate}}
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li> -->
+    </ul>
+    <!-- Links -->
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <div>
+          <a class="nav-link" href="javascript:;;" [routerLink]="['/products/favourite-products']">
+            <i class="fa fa-heart">
+              <span class="mt-2"> {{productService.navbarFavProdCount}}</span>
+            </i>
+          </a>
+        </div>
+
+      </li>
+      <li class="nav-item">
+        <div>
+          <a class="nav-link" href="javascript:;;" [routerLink]="['/products/cart-items']">
+            <i class="fa fa-shopping-cart">
+              <span class="mt-2"> {{productService.navbarCartCount}}</span>
+            </i>
+          </a>
+        </div>
+      </li>
+      <li class="nav-item" *ngIf="authService.isLoggedIn()">
+        <a class="nav-link" [routerLink]="['/users']">
+          <i class="fa fa-user mr-1"></i>{{this.translate.data["MYACCOUNT"] | translate}}</a>
+      </li>
+      <li class="nav-item" *ngIf="!authService.isLoggedIn()">
+        <a class="nav-link" [routerLink]="[ '/login' ]">
+          <i class="fa fa-sign-in mr-1"></i> {{this.translate.data["SIGNIN"] | translate}}</a>
+      </li>
+      <li class="nav-item" *ngIf="authService.isLoggedIn()">
+        <a class="nav-link" (click)="logout()">
+          <i class="fa fa-sign-in mr-1"></i>{{this.translate.data["LOGOUT"] | translate}}</a>
+      </li>
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light">
+          <i class="fa fa-globe"> </i><span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" href="javascript:;;" (click)="setLang('en')">
+            <i class="fa fa-flag-o mr-2"></i>
+            English (en)</a>
+          <a class="dropdown-item waves-light" href="javascript:;;" (click)="setLang('vn')">
+            <i class="fa fa-flag-o mr-2"></i>
+            Việt Nam (vn)</a>
+        </div>
+      </li>
+     
+    </ul>
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
+
+</header>
+
+  <div class="modal" id="mylogin">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Sign in</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->y
+            
+            <i class="fas fa-user-circle"></i>
+            <div class="modal-body login">
+                <!-- <i class="fas fa-user"></i> -->
+                <input type="text" placeholder="Email" id="email" required >
+                <!-- <i class="fas fa-unlock-alt"></i> -->
+                <input type="password" placeholder="password" id="password"  required>
+                <input type="submit" value="Sign In" class="sign"><br>
+                <input type="checkbox" style="width: 6%; margin-left: -50px;">Remember me
+                <a href="#" class="forgot">forgot password?</a>
+                <div class="shadow"></div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="myregister">
+  <div class="modal-dialog">
+      <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <h4 class="modal-title">Register</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <i class="fas fa-user-circle"></i>
+          <div class="modal-body login">
+              <!-- <i class="fas fa-user"></i> -->
+              <input type="text" placeholder="Email" id="email"  required >
+              <input type="text" placeholder="First Name" id="firstName">
+              <input type="text" placeholder="Last Name" id="lastName" >
+              <input type="password" placeholder="password" id="password"  required>
+              <input type="text" placeholder="City" id="city" >
+              <input type="text" placeholder="Country" id="country" >
+              <input type="submit" value="Register" class="sign"><br>
+              <div class="shadow"></div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+
+      </div>
+  </div>
+</div>
