@@ -653,8 +653,15 @@ h2.product-name a{
   background-attachment: fixed;
   background-position: center;
 }
-.product-details .product-view{
-  border: 7px solid #E8DAB2;
-  border-radius: 15px;
-  width: 68%;
+.shop{
+  float: left;
+  border: 1px solid #e2dddd;
+  margin-top: 40px;
+  padding-right: 0px;
+  background: #ffffff;
+}
+.shop i{
+  float: left;
+  margin-top: 14px;
+  margin-right: 13px;
 }

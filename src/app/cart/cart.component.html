@@ -23,7 +23,7 @@
             <td>200.000</td>
 
             <td style="text-align: center;">
-              <button type="button" class="soluong">-</button>
+              <button type="button" class="soluong" click="cong($event)">-</button>
               <input class="qty" type="text" min="1" max="10" value="{{count}}">
               <button type="button" class="soluong">+</button>
             </td>
@@ -42,13 +42,20 @@
         </p>
       </div>
       <div class="col-6">
-        <button type="button" class="btn btn-info continue">
-          <i class="fas fa-undo"></i>Continue buying</button>
+        <a routerLink="">
+
+            <button type="button" class="btn btn-info continue">
+                <i class="fas fa-undo"></i>Tiếp tục mua hàng</button>
+        </a>
+       
       </div>
       <div class="col-6 pay">
-        <button type="button" class="btn btn-success">Payment
-          <i class="fas fa-arrow-alt-circle-right"></i>
-        </button>
+          <a routerLink="/payment">
+            <button type="button" class="btn btn-success">Thanh toán
+                <i class="fas fa-arrow-alt-circle-right"></i>
+            </button>
+          </a>
+       
       </div>
 
     </div>

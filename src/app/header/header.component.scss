@@ -1,67 +1,46 @@
 #header {
-    padding-top: 15px;
-    padding-bottom: 15px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  background: #ffffff;
   }
-  
+  #header ul{
+    display: inherit;
+    margin: auto;
+  }
   /*----------------------------*\
       Top header
   \*----------------------------*/
   
-  #top-header {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #DADADA;
-  }
   
-  .header-top-links>li {
-    display: inline-block;
-  }
-  
-  .header-top-links>li+li {
-    margin-left: 15px;
-  }
-  
-  .header-top-links>li>a {
-      color: #000000;
-      font-size: 15px;
-      text-decoration: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    padding-left: 10px;
-  }
-  .header-top-links>li:hover a{
-      color: #F8694A;
-  }
-  .menu_top_right{
-    color: #000000;
-    font-size: 15px;
-
-  }
   /*----------------------------*\
       logo
   \*----------------------------*/
   
-  .header-logo {
-    display: inline-block;
-    margin-right: 15px;
+  .logo img{
+    width: 23%;
+    margin-left: 30px;
   }
-  #header .logo{
-      float: left;
+  .logo{
+    padding: 0px;
+    text-align: center;
   }
-  
-  .header-logo .logo>img {
-    width: 100%;
-    max-height: 70px;
+  nav{
+    float: right !important;
+    padding: 0px;
+    margin-bottom: 6px;
   }
-  
+  nav a{
+    color: #000000;
+  }
+  nav li:hover a.menu{
+    color: #ffffff;
+  }
   /*----------------------------*\
       Search header
   \*----------------------------*/
   
   .header-search {
     display: inline-block;
-    padding: 15px 0px;
-    max-width: 400px;
     float: left;
   }
   
@@ -179,10 +158,6 @@
       03 -> NAVIGATION
   ===========================================================*/
   
-  #navigation {
-    background-color: #4F6D7A;
-    margin-top: 76px;
-  }
   
   #navigation .container {
     position: relative;
@@ -256,7 +231,7 @@
   }
   
   .category-nav .category-list>li>a:hover, .category-nav .category-list>li>a:focus, .category-nav .category-list>li.dropdown.open>a {
-    color: #F8694A;
+    color: #ffffff;
   }
   
   /*----------------------------*\
@@ -289,7 +264,7 @@
   }
   
   .menu-nav .menu-list>li>a:hover, .menu-nav .menu-list>li>a:focus, .menu-nav .menu-list>li.dropdown.open>a {
-    color: #F8694A;
+    color: #ffffff;
   }
   
   /*----------------------------*\
@@ -592,16 +567,10 @@
     margin-top: 19px;
     color: #1c6fa0;
 }
-.bg-dark{
-  background-color: #4F6D7A!important;
-  padding: 8px 0px 11px;
-}
 .bg-dark ul li a.nav-link{
   padding: 0px;
   font-size: 22px;
   font-weight: bold;
-  color: #f1f0f0 !important;
-  border-bottom: 3px solid #4F6D7A;
   transition: 0.3s all;
 }
 .bg-dark ul li:hover a.nav-link{
@@ -628,6 +597,7 @@
 }
 .header-btns-icon i{
   margin-right: 20px;
-  font-size: 30px;
+  font-size: 24px;
   color: #F8694A;
 }
+

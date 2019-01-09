@@ -9,8 +9,8 @@ import { ProductComponent } from './product/product.component';
 import { DetailComponent } from './detail/detail.component';
 import { CartComponent } from './cart/cart.component';
 import { AcountComponent } from './acount/acount.component';
-
-
+import { PaymentComponent } from './payment/payment.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,11 +20,13 @@ import { AcountComponent } from './acount/acount.component';
     ProductComponent,
     DetailComponent,
     CartComponent,
-    AcountComponent
+    AcountComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
