@@ -1,4 +1,4 @@
-export interface order_detail {
+export interface OdrderDetail {
     id?: string;
     quantity?: string;
     order_id?: string;

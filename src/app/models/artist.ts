@@ -1,4 +1,4 @@
-export interface artist {
+export interface Artist {
     id?: string;
     life_span?: string;
     total_products?: string;

@@ -30,7 +30,7 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
         <div>
-          <a class="nav-link" href="javascript:;;" [routerLink]="['/products/cart-items']">
+          <a class="nav-link" href="javascript:;;" [routerLink]="['/cart']">
             <i class="fa fa-shopping-cart">
               <span class="mt-2"> {{productService.navbarCartCount}}</span>
             </i>
@@ -38,7 +38,7 @@
         </div>
       </li>
       <li class="nav-item" *ngIf="authService.isLoggedIn()">
-        <a class="nav-link" [routerLink]="['/users']">
+          <a class="nav-link" routerLink="/acount">
           <i class="fa fa-user mr-1"></i>{{this.translate.data["MYACCOUNT"] | translate}}</a>
       </li>
       <li class="nav-item" *ngIf="!authService.isLoggedIn()">

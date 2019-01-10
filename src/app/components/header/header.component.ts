@@ -23,12 +23,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
   logout() {
-    //this.authService.logout();
+    this.authService.logout();
     this.router.navigate(["/"]);
   }
 
   setLang(lang: string) {
-    console.log("Language", lang);
+    //console.log("Language", lang);
     this.translate.use(lang).then(() => {});
   }
 }

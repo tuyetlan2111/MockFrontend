@@ -1,4 +1,4 @@
-export interface user {
+export interface User {
     id?: string;
     order_count?: string;
     signup_date?: string;
@@ -6,6 +6,7 @@ export interface user {
     first_name?: string;
     last_name?: string;
     city?: string;
+    is_admin:string;
     country?: string;
     changed_by?: string;
     changed_on?: string;

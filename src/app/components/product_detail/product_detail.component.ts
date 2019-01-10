@@ -8,7 +8,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DetailComponent implements OnInit {
   @Input() fatherName: string;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    
+  }
 
   ngOnInit() {
   }

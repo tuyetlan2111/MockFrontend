@@ -1,28 +1,31 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { user } from "../models/user";
+import { User } from "../models/user";
 import { Router } from "@angular/router";
 import { UserService } from "./user.service";
 
 @Injectable()
 export class AuthService {
+  user;
   constructor(
+    
     private router: Router,
     private userService: UserService
   ) {
-   // user = userService .getUsers();
+    this.user = userService.getUser(1);
   }
 
   isLoggedIn(): boolean {
-   //if (user !== null) {
+   if (this.user !== null) {
       return true;
-    //}
+    }
+    return false;
   }
 
-  // logout() {
-  //   this.loggedUser = null;
-  //   this.firebaseAuth.auth.signOut().then(res => this.router.navigate(["/"]));
-  // }
+  logout() {
+    this.user = null;
+    this.router.navigate(["/"]);
+  }
 
   // createUserWithEmailAndPassword(emailID: string, password: string) {
   //   return this.firebaseAuth.auth.createUserWithEmailAndPassword(
@@ -31,35 +34,18 @@ export class AuthService {
   //   );
   // }
 
-  // getLoggedInUser(): User {
-  //   const loggedUser: User = new User();
-  //   const user = this.firebaseAuth.auth.currentUser;
+  getLoggedInUser(): User {
+    return this.user;
+  }
 
-  //   if (user) {
-  //     this.userDetails = user;
-  //     if (user != null) {
-  //       loggedUser.$key = user.uid;
-  //       loggedUser.userName = user.displayName;
-  //       loggedUser.emailId = user.email;
-  //       loggedUser.phoneNumber = user.phoneNumber;
-  //       loggedUser.avatar = user.photoURL;
-  //       loggedUser.isAdmin = this.dbUser["isAdmin"];
-  //     }
-  //   } else {
-  //     this.userDetails = null;
-  //   }
-
-  //   return loggedUser;
-  // }
-
-  // isAdmin(): boolean {
-  //   const user = this.getLoggedInUser();
-  //   if (user != null) {
-  //     if (user.isAdmin === true) {
-  //       return true;
-  //     }
-  //   }
-  // }
+  isAdmin(): boolean {
+    const user = this.getLoggedInUser();
+    if (user != null) {
+      if (user.is_admin === "true") {
+        return true;
+      }
+    }
+  }
 
   // signInRegular(email, password) {
   //   const credential = firebase.auth.EmailAuthProvider.credential(
@@ -67,11 +53,5 @@ export class AuthService {
   //     password
   //   );
   //   return this.firebaseAuth.auth.signInWithEmailAndPassword(email, password);
-  // }
-
-  // signInWithGoogle() {
-  //   return this.firebaseAuth.auth.signInWithPopup(
-  //     new firebase.auth.GoogleAuthProvider()
-  //   );
   // }
 }

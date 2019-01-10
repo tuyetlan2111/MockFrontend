@@ -1,20 +1,24 @@
 import { Injectable } from '@angular/core';
-import { product } from '../models/product';
+import { Product } from '../models/product';
 import { AuthService } from './auth.service';
 import { ToastrService } from './message.service';
+import { RestService } from '../rest.service';
 
 @Injectable()
 export class ProductService {
 
 	// NavbarCounts
 	navbarCartCount = 0;
-	navbarFavProdCount = 0;
-
-
-	// getProducts() {
-	// 	this.products = this.db.list('products');
-	// 	return this.products;
-	// }
+	products : Product[];
+	constructor(public rest:RestService){
+	}
+	getProducts() {
+			this.rest.getProducts().subscribe((data: {}) => {
+			  this.products = <Product[]>data;
+			  console.log(this.products);
+			});
+			return this.products;
+	}
 
 // 	createProduct(data: Product) {
 // 		this.products.push(data);

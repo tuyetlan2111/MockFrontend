@@ -1,4 +1,4 @@
-export interface rating {
+export interface Rating {
     id?: string;
     user_id?: string;
     product_id?: string;

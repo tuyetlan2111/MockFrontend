@@ -1,4 +1,4 @@
-export interface error {
+export interface Error {
     id?: string;
     user_id?: string;
     error_date?: string;

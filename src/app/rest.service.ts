@@ -21,18 +21,27 @@ export class RestService {
     let body = res;
     return body || { };
   }
+  loginUser(username, password): Observable<any> {
+    return this.http.get(endpoint + 'user/login'+ username +"/"+ password).pipe(
+      map(this.extractData));
+  }
+  getUser(id): Observable<any> {
+    return this.http.get(endpoint + 'user/show/'+ id).pipe(
+      map(this.extractData));
+  }
+
   getProducts(): Observable<any> {
     return this.http.get(endpoint + 'product/show').pipe(
       map(this.extractData));
   }
   getProduct(id): Observable<any> {
-    return this.http.get(endpoint + 'product/' + id).pipe(
+    return this.http.get(endpoint + 'product/show/' + id).pipe(
       map(this.extractData));
   }
 
   addProduct (product): Observable<any> {
     console.log(product);
-    return this.http.post<any>(endpoint + 'products', JSON.stringify(product), httpOptions).pipe(
+    return this.http.post<any>(endpoint + 'product/create', JSON.stringify(product), httpOptions).pipe(
       tap((product) => console.log(`added product w/ id=${product.id}`)),
       catchError(this.handleError<any>('addProduct'))
     );

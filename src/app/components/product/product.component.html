@@ -1,3 +1,5 @@
+
+<app-slider></app-slider>
 <div id="demo" class="carousel slide" data-ride="carousel">
 
   <div style="background:#F4F4F4; padding-bottom: 65px;">
@@ -13,15 +15,12 @@
           
             <!-- Product Single -->
 
-            <div class="item col-md-3 col-sm-6 col-xs-6" *ngFor = "let product of product">
+            <div class="item col-md-3 col-sm-6 col-xs-6" *ngFor = "let product of products">
               <div class="product product-single" >
                   
                 <a routerLink="/detail">
                     <div class="product-thumb">
-                        <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                        <img src="{{product.image}}" alt="">
-                        
-      
+                        <img src="{{'./assets/img/'+ product.image}}" alt="">    
                       </div>
                 </a>
                 <div class="product-body">

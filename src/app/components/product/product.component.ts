@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { ProductService } from "../../services/product.service";
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-product',
@@ -8,26 +9,23 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-
-  constructor(private http: HttpClient)
-   { }
-
-  ngOnInit() {
-    this.showConfig();
+  products : Product[];
+  product;
+  constructor(
+    private http: HttpClient,
+    public productService: ProductService
+  )
+   { 
+    this.products = this.productService.getProducts();
+    //console.log(this.products);
   }
-  configUrl = 'https://www.jasonbase.com/things/2RQn.json';
-  getConfig() {
-    return this.http.get(this.configUrl);
+    ngOnInit() {
+      // this.productService.getProducts().subscribe((data: {}) => {
+			//   this.products = <Product[]>data;
+			//   console.log(this.products);
+			// });
   }
-  product:any;
-  showConfig() {
-    this.getConfig()
-      .subscribe(data => {
-        this.product = data;
-        console.log(this.product);
-      });
-  }
-
+    
   changeicon(x) {
     x.classList.toggle("fas fa-star");
   }
