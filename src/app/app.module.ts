@@ -17,6 +17,7 @@ import { TranslatePipe } from "./pipes/translate.pipe";
 import { ProductService } from './services/product.service';
 import { AuthService } from "./services/auth.service";
 import { UserService } from "./services/user.service";
+import { SliderComponent } from './components/header/slider/slider.component';
 
 /* to load and set en.json as the default application language */
 export function setupTranslateFactory(service: TranslateService): Function {
@@ -34,7 +35,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     AcountComponent,
     PaymentComponent,
     LoaderComponent,
-    TranslatePipe
+    TranslatePipe,
+    SliderComponent
   ],
   imports: [
     BrowserModule,

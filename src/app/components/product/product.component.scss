@@ -8,7 +8,7 @@
     margin-bottom: 50px;
 }
 .product .product-old-price {
-    color: #F8694A;
+    color: rgb(75, 28, 16);
     font-size: 70%;
   }
   
@@ -27,7 +27,7 @@
   .product .product-label>span {
     position: relative;
     display: inline-block;
-    padding: 5px 15px;
+    padding: 5px 5px;
     font-weight: 700;
     color: #FFF;
     background-color: #30323A;
@@ -159,8 +159,7 @@
   // }
   
   .product.product-single .product-rating {
-    margin-top: 5px;
-    margin-left: 26px;
+    margin-top: 2px;
   }
   
   .product.product-single .product-name {
@@ -172,7 +171,7 @@
       text-decoration: none;
   }
   .product.product-single .product-btns {
-    margin-top: 20px;
+    margin-top: 5px;
     text-align: center;
     -webkit-transition: 0.3s all;
     transition: 0.3s all;
@@ -505,7 +504,7 @@
   \*----------------------------*/
   
   .product.product-details .product-name {
-    margin-top: 15px;
+    margin-top: 5px;
   }
   
   .product.product-details .product-rating {
@@ -514,7 +513,7 @@
   }
   
   .product.product-details .product-options {
-    padding-top: 30px;
+    padding-top: 5px;
     margin-bottom: 15px;
     border-top: 1px solid #DADADA;
     margin-top: 15px;
