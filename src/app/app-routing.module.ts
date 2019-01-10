@@ -4,8 +4,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ProductComponent } from './components/product/product.component';
 import { DetailComponent } from './components/product_detail/product_detail.component';
 import { CartComponent } from './components/cart/cart.component';
-import { AcountComponent } from 'src/app/components/acount/acount.component';
-import { PaymentComponent } from 'src/app/components/payment/payment.component';
+import { AcountComponent } from './components/acount/acount.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 const routes: Routes = [
   { path: '',redirectTo: 'home', pathMatch: 'full' },

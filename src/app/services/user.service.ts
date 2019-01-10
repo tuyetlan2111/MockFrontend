@@ -1,47 +1,41 @@
 import { Injectable } from "@angular/core";
-import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
-
-import * as moment from "moment";
-import { User } from "../models/user";
+import { user } from "../models/user";
+import { RestService } from '../rest.service';
 
 @Injectable()
 export class UserService {
-  selectedUser: User = new User();
-  users: AngularFireList<User>;
 
-  location = {
-    lat: null,
-    lon: null
-  };
-
-  constructor(private db: AngularFireDatabase) {
+  constructor(public rest:RestService) {
     this.getUsers();
   }
-
+  users = [];
   getUsers() {
-    this.users = this.db.list("clients");
+    this.rest.getProducts().subscribe((data: {}) => {
+      console.log(data);
+      //users = data;
+    });
     return this.users;
   }
 
-  createUser(data: any) {
-    data.location = this.location;
-    data.createdOn = moment(new Date()).format("X");
-    data.isAdmin = false;
-    this.users.push(data);
-  }
+  // createUser(data: any) {
+  //   data.location = this.location;
+  //   data.createdOn = moment(new Date()).format("X");
+  //   data.isAdmin = false;
+  //   this.users.push(data);
+  // }
 
-  isAdmin(emailId: string) {
-    return this.db.list("clients", ref =>
-      ref.orderByChild("email").equalTo(emailId)
-    );
-  }
+  // isAdmin(emailId: string) {
+  //   return this.db.list("clients", ref =>
+  //     ref.orderByChild("email").equalTo(emailId)
+  //   );
+  // }
 
-  updateUser(user: User) {
-    this.users.update(user.$key, user);
-  }
+  // updateUser(user: User) {
+  //   this.users.update(user.$key, user);
+  // }
 
-  setLocation(lat, lon) {
-    this.location.lat = lat;
-    this.location.lon = lon;
-  }
+  // setLocation(lat, lon) {
+  //   this.location.lat = lat;
+  //   this.location.lon = lon;
+  // }
 }
