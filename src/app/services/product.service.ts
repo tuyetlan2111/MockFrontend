@@ -12,12 +12,15 @@ export class ProductService {
 	products : Product[];
 	constructor(public rest:RestService){
 	}
-	getProducts() {
+	getProducts(): Promise<{}> {
+		return new Promise<{}>((resolve, reject) => {
 			this.rest.getProducts().subscribe((data: {}) => {
 			  this.products = <Product[]>data;
 			  console.log(this.products);
+			  resolve(this.products);
 			});
-			return this.products;
+
+		});
 	}
 
 // 	createProduct(data: Product) {

@@ -26,9 +26,12 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(["/"]);
   }
+  login(user,password) {
+    this.authService.login(user,password);
+  }
 
   setLang(lang: string) {
-    //console.log("Language", lang);
+    console.log("Language", lang);
     this.translate.use(lang).then(() => {});
   }
 }

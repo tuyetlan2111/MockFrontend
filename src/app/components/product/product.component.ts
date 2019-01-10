@@ -10,20 +10,17 @@ import { Product } from '../../models/product';
 })
 export class ProductComponent implements OnInit {
   products : Product[];
-  product;
   constructor(
     private http: HttpClient,
     public productService: ProductService
   )
-   { 
-    this.products = this.productService.getProducts();
-    //console.log(this.products);
-  }
+   {   }
     ngOnInit() {
-      // this.productService.getProducts().subscribe((data: {}) => {
-			//   this.products = <Product[]>data;
-			//   console.log(this.products);
-			// });
+       this.productService.getProducts().then(() => {
+
+        this.products = this.productService.products;
+
+       })
   }
     
   changeicon(x) {

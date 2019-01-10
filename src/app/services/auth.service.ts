@@ -6,13 +6,13 @@ import { UserService } from "./user.service";
 
 @Injectable()
 export class AuthService {
-  user;
+  user = null;
   constructor(
     
     private router: Router,
     private userService: UserService
   ) {
-    this.user = userService.getUser(1);
+    this.user = userService.getUserCurent();
   }
 
   isLoggedIn(): boolean {
@@ -27,13 +27,6 @@ export class AuthService {
     this.router.navigate(["/"]);
   }
 
-  // createUserWithEmailAndPassword(emailID: string, password: string) {
-  //   return this.firebaseAuth.auth.createUserWithEmailAndPassword(
-  //     emailID,
-  //     password
-  //   );
-  // }
-
   getLoggedInUser(): User {
     return this.user;
   }
@@ -46,12 +39,7 @@ export class AuthService {
       }
     }
   }
-
-  // signInRegular(email, password) {
-  //   const credential = firebase.auth.EmailAuthProvider.credential(
-  //     email,
-  //     password
-  //   );
-  //   return this.firebaseAuth.auth.signInWithEmailAndPassword(email, password);
-  // }
+  login(email,password) {
+    this.user = this.userService.getUserLogin(email,password);
+  }
 }
