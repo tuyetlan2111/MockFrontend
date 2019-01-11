@@ -1,7 +1,7 @@
 import { Component, OnInit,  EventEmitter, Output,ViewChild, ElementRef} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from "../../../services/auth.service";
-import { ToastrService } from "../../../services/message.service";
+import { IToastrService } from "../../../services/toastr.service";
 import { User } from "../../../models/user";
 @Component({
   selector: 'app-login',
@@ -9,7 +9,7 @@ import { User } from "../../../models/user";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  toastrService : ToastrService;
+  
   loginForm: FormGroup;
   submitted = false;
   user: User;
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
     @ViewChild('btCloseLogin') btCloseLogin: ElementRef;
   constructor( private formBuilder: FormBuilder,
                public authService: AuthService,
+               public toastrService : IToastrService
   ) { }
 
   ngOnInit() {
@@ -40,10 +41,12 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(email,password).then(() => {
       this.user = this.authService.user;
+      this.toastrService.showSuccessWithTimeout("Data shown successfully !!", "Notification", 1000)
+
       if(this.user !== null){
         this.closeModal();
       }else{
-        this.toastrService.error('Error login', 'Email or password not match!');
+        //this.toastrService.error('Error login', 'Email or password not match!');
       }
      })
     this.user = this.authService.user;

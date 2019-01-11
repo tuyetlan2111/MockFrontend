@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import { ProductService } from "../../services/product.service";
-import { ToastrService } from "../../services/message.service";
+import { IToastrService } from "../../services/toastr.service";
 import { User } from "../../models/user";
 import { TranslateService } from "../../services/translate.service";
 import { Promise } from 'q';

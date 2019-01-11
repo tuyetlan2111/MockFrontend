@@ -1,7 +1,7 @@
 import { Component, OnInit,  EventEmitter, Output,ViewChild, ElementRef} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from "../../../services/auth.service";
-import { ToastrService } from "../../../services/message.service";
+import { IToastrService } from "../../../services/toastr.service";
 import { User } from "../../../models/user";
 @Component({
   selector: 'app-register',
@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   user : User;
-  toastrService : ToastrService;
+  toastrService : IToastrService;
   @ViewChild('btCloseRegiter') btCloseRegiter: ElementRef;
      // convenience getter for easy access to form fields
      get fr() { return this.registerForm.controls; }
@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
       if(this.user !== null){
         this.closeModal();
       }else{
-        this.toastrService.error('Error login', 'Email or password not match!');
+        //this.toastrService.error('Error login', 'Email or password not match!');
       }
       
      })

@@ -34,7 +34,7 @@ export class AuthService {
   isAdmin(): boolean {
     const user = this.getLoggedInUser();
     if (user != null) {
-      if (user.is_admin === "true") {
+      if (user.isAdmin === "true") {
         return true;
       }
     }

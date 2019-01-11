@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
 import { AuthService } from './auth.service';
-import { ToastrService } from './message.service';
+import { IToastrService } from './toastr.service';
 import { RestService } from '../rest.service';
 
 @Injectable()
