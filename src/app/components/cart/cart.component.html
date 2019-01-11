@@ -14,17 +14,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
+          <tr *ngFor="let cartItem of cartItem">
+            <td>{{cartItem.id}}</td>
             <td style=" width: 24%;">
               <img src="./assets/img/product01.jpg" alt="Product" style="width: 50%;">
             </td>
-            <td>San Pham 1</td>
-            <td>200.000</td>
+            <td>{{cartItem.product.title}}</td>
+            <td>{{cartItem.price}}</td>
 
             <td style="text-align: center;">
               <button type="button" class="soluong" click="cong($event)">-</button>
-              <input class="qty" type="text" min="1" max="10" value="{{count}}">
+              <input class="qty" type="text" min="1" max="10" value="{{cartItem.quantity}}">
               <button type="button" class="soluong">+</button>
             </td>
 

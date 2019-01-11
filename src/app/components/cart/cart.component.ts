@@ -11,14 +11,14 @@ import { Event } from '@angular/router/src/events';
 export class CartComponent implements OnInit {
 
 total:number = 0;
-product:any;
+cartItem:any;
 count:number = 0;
   constructor(private http:HttpClient) { }
 
   ngOnInit() {
     this.showConfig();
   }
-  configUrl = 'https://www.jasonbase.com/things/2RQn.json';
+  configUrl = 'http://localhost:8080/cartItem/show';
   getConfig() {
     return this.http.get(this.configUrl);
   }
@@ -26,8 +26,8 @@ count:number = 0;
   showConfig() {
     this.getConfig()
       .subscribe(data => {
-        this.product = data;
-        console.log(this.product);
+        this.cartItem = data;
+        console.log(this.cartItem);
       });
   }
 // totalPrice(){
