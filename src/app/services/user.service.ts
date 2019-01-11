@@ -9,11 +9,14 @@ export class UserService {
 
   }
   user : User = null;
-  getUserLogin(email,password) {
-    this.rest.getUser(1).subscribe((data: {}) => {
-      this.user = <User>data;
-    });
-    return this.user;
+  getUserLogin(email,password) : Promise<{}> {
+    return new Promise<{}>((resolve, reject) => {
+            this.rest.getUser(1).subscribe((data: {}) => {
+              this.user = <User>data;
+              console.log(data);
+              resolve(this.user);
+            });
+      });
   }
   getUserCurent() {
     return this.user;

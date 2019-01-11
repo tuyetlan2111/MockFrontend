@@ -6,12 +6,12 @@
           <li>
             <i class="fas fa-box-open"></i>
             <p>Acount of</p>
-            <span>VÕ THỊ TUYẾT LAN</span>
+            <span>{{user.email}}</span>
           </li>
           <li>
             <i class="far fa-user"></i>My Acount</li>
           <li>
-            <i class="fas fa-address-book"></i>Order management</li>
+            <i class="fas fa-address-book"></i>Orders management</li>
         </ul>
       </div>
       <form class="col-8">
@@ -19,30 +19,38 @@
         <table>
           <tr>
             <td>
-              <label for="username">Username </label>
+              <label for="username">First Name </label>
             </td>
             <td>
-              <input type="text" class="form-control" id="username">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="pwd">Address</label>
-            </td>
-            <td>
-              <input type="email" class="form-control" id="email">
+              <input type="text" class="form-control" id="username" value="{{user.firstName}}">
             </td>
           </tr>
           <tr>
             <td>
-              <label for="pwd">Phone</label>
+              <label for="last_name">Last Name</label>
             </td>
             <td>
-              <input type="text" class="form-control" id="phone">
+              <input type="text" class="form-control" id="last_name" value="{{user.lastName}}"> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="city">City</label>
+            </td>
+            <td>
+              <input type="text" class="form-control" id="text" value="{{user.city}}">
             </td>
 
           </tr>
-         
+          <tr>
+              <td>
+                <label for="pwd">Country</label>
+              </td>
+              <td>
+                <input type="text" class="form-control" id="text" value="{{user.country}}">
+              </td>
+  
+            </tr>
         </table>
           <div style="text-align: center;">
               <label class="form-check-label" for="check2">

@@ -3,10 +3,10 @@ export interface User {
     order_count?: string;
     signup_date?: string;
     email?: string;
-    first_name?: string;
-    last_name?: string;
+    firstName?: string;
+    lastName?: string;
     city?: string;
-    is_admin:string;
+    isAdmin:string;
     country?: string;
     changed_by?: string;
     changed_on?: string;

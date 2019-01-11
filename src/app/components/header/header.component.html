@@ -39,9 +39,9 @@
       </li>
       <li class="nav-item" *ngIf="authService.isLoggedIn()">
           <a class="nav-link" routerLink="/acount">
-          <i class="fa fa-user mr-1"></i>{{this.translate.data["MYACCOUNT"] | translate}}</a>
+          <i class="fa fa-user mr-1"></i>{{authService.user.firstName + " " + authService.user.lastName}}</a>
       </li>
-      <li class="nav-item" *ngIf="!authService.isLoggedIn()"data-toggle="modal"  data-target="#mylogin">
+      <li class="nav-item" *ngIf="!authService.isLoggedIn()" data-toggle="modal"  data-target="#mylogin">
         <a class="nav-link" [routerLink]="[ '/login' ]">
           <i class="fa fa-sign-in mr-1"></i> {{this.translate.data["SIGNIN"] | translate}}</a>
       </li>
@@ -73,64 +73,9 @@
 </header>
 
 <div class="modal" id="mylogin">
-  <div class="modal-dialog">
-      <div class="modal-content">
-
-          <!-- Modal Header -->
-          <div class="modal-header">
-              <h4 class="modal-title">Sign in</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-
-          <!-- Modal body -->
-          <i class="fas fa-user-circle"></i>
-          <div class="modal-body login">
-              <!-- <i class="fas fa-user"></i> -->
-              <input type="text" placeholder="Username" id="username" ngModel="email" >
-              <!-- <i class="fas fa-unlock-alt"></i> -->
-              <input type="password" placeholder="password" id="password" ngModel="password">
-              <input type="submit" value="Sign In" class="sign" (click)="login(email,password)"><br>
-              <input type="checkbox" style="width: 6%; margin-left: -50px;">Remember me
-              <a href="#" class="forgot">forgot password?</a>
-              <div class="shadow"></div>
-          </div>
-
-          <!-- Modal footer -->
-          <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          </div>
-
-      </div>
-  </div>
+ <app-login></app-login>
 </div>
 
 <div class="modal" id="myregister">
-<div class="modal-dialog">
-    <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-            <h4 class="modal-title">Register</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <i class="fas fa-user-circle"></i>
-        <div class="modal-body login">
-            <!-- <i class="fas fa-user"></i> -->
-            <input type="text" placeholder="Username" id="username"  ngModel="email">
-            <input type="text" placeholder="Address" id="address" ngModel="password">
-            <input type="text" placeholder="Phone" id="phone" >
-            <input type="password" placeholder="password" id="password">
-            <input type="submit" value="Register" class="sign" (click)="register(email,password)"><br>
-            <div class="shadow"></div>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-
-    </div>
-</div>
+   <app-register></app-register>
 </div>

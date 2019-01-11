@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../../models/user"
+import { AuthService } from "../../services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-acount',
@@ -6,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./acount.component.scss']
 })
 export class AcountComponent implements OnInit {
-
-  constructor() { }
+  user: User;
+  constructor( public authService: AuthService,
+    private router: Router,) { }
   public show:boolean = false;
 
   ChangePass() {
@@ -20,6 +24,10 @@ export class AcountComponent implements OnInit {
     //   this.buttonName = "Show";
   }
   ngOnInit() {
+    this.user= this.authService.user;
+    if(this.user==null){
+      this.router.navigate(["/"]);
+    }
   }
 
 }

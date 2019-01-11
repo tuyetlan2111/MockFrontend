@@ -6,6 +6,7 @@ import { DetailComponent } from './components/product_detail/product_detail.comp
 import { CartComponent } from './components/cart/cart.component';
 import { AcountComponent } from './components/acount/acount.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '',redirectTo: 'home', pathMatch: 'full' },
@@ -17,7 +18,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), ReactiveFormsModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -39,7 +39,13 @@ export class AuthService {
       }
     }
   }
-  login(email,password) {
-    this.user = this.userService.getUserLogin(email,password);
+  login(email,password) : Promise<{}>{{
+      return new Promise<{}>((resolve, reject) => {
+        this.userService.getUserLogin(email,password).then(() => {
+          this.user = this.userService.user;
+          resolve(this.user);
+         })
+        });
+    }
   }
 }
