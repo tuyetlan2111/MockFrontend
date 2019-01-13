@@ -28,14 +28,15 @@ count:number = 0;
       .subscribe(data => {
         this.cartItem = data;
         console.log(this.cartItem);
+        this.totalPrice();
       });
   }
-// totalPrice(){
-//   this.total = 0;
-//   for(let i = 0; i < this.product.length;i++){
-//     this.total = this.product[i].id * 
-//   }
-// }
+totalPrice(){
+  this.total = 0;
+  for(let i = 0; i < this.cartItem.length;i++){
+    this.total += this.cartItem[i].price * this.cartItem[i].quantity; 
+  }
+}
 
  add(){
 

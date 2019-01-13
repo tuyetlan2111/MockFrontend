@@ -10,6 +10,7 @@ import { IToastrService } from '../../services/toastr.service';
 })
 export class ProductComponent implements OnInit {
   products : Product[];
+  product : any;
   constructor(
     private http: HttpClient,
     public productService: ProductService,
@@ -20,6 +21,20 @@ export class ProductComponent implements OnInit {
        this.productService.getProducts().then(() => {
         this.products = this.productService.products;
        })
+       this.showConfig();
+  }
+
+  configUrl = 'http://localhost:8080/product/show';
+  getConfig() {
+    return this.http.get(this.configUrl);
+  }
+
+  showConfig() {
+    this.getConfig()
+      .subscribe(data => {
+        this.product = data;
+        console.log(this.product);
+      });
   }
     
   changeicon(x) {

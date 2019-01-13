@@ -17,7 +17,7 @@
           <tr *ngFor="let cartItem of cartItem">
             <td>{{cartItem.id}}</td>
             <td style=" width: 24%;">
-              <img src="./assets/img/product01.jpg" alt="Product" style="width: 50%;">
+              <img src="assets/img/{{cartItem.product.image}}" alt="Product" style="width: 50%;">
             </td>
             <td>{{cartItem.product.title}}</td>
             <td>{{cartItem.price}}</td>
@@ -38,7 +38,7 @@
       </table>
       <div class="total col-3">
         <p>Total:
-          <span>600.000</span>
+          <span>{{total}}</span>
         </p>
       </div>
       <div class="col-6">

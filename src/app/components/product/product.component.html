@@ -15,7 +15,7 @@
           
             <!-- Product Single -->
 
-            <div class="item col-md-3 col-sm-6 col-xs-6" *ngFor = "let product of products">
+            <div class="item col-md-3 col-sm-6 col-xs-6" *ngFor = "let p of product">
               <div class="product product-single" >
                   
                 <a routerLink="/detail">
@@ -24,8 +24,8 @@
                       </div>
                 </a>
                 <div class="product-body">
-                    <h2 class="product-name"><a href="#">{{product.title}}</a></h2>
-                  <p class="product-price">{{product.price}} đ</p>
+                    <h2 class="product-name"><a href="#">{{p.title}}</a></h2>
+                  <p class="product-price">{{p.price}} đ</p>
                   <div class="product-rating">
                       <i ng-click="changeicon(this)" class="far fa-star"></i>
                       <i class="far fa-star"></i>
