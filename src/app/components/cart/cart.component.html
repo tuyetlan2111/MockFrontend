@@ -14,7 +14,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let cartItem of cartItem">
+          <tr *ngFor="let cartItem of cartItems">
             <td>{{cartItem.id}}</td>
             <td style=" width: 24%;">
               <img src="assets/img/{{cartItem.product.image}}" alt="Product" style="width: 50%;">
@@ -23,15 +23,23 @@
             <td>{{cartItem.price}}</td>
 
             <td style="text-align: center;">
-              <button type="button" class="soluong" click="cong($event)">-</button>
-              <input class="qty" type="text" min="1" max="10" value="{{cartItem.quantity}}">
-              <button type="button" class="soluong">+</button>
+              <button type="button" class="soluong"><a (click) = "minUpdateProductToCart(cartItem)">-</a></button>
+              <input class="qty" type="number" min="1" max="100" #quantity="ngModel" [(ngModel)]="cartItem.quantity" disabled>
+              <button type="button" class="soluong"><a (click) = "plusUpdateProductToCart(cartItem)">+</a></button>
             </td>
 
             <td>
-              <button class="del">
-                <i class="far fa-trash-alt"></i>
-              </button>
+                  <button class="del">
+                    <a (click) = "deleteProductToCart(cartItem)">
+                      <i class="far fa-trash-alt"></i>
+                    </a>
+                  </button>
+                
+                    <!-- <button class="del">
+                      <a (click) = "updateProductToCart(cartItem)">
+                        <i class="far fa-trash-alt"></i>
+                      </a>
+                    </button> -->
             </td>
           </tr>
         </tbody>
