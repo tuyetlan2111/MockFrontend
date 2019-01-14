@@ -1,0 +1,41 @@
+<app-menu></app-menu>
+<div class="col-10 artist">
+  <a routerLink="/add_artist"><button type="button">Thêm Artist</button></a>
+  <h3>Danh sách Artist</h3>
+    <table #dataTable style="width:100%" class="table table-hover display">
+      <thead>
+          <tr>
+              <th>#ID</th>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>LifeSpan</th>
+              <th>Description</th>
+               <th>Country</th>
+              <th>TotalProducts</th>
+              <th>Xóa</th>
+              <th>Sửa</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let artist of artist">
+              <td>{{artist.id}}</td>
+              <td>{{artist.firstName}}</td>
+              <td>{{artist.lastName}}</td>
+              <td>{{artist.lifeSpan}}</td>
+              <td>{{artist.description}}</td>
+              <th>{{artist.country}}</th>
+              <th>{{artist.totalProducts}}</th>
+              <td><button type="button" (click)="delete(artist.id)" title="delete artist" style="background: none;
+                color: #000000;
+                font-weight: bold;
+                font-size: 22px;
+                padding: 0px;
+                margin: 0px;
+                cursor: pointer;
+                float:none;"><i class="far fa-trash-alt"></i></button></td>
+             <td (click)="updateProduct()"><a routerLink="/update_product/{{artist.id}}"><i class="fas fa-marker" style="color:#000000"></i></a></td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+ <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"> -->

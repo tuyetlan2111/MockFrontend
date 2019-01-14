@@ -1,0 +1,24 @@
+.order_detail{
+    float: right;
+    padding: 5px;
+    margin-left: 0px;
+    background: #ffffff;
+}
+.order_detail h3{
+    padding: 20px;
+}
+.order_detail a{
+    color: #000000 !important;
+    text-decoration: none;
+}
+.order_detail button{
+    float: right;
+    margin: 0px 30px 50px;
+    padding: 10px 14px;
+    background: #000000;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 18px;
+}

@@ -1,0 +1,25 @@
+<app-menu></app-menu>
+<div class="col-10 order_detail">
+   <!-- <button type="submit">Thêm hóa đơn</button> -->
+    <table #dataTable style="width:100%" class="table table-hover display">
+      <thead>
+          <tr>
+              <th>#ID</th>
+              <th>Tên sản phẩm</th>
+              <th>Số lượng</th>
+              <th>Ngày tạo</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let orderDetail of OrderDetail">
+              <td>{{orderDetail.orderProduct.id}}</td>
+              <td>{{orderDetail.product.title}}</td>
+              <td>{{orderDetail.quantity}}</td>
+              <td>{{orderDetail.createdOn}}</td>
+              
+              
+              <!-- <td><i class="far fa-trash-alt"></i> Xóa</td> -->
+          </tr>
+         
+      </tbody>
+  </table>

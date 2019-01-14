@@ -34,37 +34,9 @@ export class RestService {
     return this.http.get(endpoint + 'user/show/'+ id).pipe(
       map(this.extractData));
   }
-
-////////// PRODUCT API//////////
-  getProducts(): Observable<any> {
-    return this.http.get(endpoint + 'product/show').pipe(
+  getUsers(): Observable<any> {
+    return this.http.get(endpoint + 'user/show/').pipe(
       map(this.extractData));
-  }
-  getProduct(id): Observable<any> {
-    return this.http.get(endpoint + 'product/show/' + id).pipe(
-      map(this.extractData));
-  }
-
-  addProduct (product): Observable<any> {
-    console.log(product);
-    return this.http.post<any>(endpoint + 'product/create', JSON.stringify(product), httpOptions).pipe(
-      tap((product) => console.log(`added product w/ id=${product.id}`)),
-      catchError(this.handleError<any>('addProduct'))
-    );
-  }
-
-  updateProduct (id, product): Observable<any> {
-    return this.http.put(endpoint + 'products/' + id, JSON.stringify(product), httpOptions).pipe(
-      tap(_ => console.log(`updated product id=${id}`)),
-      catchError(this.handleError<any>('updateProduct'))
-    );
-  }
-
-  deleteProduct (id): Observable<any> {
-    return this.http.delete<any>(endpoint + 'products/' + id, httpOptions).pipe(
-      tap(_ => console.log(`deleted product id=${id}`)),
-      catchError(this.handleError<any>('deleteProduct'))
-    );
   }
   ////////// RATING API//////////
   getRatingProduct(id): Observable<any> {
@@ -80,8 +52,81 @@ export class RestService {
     );
   }
 
+  ///////// ADMIN //////////////
 
 
+////////// PRODUCT API//////////
+  getProducts(): Observable<any> {
+    return this.http.get(endpoint + 'product/show').pipe(
+      map(this.extractData));
+  }
+  
+  getProduct(id): Observable<any> {
+    return this.http.get(endpoint + 'product/show/' + id).pipe(
+      map(this.extractData));
+  }
+  
+  addProduct (product): Observable<any> {
+    console.log(product);
+    return this.http.post<any>(endpoint + 'product/ProductData', JSON.stringify(product), httpOptions).pipe(
+      tap((product) => console.log(`addProduct w/ id=${product.id}`)),
+      catchError(this.handleError<any>('addProduct'))
+    );
+  }
+  updateProduct (id, product): Observable<any> {
+    return this.http.put(endpoint + 'product/update/' + id, JSON.stringify(product), httpOptions).pipe(
+      tap(_ => console.log(`updated product id=${id}`)),
+      catchError(this.handleError<any>('updateProduct'))
+    );
+  }
+  
+  deleteProduct (id): Observable<any> {
+    return this.http.delete<any>(endpoint + 'product/delete/' + id, httpOptions).pipe(
+      tap(_ => console.log(`delete product id=${id}`)),
+      catchError(this.handleError<any>('deleteProduct'))
+    );
+  }
+
+////////// USer API//////////
+
+  getOrders(): Observable<any>{
+    return this.http.get(endpoint + 'order/show').pipe(
+      map(this.extractData));
+  }
+  getOrderDetail(id): Observable<any> {
+    return this.http.get(endpoint + 'order_detail/show/' + id, httpOptions).pipe(
+      map(this.extractData));
+  }
+
+  getArtist(): Observable<any>{
+    return this.http.get(endpoint + 'artist/show').pipe(
+      map(this.extractData));
+  }
+  deleteArtist (id): Observable<any> {
+    return this.http.delete<any>(endpoint + 'artist/delete/' + id, httpOptions).pipe(
+      tap(_ => console.log(`delete aritist id=${id}`)),
+      catchError(this.handleError<any>('deleteArtist'))
+    );
+  }
+  addArtist (product): Observable<any> {
+    console.log(product);
+    return this.http.post<any>(endpoint + 'artist/create/', JSON.stringify(product), httpOptions).pipe(
+      tap((product) => console.log(`addArtist w/ id=${product.id}`)),
+      catchError(this.handleError<any>('addArtist'))
+    );
+  }
+  // selectedFile: File;
+  // onUpload() {
+  //   const uploadData = new FormData();
+  //   uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
+  //   this.http.post('my-backend.com/file-upload', uploadData, {
+  //     reportProgress: true,
+  //     observe: 'events'
+  //   })
+  //     .subscribe(event => {
+  //       console.log(event); // handle event here
+  //     });
+  // }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

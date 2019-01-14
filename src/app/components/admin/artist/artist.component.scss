@@ -1,0 +1,30 @@
+.artist{
+    float: right;
+    padding: 5px;
+    margin-left: 0px;
+    background: #ffffff;
+}
+.artist h3{
+    padding: 20px;
+}
+.artist a{
+    color: #000000 !important;
+    text-decoration: none;
+}
+.artist table td, .artist table th{
+    padding: 20px;
+}
+button{
+    float: right;
+    margin: 30px 44px 30px 0px;
+    background: #000000;
+    border: none;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover{
+    background: chocolate;
+}

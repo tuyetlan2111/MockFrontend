@@ -1,0 +1,34 @@
+<app-menu></app-menu>
+<div class="col-10 show_user">
+    <h3>Danh sách khách hàng</h3>
+      <table #dataTable style="width:100%" class="table table-hover display">
+        <thead>
+            <tr>
+                <th>#ID</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Ngày đăng kí</th>
+                <th>Số lượng Order</th>
+                <th>Vai trò</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of UserData">
+                <td>{{user.id}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.city}}</td>
+                <td>{{user.country}}</td>
+                <td>{{user.signupDate}}</td>
+                <td style="text-align:center;">{{user.orderCount}}</td>
+                <td>{{user.role == 1 ? 'admin' : 'Khách'}}</td>
+            </tr>
+           
+        </tbody>
+    </table>
+  
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>

@@ -1,0 +1,48 @@
+.show_product{
+    float: right;
+    padding: 5px;
+    margin-left: 0px;
+    background: #ffffff;
+}
+.show_product h3{
+    padding: 20px;
+}
+.show_product a{
+    color: #000000 !important;
+    text-decoration: none;
+}
+.show_product table td, .show_product table th{
+    padding: 20px;
+}
+.show_product button.add{
+    float: right;
+    margin-bottom: 30px;
+    background: #ffffff;
+    padding: 8px 16px;
+    font-size: 17px;
+    border-radius: 3px;
+    border: 1px solid #000000;
+    margin-top: 30px;
+}
+a{
+    background: none;
+    color: #ffffff;
+}
+a:focus{
+    background: none;
+    color: #ffffff;
+}
+.show_product button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0px;
+}
+.show_product i{
+    float: left;
+    margin-right: 2px;
+    padding-top: 3px;
+    color: red;
+    font-weight: bold;
+    font-size: 22px;
+}

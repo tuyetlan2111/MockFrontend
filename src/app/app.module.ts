@@ -25,6 +25,22 @@ import { LoginComponent } from './components/header/login/login.component';
 import { RegisterComponent } from './components/header/register/register.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+//admin
+import * as $ from "jquery";
+import { UserComponent } from './components/admin/user/user.component';
+import { UpdateProductComponent } from './components/admin/update-product/update-product.component';
+import { OrderComponent } from './components/admin/order/order.component';
+import { OrderDetailComponent } from './components/admin/order-detail/order-detail.component';
+import { ArtistComponent } from './components/admin/artist/artist.component';
+import { AddArtistComponent } from './components/admin/add-artist/add-artist.component';
+import { UpdateArtistComponent } from './components/admin/update-artist/update-artist.component';
+import { MenuComponent } from './components/admin/menu/menu.component';
+import { ManagerProductComponent } from './components/admin/product/product.component';
+import { AddProductComponent } from './components/admin/add-product/add-product.component';
+
+import { DataTablesModule } from 'angular-datatables';
+
+
 /* to load and set en.json as the default application language */
 export function setupTranslateFactory(service: TranslateService): Function {
 	return () => service.use('en');
@@ -45,6 +61,17 @@ export function setupTranslateFactory(service: TranslateService): Function {
     SliderComponent,
     LoginComponent,
     RegisterComponent,
+    ManagerProductComponent,
+    MenuComponent,
+    ProductComponent,
+    AddProductComponent,
+    UserComponent,
+    UpdateProductComponent,
+    OrderComponent,
+    OrderDetailComponent,
+    ArtistComponent,
+    AddArtistComponent,
+    UpdateArtistComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +79,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    DataTablesModule,
     BrowserAnimationsModule, 
     NgxPaginationModule,
     ToastrModule.forRoot()

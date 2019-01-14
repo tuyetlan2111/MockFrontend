@@ -1,0 +1,37 @@
+<app-menu></app-menu>
+<div class="col-10 show_product">
+    <a class="dropdown-item" routerLink="/add_product" style=" background: none;"><button class="add">Thêm sản phẩm</button></a>
+  <!-- <h3>Danh sách sản phẩm</h3> -->
+    <table #dataTable style="width:100%" class="table table-hover display">
+      <thead>
+          <tr>
+              <th>#ID</th>
+              <th>Tên sản phẩm</th>
+              <th>Giá</th>
+              <th style="width: 343px;">Mô tả</th>
+              <th>Hình</th>
+                <th>Artist</th>
+                <th>QuantitySold</th>
+              <th>Đánh giá</th>
+              <th>Xóa</th>
+              <th>Sửa</th>
+
+              quantitySold
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let p of product">
+              <td>{{p.id}}</td>
+              <td>{{p.title}}</td>
+              <td>{{p.price}}</td>
+              <td>{{p.description}}</td>
+              <td><img src="{{p.image}}"></td>
+              <th>{{p.artist.country}}</th>
+              <th>{{p.quantitySold}}</th>
+              <th>{{p.avgStars}}</th>
+              <td><button type="button" (click)="delete(p.id)" title="delete product"><i class="far fa-trash-alt"></i></button></td>
+             <td (click)="updateProduct()"><a routerLink="/update_product/{{p.id}}"><i class="fas fa-marker" style="color:#000000"></i></a></td>
+          </tr>
+        
+      </tbody>
+  </table>

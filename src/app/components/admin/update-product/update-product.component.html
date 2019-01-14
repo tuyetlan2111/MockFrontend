@@ -1,0 +1,38 @@
+
+<app-menu></app-menu>
+<div class="col-9 update_product">
+  <form action="">
+      <h3>Sửa sản phẩm</h3>
+      <div class="form-group">
+        <label for="name">Tên sản phẩm</label>
+        <input type="text" class="form-control" id="title" name="title" [(ngModel)]="ProductData.title">
+      </div>
+      <div class="form-group">
+        <label for="name">Artist</label>
+          <select class="form-control" [(ngModel)]="ProductData.artist.country">
+            <option *ngFor="let artist of artist" value="{{artist.country}}">{{artist.country}}</option>
+          </select>
+        </div>
+      <div class="form-group">
+        <label for="name">Giá sản phẩm</label>
+        <input type="text" class="form-control" id="price" name="price" [(ngModel)]="ProductData.price" style="margin-left: 33px;">
+      </div>
+      <div class="form-group">
+          <label for="name">Mô tả sản phẩm</label>
+        <textarea name="descreption" id="descreption" cols="30" rows="10" [(ngModel)]="ProductData.description"></textarea>
+      </div>
+      <div class="form-group">
+          <label for="fileupload">Hình sản phẩm</label> 
+          <!-- <input type="hidden" name="fileHidden" formControlName="avatar">   -->
+          <input name="image" type="file">
+      </div>
+  
+  
+     <a routerLink="/home">
+      <button type="button" class="btn btn-success" (click)="updateProduct()">Cập nhật</button>
+    </a>
+
+  </form>
+   
+  </div>
+  

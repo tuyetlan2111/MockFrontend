@@ -1,0 +1,53 @@
+.add_product{
+    float: right;
+}
+.add_product h3{
+    margin: 18px 0px 36px;
+}
+.add_product textarea{
+    margin-left: 0px;
+}
+.add_product textarea{
+    margin-bottom: 0px;
+    height: 106px;
+    width: 74%;
+}
+.add_product input{
+    margin-left: 30px;
+    width: 74%;
+    display: inline;
+}
+.add_product select{
+    margin-left: 27px;
+    width: 74%;
+    display: inline;
+}
+.add_product button.add{
+    padding: 10px 27px;
+    margin-bottom: 50px;
+    background: #000000;
+    text-align: center;
+    border: none;
+    margin: auto;
+    display: block;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 18px;
+}
+.add_product button{
+    border: none;
+    font-size: 18px;
+    background: #000000;
+    color: #ffffff;
+    border-radius: 3px;
+    padding: 4px 8px;
+}
+.add_product button:hover,.add_product button:focus{
+    background: coral;
+    color: #ffffff;
+}
+.artist input{
+    margin-left: 126px !important;
+    margin-bottom: 23px!important;
+}

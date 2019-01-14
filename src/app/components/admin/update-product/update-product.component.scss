@@ -1,0 +1,43 @@
+.update_product{
+    float: right;
+}
+.update_product h3{
+    margin: 18px 0px 36px;
+}
+.update_product textarea{
+    margin-bottom: 0px;
+    height: 106px;
+    margin-left: 14px;
+    width: 74%;
+}
+.update_product input{
+    margin-left: 30px;
+    width: 74%;
+    display: inline;
+}
+.update_product select{
+    margin-left: 92px;
+    width: 74%;
+    display: inline;
+}
+.update_product button{
+    padding: 10px 27px;
+    margin-bottom: 50px;
+    background: #000000;
+    text-align: center;
+    border: none;
+    margin: auto;
+    display: block;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 18px;
+}
+.update_product button:hover,.update_product button:focus{
+    background: coral;
+    color: #ffffff;
+}
+a{
+    color: #000000;
+    text-decoration: none;
+}
