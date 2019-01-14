@@ -41,9 +41,9 @@ export class ProductComponent implements OnInit {
     x.classList.toggle("fas fa-star");
   }
   addProductToCart(product){
-    this.productService.navbarCartCount++;
-  // this.toastrService.success('Add to Cart done', product.title);
-   this.toastrService.showSuccessWithTimeout("Data shown successfully !!", "Notification", 100000)
+   this.productService.navbarCartCount++;
+   //console.log(product)
+   this.toastrService.showSuccessWithTimeout("Add to Cart done !!", product.title , 50000)
 
   }
 }
