@@ -2,7 +2,8 @@ import { Component, OnInit,Input, } from '@angular/core';
 import { ActivatedRoute, Router,} from '@angular/router';
 import { RestService } from '../../../rest.service';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-
+import {User} from "../../../models/user"
+import { AuthService } from "../../../services/auth.service";
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -10,14 +11,19 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 })
 export class AddProductComponent implements OnInit {
   selectedFile:File = null;
-
+  user:User;
   artist:any = [];
   public show:boolean = false;
   @Input() ProductData = {title:'', price: '',description:'',image:'image.jpg', artist:'', quantitySold:0,avgStars:0,createdOn:'2018-12-31',createdBy:1,changedOn:'2018-12-31',changedBy:1};
-  constructor(private http : HttpClient, public rest:RestService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private http : HttpClient, public rest:RestService, private route: ActivatedRoute, private router: Router,private authService : AuthService,) { }
 
   ngOnInit() {
+    this.user= this.authService.user;
+    if(this.user==null){
+      this.router.navigate(["/"]);
+    }
     this.getArtist();
+
   }
   
   addProduct() {

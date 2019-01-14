@@ -4,6 +4,8 @@ import { Rating } from '../models/rating';
 import { AuthService } from './auth.service';
 import { IToastrService } from './toastr.service';
 import { RestService } from '../rest.service';
+import { Cart } from '../models/cart';
+import { CartItem } from '../models/cart_item';
 
 
 @Injectable()
@@ -14,9 +16,24 @@ export class ProductService {
 	products : Product[];
 	productCurrent: Product;
 	ratingsCurrent: Rating[];
+	cartItem : CartItem[];
 	constructor(public rest:RestService, private iToastrService: IToastrService){
 		this.getProducts();
+		this.calculateLocalCartProdCounts();
 	}
+	
+  
+	getCartItem(): Promise<{}> {
+		return new Promise<{}>((resolve, reject) => {
+			this.rest.getCartItem().subscribe((data: {}) => {
+			  this.cartItem = <CartItem[]>data;
+			  console.log(this.products);
+			  resolve(this.products);
+			});
+
+		});
+	}
+
 	getProducts(): Promise<{}> {
 		return new Promise<{}>((resolve, reject) => {
 			this.rest.getProducts().subscribe((data: {}) => {
@@ -90,13 +107,15 @@ export class ProductService {
 // 	}
 
 	// Fetching Locat CartsProducts
-	getLocalCartProducts(): Product[] {
-		return this.products;
-	}
+	calculateLocalCartProdCounts(){
+		this.getCartItem().then(() => {
+			var sum = 0;
+			this.cartItem.forEach(element => {
+				sum+= parseInt(element.quantity);
+			});
 
-	// returning LocalCarts Product Count
-	calculateLocalCartProdCounts() {
-		this.navbarCartCount = this.getLocalCartProducts().length;
+			this.navbarCartCount = sum
+		})
 	}
 }
 

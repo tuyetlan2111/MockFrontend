@@ -16,19 +16,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let order of OrderData">
+            <tr *ngFor="let order of OrderData  |paginate: { itemsPerPage: 8, currentPage: p}">
                 <td>{{order.id}}</td>
                 <td>
-                    <span>{{order.user.firstName}}</span> <span>{{order.user.lastName}}</span></td>
-                <td>{{order.orderDate}}</td>
+                <span>{{order.user.firstName}}</span> <span>{{order.user.lastName}}</span></td>
+                <td>{{order.orderDate | date:'medium'}}</td>
                 <td>{{order.totalPrice}}</td>
                 <td>{{order.orderNumber}}</td>
                 <td>{{order.itemCount}}</td>
                 <!-- <td><i class="far fa-trash-alt"></i></td>
                <td><i class="fas fa-marker"></i></td> -->
-               <td><a routerLink="/order_detail/{{order.id}}">Chi tiết</a></td>
+               <td><a routerLink="/admin/order_detail/{{order.id}}">Chi tiết</a></td>
             </tr>
         </tbody>
     </table>
-  
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
   

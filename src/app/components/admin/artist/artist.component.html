@@ -1,6 +1,6 @@
 <app-menu></app-menu>
 <div class="col-10 artist">
-  <a routerLink="/add_artist"><button type="button">Thêm Artist</button></a>
+  <a routerLink="/admin/add_artist"><button type="button">Thêm Artist</button></a>
   <h3>Danh sách Artist</h3>
     <table #dataTable style="width:100%" class="table table-hover display">
       <thead>
@@ -17,7 +17,7 @@
           </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let artist of artist">
+          <tr *ngFor="let artist of artist | paginate: { itemsPerPage: 5, currentPage: p}">
               <td>{{artist.id}}</td>
               <td>{{artist.firstName}}</td>
               <td>{{artist.lastName}}</td>
@@ -33,9 +33,11 @@
                 margin: 0px;
                 cursor: pointer;
                 float:none;"><i class="far fa-trash-alt"></i></button></td>
-             <td (click)="updateProduct()"><a routerLink="/update_product/{{artist.id}}"><i class="fas fa-marker" style="color:#000000"></i></a></td>
+             <td (click)="updateProduct()"><a routerLink="/admin/update_product/{{artist.id}}"><i class="fas fa-marker" style="color:#000000"></i></a></td>
           </tr>
       </tbody>
   </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
 </div>
  <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"> -->

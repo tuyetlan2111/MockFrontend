@@ -51,7 +51,11 @@ export class RestService {
       catchError(this.handleError<any>('addRating'))
     );
   }
-
+////////// CART API//////////
+getCartItem(): Observable<any> {
+  return this.http.get(endpoint + 'cartItem/show').pipe(
+    map(this.extractData));
+}
   ///////// ADMIN //////////////
 
 

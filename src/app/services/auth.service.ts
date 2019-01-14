@@ -12,7 +12,9 @@ export class AuthService {
     private router: Router,
     private userService: UserService
   ) {
-    this.user = userService.getUserCurent();
+      // logged in so return true
+      this.user = userService.getUserCurent();
+
   }
 
   isLoggedIn(): boolean {
@@ -24,6 +26,7 @@ export class AuthService {
 
   logout() {
     this.user = null;
+    localStorage.removeItem('currentUser');
     this.router.navigate(["/"]);
   }
 

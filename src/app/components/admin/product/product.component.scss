@@ -14,6 +14,28 @@
 .show_product table td, .show_product table th{
     padding: 20px;
 }
+.description{
+    overflow: hidden;
+    height: 32px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 16px;     /* fallback */
+    max-height: 32px;      /* fallback */
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+}
+.title{
+    overflow: hidden;
+    height: 32px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 16px;     /* fallback */
+    max-height: 32px;      /* fallback */
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+}
 .show_product button.add{
     float: right;
     margin-bottom: 30px;

@@ -22,6 +22,7 @@
     "@angular/router": "~7.1.0",
     "angular-6-datatable": "^0.8.0",
     "angular-datatables": "^6.0.1",
+    "angular-font-awesome": "^3.1.2",
     "animations": "0.0.0",
     "bootstrap": "^4.2.1",
     "copy-webpack-plugin": "^4.6.0",

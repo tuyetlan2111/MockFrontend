@@ -13,12 +13,19 @@ export class UserService {
     return new Promise<{}>((resolve, reject) => {
             this.rest.getUser(1).subscribe((data: {}) => {
               this.user = <User>data;
+              localStorage.setItem('currentUser', JSON.stringify(this.user));
               console.log(data);
               resolve(this.user);
             });
       });
   }
   getUserCurent() {
-    return this.user;
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if( localStorage.getItem('currentUser')){
+      this.user = currentUser;
+      return this.user;
+
+    }
+    return null;
   }
 }

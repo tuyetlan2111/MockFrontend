@@ -25,6 +25,7 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/header/login/login.component';
 import { RegisterComponent } from './components/header/register/register.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 //admin
 import * as $ from "jquery";
@@ -79,6 +80,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    AngularFontAwesomeModule,
     FormsModule,
     DataTablesModule,
     BrowserAnimationsModule, 

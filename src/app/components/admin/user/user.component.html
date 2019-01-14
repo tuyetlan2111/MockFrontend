@@ -16,19 +16,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let user of UserData">
+            <tr *ngFor="let user of UserData  | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>{{user.id}}</td>
                 <td>{{user.firstName}}</td>
                 <td>{{user.lastName}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.city}}</td>
                 <td>{{user.country}}</td>
-                <td>{{user.signupDate}}</td>
+                <td>{{user.signupDate | date}}</td>
                 <td style="text-align:center;">{{user.orderCount}}</td>
                 <td>{{user.role == 1 ? 'admin' : 'Khách'}}</td>
             </tr>
            
         </tbody>
     </table>
-  
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>

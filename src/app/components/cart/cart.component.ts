@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Event } from '@angular/router/src/events';
 import { BillingService } from 'src/app/services/cart.service';
+import { ProductService } from 'src/app/services/product.service';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class CartComponent implements OnInit {
   cartItems: any;
   count: number = 0;
   constructor(private http: HttpClient,
-    private service: BillingService) { }
+    private service: BillingService,
+    private productService : ProductService) { }
 
   ngOnInit() {
     this.showConfig();
@@ -39,6 +41,8 @@ export class CartComponent implements OnInit {
     for (let i = 0; i < this.cartItems.length; i++) {
       this.total += this.cartItems[i].price * this.cartItems[i].quantity;
     }
+    this.productService.calculateLocalCartProdCounts();
+
   }
 
   deleteProductToCart(cartItem) {
