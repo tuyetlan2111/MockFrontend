@@ -74,5 +74,6 @@ export class ProductComponent implements OnInit {
     }
     this.billdingService.addProduct(this.cartItem)
       .subscribe(item => this.listCartItem.push(item));
+      this.productService.addToCart(p);
   }
 }
