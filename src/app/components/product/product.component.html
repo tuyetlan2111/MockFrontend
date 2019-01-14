@@ -20,7 +20,7 @@
                   
                 <a routerLink="/detail">
                     <div class="product-thumb">
-                        <img src="{{'./assets/img/'+ product.image}}" alt="">    
+                        <img src="./assets/img/{{p.image}}" alt="">    
                       </div>
                 </a>
                 <div class="product-body">
@@ -34,10 +34,8 @@
                       <i class="far fa-star-o empty"></i>
                     </div>
                   <div class="product-btns">
-                      <a (click) = "addProductToCart(product)"><button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button></a>
+                      <a (click) = "addProductToCart(p)"><button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart">Add to Cart</i> </button></a>
                    </div>
-                     
-                 
                 </div>
               </div>
             </div>
