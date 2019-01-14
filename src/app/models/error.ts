@@ -1,16 +1,16 @@
 export interface Error {
     id?: string;
-    user_id?: string;
-    error_date?: string;
-    ip_address?: string;
+    userId?: string;
+    errorDate?: string;
+    ipAddress?: string;
     exception?: string;
-    user_agent?: string;
+    userAgent?: string;
     message?: string;
     everything?: string;
-    http_referer?: string;
-    path_and_query?: string;
-    changed_by?: string;
-    changed_on?: string;
-    created_by?: string;
-    created_on?: string;
+    httpReferer?: string;
+    pathAndQuery?: string;
+    changedBy?: string;
+    changedOn?: string;
+    createdBy?: string;
+    createdOn?: string;
 }

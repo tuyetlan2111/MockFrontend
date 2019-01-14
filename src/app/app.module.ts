@@ -24,6 +24,7 @@ import { SliderComponent } from './components/header/slider/slider.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/header/login/login.component';
 import { RegisterComponent } from './components/header/register/register.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 /* to load and set en.json as the default application language */
 export function setupTranslateFactory(service: TranslateService): Function {
@@ -53,6 +54,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule, 
+    NgxPaginationModule,
     ToastrModule.forRoot()
 
   ],

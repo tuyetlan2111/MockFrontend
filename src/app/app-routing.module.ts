@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 const routes: Routes = [
   { path: '',redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: ProductComponent },
-  { path: 'detail', component: DetailComponent },
+  { path: 'detail/:id', component: DetailComponent },
   { path: 'cart', component: CartComponent },
   { path: 'acount', component: AcountComponent },
   { path: 'payment', component: PaymentComponent }

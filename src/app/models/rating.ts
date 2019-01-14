@@ -1,10 +1,11 @@
 export interface Rating {
     id?: string;
-    user_id?: string;
-    product_id?: string;
-    stars?: string;
-    changed_by?: string;
-    changed_on?: string;
-    created_by?: string;
-    created_on?: string;
+    userId?: string;
+    productId?: string;
+    stars?: any;
+    user?:any;
+    changedBy?: string;
+    changedOn?: string;
+    createdBy?: string;
+    createdOn?: string;
 }

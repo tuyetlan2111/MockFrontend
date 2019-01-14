@@ -1,12 +1,12 @@
 export interface OrderProduct {
     id?: string;
-    item_count?: string;
-    order_date?: string;
-    order_number?: string;
-    total_price?: string;
-    user_id?: string;
-    changed_by?: string;
-    changed_on?: string;
-    created_by?: string;
-    created_on?: string;
+    itemCount?: string;
+    orderDate?: string;
+    orderNumber?: string;
+    totalPrice?: string;
+    userId?: string;
+    changedBy?: string;
+    changedOn?: string;
+    createdBy?: string;
+    createdOn?: string;
 }

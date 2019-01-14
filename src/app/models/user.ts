@@ -1,7 +1,7 @@
 export interface User {
     id?: string;
-    order_count?: string;
-    signup_date?: string;
+    orderCount?: string;
+    signupDate?: string;
     email?: string;
     firstName?: string;
     lastName?: string;

@@ -1,11 +1,11 @@
 export interface Cart {
     id?: string;
-    order_date?: string;
-    cart_date?: string;
+    orderDate?: string;
+    cartDate?: string;
     cookie?: string;
-    item_count?: string;
-    changed_by?: string;
-    changed_on?: string;
-    created_by?: string;
-    created_on?: string;
+    itemCount?: string;    
+    changedBy?: string;
+    changedOn?: string;
+    createdBy?: string;
+    createdOn?: string;
 }

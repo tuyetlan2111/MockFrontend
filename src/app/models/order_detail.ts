@@ -1,11 +1,11 @@
 export interface OdrderDetail {
     id?: string;
     quantity?: string;
-    order_id?: string;
-    product_id?: string;
+    orderId?: string;
+    productId?: string;
     price?: string;
-    changed_by?: string;
-    changed_on?: string;
-    created_by?: string;
-    created_on?: string;
+    changedBy?: string;
+    changedOn?: string;
+    createdBy?: string;
+    createdOn?: string;
 }
