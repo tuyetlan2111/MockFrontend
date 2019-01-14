@@ -6,7 +6,7 @@
 					<div class="col-md-4 image">
 						 <div id="product-main-view">
 							<div class="product-view">
-								<img src="./assets/img/main-product01.jpg" alt="">
+								<img src="{{'./assets/img/'+ product.image}}" alt="">
 							</div>
 						</div>
 					</div>
@@ -16,8 +16,8 @@
 								<span>New</span>
 								<span class="sale">-20%</span>
 							</div> -->
-							<h2 class="product-name">Product Name Goes Here</h2>
-							<h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
+							<h2 class="product-name">{{product.title}}</h2>
+							<h3 class="product-price">{{product.price}} đ</h3>
 							<div>
 								<div class="product-rating">
 									<i class="far fa-star"></i>
@@ -28,19 +28,15 @@
 								</div>
 								<a href="#">3 Review(s) / Add Review</a>
 							</div>
-							<p><strong>Availability:</strong> In Stock</p>
-							<p><strong>Brand:</strong> E-SHOP</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-								dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
+							<p>{{product.description}}</p>
 							<div class="product-btns">
 								<div class="qty-input">
 									<span style="font-size: 19px;">Số lượng:  </span>
-									<button class="soluong" type="button" style="padding: 1px 9px;">-</button>
-									<input class="qty" max="10" min="1" type="text" style="width: 10%;">
-									<button class="soluong" type="button" style="padding: 1px 9px;">+</button>
+									<button class="soluong" type="button" style="padding: 1px 9px;" (click)="mineNumber()">-</button>
+									<input class="qty" max="10" min="1" type="text" style="width: 10%; font-size: 20px" value="  {{number}}">
+									<button class="soluong" type="button" style="padding: 1px 9px;" (click)="addNumber()">+</button>
 								</div>
-								<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+								<button class="primary-btn add-to-cart"  (click)="addProductToCart(product)"><i class="fa fa-shopping-cart"  ></i> Add to Cart</button>
 								<div class="pull-right" style="display: inline;">
 									<button class="main-btn icon-btn" style="margin-left: 58px;"><i class="fa fa-heart"></i></button>
 									<!-- <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button> -->
@@ -66,123 +62,127 @@
 					</div>
 					<div class="col-md-12">
 						<div class="product-tab">
-							<ul class="tab-nav">
-								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-								<li><a data-toggle="tab" href="#tab1">Details</a></li>
-								<li><a data-toggle="tab" href="#tab2">Reviews (3)</a></li>
-							</ul>
-							<div class="tab-content">
-								<div id="tab1" class="tab-pane fade in active">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-										irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-								</div>
-								<div id="tab2" class="tab-pane fade in">
+								<nav>
+										<div class="nav nav-tabs" id="nav-tab" role="tablist">
+										  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Reviews (3)</a>
+										  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Details</a>
+										</div>
+									  </nav>
+									  <div class="tab-content" id="nav-tabContent">
+										<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+												<div style="height: 30px"> </div>
 
 									<div class="row">
-										<div class="col-md-6">
-											<div class="product-reviews">
-												<div class="single-review">
-													<div class="review-heading">
-														<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
-														<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0 PM</a></div>
-														<div class="review-rating pull-right">
-															<i class="far fa-star"></i>
-															<i class="far fa-star"></i>
-															<i class="far fa-star"></i>
-															<i class="far fa-star"></i>
-															<i class="far fa-star-o empty"></i>
+											
+											<div class="col-md-6">
+												<div class="product-reviews">
+													<div class="single-review">
+														<div class="review-heading">
+															<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
+															<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0 PM</a></div>
+															<div class="review-rating pull-right">
+																<i class="far fa-star"></i>
+																<i class="far fa-star"></i>
+																<i class="far fa-star"></i>
+																<i class="far fa-star"></i>
+																<i class="far fa-star-o empty"></i>
+															</div>
+														</div>
+														<div class="review-body">
+															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute
+																irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 														</div>
 													</div>
-													<div class="review-body">
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute
-															irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-													</div>
-												</div>
-
-												<div class="single-review">
-													<div class="review-heading">
-														<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
-														<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0 PM</a></div>
-														<div class="review-rating pull-right">
-															<i class="far fa-star"></i>
-															<i class="far fa-star"></i>
-															<i class="far fa-star"></i>
-															<i class="far fa-star"></i>
-															<i class="far fa-star-o empty"></i>
+	
+													<div class="single-review">
+														<div class="review-heading">
+															<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
+															<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0 PM</a></div>
+															<div class="review-rating pull-right">
+																<i class="far fa-star"></i>
+																<i class="far fa-star"></i>
+																<i class="far fa-star"></i>
+																<i class="far fa-star"></i>
+																<i class="far fa-star-o empty"></i>
+															</div>
+														</div>
+														<div class="review-body">
+															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute
+																irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 														</div>
 													</div>
-													<div class="review-body">
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute
-															irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-													</div>
-												</div>
-
-												<div class="single-review">
-													<div class="review-heading">
-														<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
-														<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0 PM</a></div>
-														<div class="review-rating pull-right">
-															<i class="far fa-star"></i>
-															<i class="far fa-star"></i>
-															<i class="far fa-star"></i>
-															<i class="far fa-star"></i>
-															<i class="far fa-star-o empty"></i>
+	
+													<div class="single-review">
+														<div class="review-heading">
+															<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
+															<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0 PM</a></div>
+															<div class="review-rating pull-right">
+																<i class="far fa-star"></i>
+																<i class="far fa-star"></i>
+																<i class="far fa-star"></i>
+																<i class="far fa-star"></i>
+																<i class="far fa-star-o empty"></i>
+															</div>
+														</div>
+														<div class="review-body">
+														
+															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute
+																irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 														</div>
 													</div>
-													<div class="review-body">
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute
-															irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-													</div>
+	
+													<ul class="reviews-pages">
+														<li class="active">1</li>
+														<li><a href="#">2</a></li>
+														<li><a href="#">3</a></li>
+														<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+													</ul>
 												</div>
-
-												<ul class="reviews-pages">
-													<li class="active">1</li>
-													<li><a href="#">2</a></li>
-													<li><a href="#">3</a></li>
-													<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-												</ul>
+											</div>
+											<div class="col-md-6">
+												<h4 class="text-uppercase">Write Your Review</h4>
+												<p>Your email address will not be published.</p>
+												<form class="review-form">
+													<div class="form-group">
+														<input class="input" type="text" placeholder="Your Name" />
+													</div>
+													<div class="form-group">
+														<input class="input" type="email" placeholder="Email Address" />
+													</div>
+													<div class="form-group">
+														<textarea class="input" placeholder="Your review"></textarea>
+													</div>
+													<div class="form-group">
+														<div class="input-rating">
+															<strong class="text-uppercase">Your Rating: </strong>
+															<div class="stars">
+																	<!-- <input type="radio" id="star5" name="rating" value="5" class="far fa-star"/>
+																	<i class="far fa-star"></i>
+																	<i class="far fa-star"></i>
+																	<i class="far fa-star"></i>
+																	<i class="far fa-star"></i>
+																	<i class="far fa-star"></i> -->
+																<input type="radio" id="star5" name="rating" value="5" /><label for="star5"><i class="far fa-star"></i></label>
+																<input type="radio" id="star4" name="rating" value="4" /><label for="star4"><i class="far fa-star"></i></label>
+																<input type="radio" id="star3" name="rating" value="3" /><label for="star3"><i class="far fa-star"></i></label>
+																<input type="radio" id="star2" name="rating" value="2" /><label for="star2"><i class="far fa-star"></i></label>
+																<input type="radio" id="star1" name="rating" value="1" /><label for="star1"><i class="far fa-star"></i></label>
+															</div>
+														</div>
+													</div>
+													<button class="primary-btn">Submit</button>
+												</form>
 											</div>
 										</div>
-										<div class="col-md-6">
-											<h4 class="text-uppercase">Write Your Review</h4>
-											<p>Your email address will not be published.</p>
-											<form class="review-form">
-												<div class="form-group">
-													<input class="input" type="text" placeholder="Your Name" />
-												</div>
-												<div class="form-group">
-													<input class="input" type="email" placeholder="Email Address" />
-												</div>
-												<div class="form-group">
-													<textarea class="input" placeholder="Your review"></textarea>
-												</div>
-												<div class="form-group">
-													<div class="input-rating">
-														<strong class="text-uppercase">Your Rating: </strong>
-														<div class="stars">
-																<!-- <input type="radio" id="star5" name="rating" value="5" class="far fa-star"/>
-																<i class="far fa-star"></i>
-																<i class="far fa-star"></i>
-																<i class="far fa-star"></i>
-																<i class="far fa-star"></i>
-																<i class="far fa-star"></i> -->
-															<input type="radio" id="star5" name="rating" value="5" /><label for="star5"><i class="far fa-star"></i></label>
-															<input type="radio" id="star4" name="rating" value="4" /><label for="star4"><i class="far fa-star"></i></label>
-															<input type="radio" id="star3" name="rating" value="3" /><label for="star3"><i class="far fa-star"></i></label>
-															<input type="radio" id="star2" name="rating" value="2" /><label for="star2"><i class="far fa-star"></i></label>
-															<input type="radio" id="star1" name="rating" value="1" /><label for="star1"><i class="far fa-star"></i></label>
-														</div>
-													</div>
-												</div>
-												<button class="primary-btn">Submit</button>
-											</form>
+										
+
+
+
 										</div>
-									</div>
-
-
-
-								</div>
-							</div>
+										<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+											<div style="height: 30px"> </div>
+											<p>{{product.description}}</p></div>
+									  </div>
 						</div>
 					</div>
 
@@ -194,54 +194,3 @@
 		<!-- /container -->
 	</div>
 	<!-- /section -->
-
-	<!-- section -->
-	<div class="section">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-				<!-- section title -->
-				<div class="col-md-12">
-					<div class="section-title">
-						<h2 class="title">Picked For You</h2>
-					</div>
-				</div>
-				<!-- section title -->
-        <div class="item col-md-3 col-sm-6 col-xs-6">
-          <div class="product product-single">
-            <div class="product-thumb">
-              <!-- <div class="product-label">
-                <span>New</span>
-                <span class="sale">-20%</span>
-              </div> -->
-              <!-- <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button> -->
-              <img src="./assets/img/product02.jpg" alt="">
-            </div>
-            <div class="product-body">
-              <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-              <div class="product-rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o empty"></i>
-              </div>
-              <h2 class="product-name"><a href="#">Product Name</a></h2>
-              <div class="product-btns">
-                <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-              </div>
-            </div>
-          </div>
-        </div>
-			
-
-			
-		
-			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->
-	</div>
