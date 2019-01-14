@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(email,password).then(() => {
       this.user = this.authService.user;
-      this.toastrService.showSuccessWithTimeout("Data shown successfully !!", "Notification", 1000)
+      this.toastrService.showSuccessWithTimeout("Login done !!", "Well come back "+ this.user.firstName + " " + this.user.lastName, 3000)
 
       if(this.user !== null){
         this.closeModal();

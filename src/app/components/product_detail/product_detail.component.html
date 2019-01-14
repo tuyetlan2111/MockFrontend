@@ -64,7 +64,7 @@
 						<div class="product-tab">
 								<nav>
 										<div class="nav nav-tabs" id="nav-tab" role="tablist">
-										  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Reviews (3)</a>
+										  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Reviews ({{ratings.length}})</a>
 										  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Details</a>
 										</div>
 									  </nav>
@@ -75,80 +75,35 @@
 									<div class="row">
 											
 											<div class="col-md-6">
-												<div class="product-reviews">
-													<div class="single-review">
+												<div class="product-reviews" >
+													<div class="single-review" *ngFor = "let rating of ratings | paginate: { itemsPerPage: 5, currentPage: p }">
 														<div class="review-heading">
-															<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
-															<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0 PM</a></div>
-															<div class="review-rating pull-right">
-																<i class="far fa-star"></i>
-																<i class="far fa-star"></i>
-																<i class="far fa-star"></i>
-																<i class="far fa-star"></i>
-																<i class="far fa-star-o empty"></i>
+															<div><i class="fas fa-user"></i> {{rating.user.firstName + " " + rating.user.lastName}}</div>
+															<div><i class="fas fa-clock"></i> {{rating.createdOn | date:'medium'}}</div>
+															<div class="review-rating pull-right"  >
+																<i class="fas fa-star" *ngIf ="rating.stars > 1"></i>
+																<i class="fas fa-star" *ngIf ="rating.stars > 2"></i>
+																<i class="fas fa-star" *ngIf ="rating.stars > 3"></i>
+																<i class="fas fa-star" *ngIf ="rating.stars > 4"></i>
+																<i class="fas fa-star" *ngIf ="rating.stars > 5"></i>
+																<i class="fas fa-star" *ngIf ="rating.stars < 1"></i>
+																<i class="far fa-star" *ngIf ="rating.stars < 2"></i>
+																<i class="far fa-star" *ngIf ="rating.stars < 3"></i>
+																<i class="far fa-star" *ngIf ="rating.stars < 4"></i>
+																<i class="far fa-star" *ngIf ="rating.stars < 5"></i>
+																
 															</div>
 														</div>
 														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute
-																irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+															<!-- <p>{{rating.body}}</p> -->
 														</div>
 													</div>
-	
-													<div class="single-review">
-														<div class="review-heading">
-															<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
-															<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0 PM</a></div>
-															<div class="review-rating pull-right">
-																<i class="far fa-star"></i>
-																<i class="far fa-star"></i>
-																<i class="far fa-star"></i>
-																<i class="far fa-star"></i>
-																<i class="far fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute
-																irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-														</div>
-													</div>
-	
-													<div class="single-review">
-														<div class="review-heading">
-															<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
-															<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0 PM</a></div>
-															<div class="review-rating pull-right">
-																<i class="far fa-star"></i>
-																<i class="far fa-star"></i>
-																<i class="far fa-star"></i>
-																<i class="far fa-star"></i>
-																<i class="far fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-														
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute
-																irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-														</div>
-													</div>
-	
-													<ul class="reviews-pages">
-														<li class="active">1</li>
-														<li><a href="#">2</a></li>
-														<li><a href="#">3</a></li>
-														<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-													</ul>
+													<pagination-controls (pageChange)="p = $event"></pagination-controls>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<h4 class="text-uppercase">Write Your Review</h4>
-												<p>Your email address will not be published.</p>
 												<form class="review-form">
-													<div class="form-group">
-														<input class="input" type="text" placeholder="Your Name" />
-													</div>
-													<div class="form-group">
-														<input class="input" type="email" placeholder="Email Address" />
-													</div>
 													<div class="form-group">
 														<textarea class="input" placeholder="Your review"></textarea>
 													</div>
@@ -156,21 +111,15 @@
 														<div class="input-rating">
 															<strong class="text-uppercase">Your Rating: </strong>
 															<div class="stars">
-																	<!-- <input type="radio" id="star5" name="rating" value="5" class="far fa-star"/>
-																	<i class="far fa-star"></i>
-																	<i class="far fa-star"></i>
-																	<i class="far fa-star"></i>
-																	<i class="far fa-star"></i>
-																	<i class="far fa-star"></i> -->
-																<input type="radio" id="star5" name="rating" value="5" /><label for="star5"><i class="far fa-star"></i></label>
-																<input type="radio" id="star4" name="rating" value="4" /><label for="star4"><i class="far fa-star"></i></label>
-																<input type="radio" id="star3" name="rating" value="3" /><label for="star3"><i class="far fa-star"></i></label>
-																<input type="radio" id="star2" name="rating" value="2" /><label for="star2"><i class="far fa-star"></i></label>
-																<input type="radio" id="star1" name="rating" value="1" /><label for="star1"><i class="far fa-star"></i></label>
+																<input type="radio" id="star5" name="rating" value="5" (click)="setStar(5)" /><label for="star5"><i class="far fa-star"></i></label>
+																<input type="radio" id="star4" name="rating" value="4" (click)="setStar(4)"/><label for="star4"><i class="far fa-star"></i></label>
+																<input type="radio" id="star3" name="rating" value="3" (click)="setStar(3)"/><label for="star3"><i class="far fa-star"></i></label>
+																<input type="radio" id="star2" name="rating" value="2" (click)="setStar(2)"/><label for="star2"><i class="far fa-star"></i></label>
+																<input type="radio" id="star1" name="rating" value="1" (click)="setStar(1)"/><label for="star1"><i class="far fa-star"></i></label>
 															</div>
 														</div>
 													</div>
-													<button class="primary-btn">Submit</button>
+													<button class="primary-btn" (click)="addRatingProduct()" >Submit</button>
 												</form>
 											</div>
 										</div>

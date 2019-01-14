@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
+import { Rating } from '../models/rating';
 import { AuthService } from './auth.service';
 import { IToastrService } from './toastr.service';
 import { RestService } from '../rest.service';
@@ -12,6 +13,7 @@ export class ProductService {
 	navbarCartCount = 0;
 	products : Product[];
 	productCurrent: Product;
+	ratingsCurrent: Rating[];
 	constructor(public rest:RestService, private iToastrService: IToastrService){
 		this.getProducts();
 	}
@@ -26,10 +28,6 @@ export class ProductService {
 		});
 	}
 
-// 	createProduct(data: Product) {
-// 		this.products.push(data);
-// 	}
-
 	getProduct(id): Promise<{}>  {
 		return new Promise<{}>((resolve, reject) => {
 			this.rest.getProduct(id).subscribe((data: {}) => {
@@ -40,14 +38,27 @@ export class ProductService {
 
 		});
 	}
+	// rating for product
+	getRatingProduct(id): Promise<{}>  {
+		return new Promise<{}>((resolve, reject) => {
+			this.rest.getRatingProduct(id).subscribe((data: {}) => {
+			  this.ratingsCurrent = <Rating[]>data;
+			  console.log(this.ratingsCurrent);
+			  resolve(this.ratingsCurrent);
+			});
+		});
+	}
+	addRatingProduct(rating: Rating): Promise<{}>  {
+		return new Promise<{}>((resolve, reject) => {
+			this.rest.addRatingProduct(rating).subscribe((data: {}) => {
+			  this.ratingsCurrent.push(rating);
+			  console.log(this.ratingsCurrent);
+			  resolve(this.ratingsCurrent);
+			});
 
-// 	updateProduct(data: Product) {
-// 		this.products.update(data.$key, data);
-// 	}
+		});
+	}
 
-// 	deleteProduct(key: string) {
-// 		this.products.remove(key);
-// 	}
 
 
 	/*

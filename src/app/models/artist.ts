@@ -1,12 +1,12 @@
 export interface Artist {
     id?: string;
-    life_span?: string;
-    total_products?: string;
-    first_name?: string;
-    last_name?: string;
+    lifeSpan?: string;
+    totalProducts?: string;
+    firstName?: string;
+    lastName?: string;
     description?: string;
-    changed_by?: string;
-    changed_on?: string;
-    created_by?: string;
-    created_on?: string;
+    changedBy?: string;
+    changedOn?: string;
+    createdBy?: string;
+    createdOn?: string;
 }

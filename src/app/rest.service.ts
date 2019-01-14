@@ -6,7 +6,10 @@ import { map, catchError, tap } from 'rxjs/operators';
 const endpoint = 'http://localhost:8080/';
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'
+    'Content-Type':  'application/json',
+    'Accept': 'application/json',
+    'Access-Control-Allow-Credentials':'true',
+    'Access-Control-Allow-Origin':'true',
   })
 };
 
@@ -21,6 +24,8 @@ export class RestService {
     let body = res;
     return body || { };
   }
+
+  ////////// USER API//////////
   loginUser(username, password): Observable<any> {
     return this.http.get(endpoint + 'user/login'+ username +"/"+ password).pipe(
       map(this.extractData));
@@ -30,6 +35,7 @@ export class RestService {
       map(this.extractData));
   }
 
+////////// PRODUCT API//////////
   getProducts(): Observable<any> {
     return this.http.get(endpoint + 'product/show').pipe(
       map(this.extractData));
@@ -60,6 +66,22 @@ export class RestService {
       catchError(this.handleError<any>('deleteProduct'))
     );
   }
+  ////////// RATING API//////////
+  getRatingProduct(id): Observable<any> {
+    return this.http.get(endpoint + 'rating/show/' + id).pipe(
+      map(this.extractData));
+  }
+
+  addRatingProduct (rating): Observable<any> {
+    console.log(rating);
+    return this.http.post<any>(endpoint + 'rating/create', JSON.stringify(rating), httpOptions).pipe(
+      tap((rating) => console.log(`added product w/ id=${rating.id}`)),
+      catchError(this.handleError<any>('addRating'))
+    );
+  }
+
+
+
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

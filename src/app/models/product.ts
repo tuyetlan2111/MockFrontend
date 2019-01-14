@@ -4,11 +4,11 @@ export interface Product {
     price?: string;
     description?: string;
     image?: string;
-    avg_stars?: string;
-    artist_id?: string;
-    quantity_sold?: string;
-    changed_by?: string;
-    changed_on?: string;
-    created_by?: string;
-    created_on?: string;
+    avgStars?: string;
+    artistId?: string;
+    quantitySold?: string;
+    changedBy?: string;
+    changedOn?: string;
+    createdBy?: string;
+    createdOn?: string;
 }
