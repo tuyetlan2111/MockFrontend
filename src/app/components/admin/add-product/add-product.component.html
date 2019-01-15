@@ -1,56 +1,47 @@
 <app-menu></app-menu>
 <div class="col-9 add_product">
   <!-- <h3>Thêm sản phẩm</h3> -->
-  <form method="POST" action="#">
-  <div class="form-group">
-    <fieldset>
-      <legend>Tên sản phẩm:</legend>
-      <input type="text" class="form-control" id="title" placeholder="Nhập sản phẩm" name="title" [(ngModel)]="ProductData.title">
-    </fieldset>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmitProduct()">
+  
+    <div class="form-group">
+      <label>Tên sản phẩm:</label>
+      <input type="text" class="form-control" id="title" placeholder="Nhập sản phẩm" name="title" [(ngModel)]="ProductData.title" formControlName="title"  [ngClass]="{ 'is-invalid': submitted && fr.title.errors }">
+      <div *ngIf="submitted && fr.title.errors" class="invalid-feedback">
+        <div *ngIf="fr.firstName.errors.required">Title is required</div>
+    </div>
   </div>
   <div class="form-group">
     <label for="name">Artist</label>
-      <select class="form-control" id="sel1">
-        <option *ngFor="let artist of artist" (value)="ProductData.artist.country">{{artist.country}}</option>
+      <select class="form-control" id="sel1" (onChange)="selectArtist($event.target.value)">
+        <option *ngFor="let artist of artist" (value)="ProductData.artist.id">{{artist.country}}</option>
       </select>
     </div>
   <div class="form-group">
-    <fieldset>
-      <legend>Giá sản phẩm:</legend>
-      <input type="text" class="form-control" id="price" placeholder="Nhập giá sản phẩm" name="price" [(ngModel)]="ProductData.price">
-    </fieldset>
+      <label>Giá sản phẩm:</label>
+      <input type="number" class="form-control" id="price" placeholder="Nhập giá sản phẩm" name="price" [(ngModel)]="ProductData.price " formControlName="price"  [ngClass]="{ 'is-invalid': submitted && fr.price.errors }">
+      <div *ngIf="submitted && fr.price.errors" class="invalid-feedback">
+        <div *ngIf="fr.price.errors.required">Price is required</div>
+    </div>
+  
   </div>
   <div class="form-group">
-    <fieldset>
-      <legend style="width: 14%;">Mô tả sản phẩm: </legend>
+      <label style="width: 14%;">Mô tả sản phẩm: </label>
       <textarea name="descreption" id="descreption" cols="150" rows="5" [(ngModel)]="ProductData.description"></textarea>
-    </fieldset>
   </div>
   <div class="form-group">
-    <fieldset>
-          <legend style="width: 17%;">Chọn hình sản phẩm: </legend>
-          <input type="file" (change)="onFileChanged($event)">
-        <!-- <button (click)="fileInput.click()" style="float: left;background: none;
-        border: 2px solid #000000;
-        color: #000000;
-        font-weight: bold;">Select File</button> -->
-        <button type="button" (click)="onUpload()">Upload!</button>
-    </fieldset>
+      <label class="image-upload-container btn btn-bwm">
+        <span>Select Image</span>
+        <input #imageInput
+               type="file"
+               accept="image/*"
+               (change)="processFile(imageInput)" formControlName="image"  [ngClass]="{ 'is-invalid': submitted && fr.image.errors }">
+      </label>
+      <div *ngIf="submitted && fr.image.errors" class="invalid-feedback">
+        <div *ngIf="fr.image.errors.required">Image is required</div>
+    </div>
   </div>
-  <a routerLink="/admin/add_product">
-    <button class="add" type="submit" (click)="addProduct()">Thêm</button>
-  </a>
+  <div class="form-group">
+    <button [disabled]="loading" class="btn btn-primary">Add Product</button>
+</div>
 </form>
 </div>
-<!-- <div class="form-group artist">
-    <button for="name" (click)="OpenArtist()">Thêm Artist</button> 
-    <div *ngIf="show">
-      <h3></h3>
-      <input type="text" class="form-control" name="firstName" placeholder="Nhập First Name">
-      <input type="text" class="form-control" name="lastName" placeholder="Nhập Last Name">
-      <input type="text" class="form-control" name="lifeSpan" placeholder="Nhập lifeSpan">
-      <input type="text" class="form-control" name="country"  placeholder="Nhập Country">
-      <input type="text" class="form-control" name="description_artist" placeholder="Nhập mô tả">
-      <input type="text" class="form-control" name="totalProducts" placeholder="Nhập số lượng sản phẩm">
-    </div>
-</div> -->

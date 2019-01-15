@@ -4,18 +4,31 @@ import { RestService } from '../../../rest.service';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {User} from "../../../models/user"
 import { AuthService } from "../../../services/auth.service";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss']
 })
+
 export class AddProductComponent implements OnInit {
-  selectedFile:File = null;
+  productForm: FormGroup;
+  submitted = false;
   user:User;
   artist:any = [];
   public show:boolean = false;
-  @Input() ProductData = {title:'', price: '',description:'',image:'image.jpg', artist:'', quantitySold:0,avgStars:0,createdOn:'2018-12-31',createdBy:1,changedOn:'2018-12-31',changedBy:1};
-  constructor(private http : HttpClient, public rest:RestService, private route: ActivatedRoute, private router: Router,private authService : AuthService,) { }
+  @Input() artis = { id : 1,firstName:'', lastName: '', lifeSpan: '', country:'', description:'', totalProducts:0, createdOn: new Date(), createdBy:1, changedOn:new Date(),changedBy: 1};
+  @Input() ProductData = {title:'', price: '',description:'',image:'image.jpg', artist:this.artis, quantitySold:0,avgStars:0,createdOn:'2018-12-31',createdBy:1,changedOn:'2018-12-31',changedBy:1};
+  get fr() { return this.productForm.controls; }
+
+  constructor(private http : HttpClient, 
+    public rest:RestService,
+    private route: ActivatedRoute, 
+    private router: Router,
+    private authService : AuthService,
+    private formBuilder: FormBuilder,
+  ) { }
 
   ngOnInit() {
     this.user= this.authService.user;
@@ -23,37 +36,51 @@ export class AddProductComponent implements OnInit {
       this.router.navigate(["/"]);
     }
     this.getArtist();
-
+    this.productForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      price: ['', Validators.required],
+      image: ['', [Validators.required]]
+  });
   }
-  
+  onSubmitProduct() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.productForm.invalid) {
+        return;
+    }
+    this.addProduct();
+  }
   addProduct() {
+
     this.rest.addProduct(this.ProductData).subscribe((result) => {
-      this.router.navigate(['/add_product/']);
-    }, (err) => {
-      console.log(err);
+      this.router.navigate(['/admin/']);
     });
   }
   getArtist(){
     this.artist = [];
     this.rest.getArtist().subscribe((data: {}) => {
       this.artist = data;
+      this.artis.id = this.artist[0].id
       // console.log(data);
     });
   }
-  onFileChanged(event){
-    this.selectedFile = <File>event.target.file[0];
+  selectArtist(id){
+      this.artis.id = id
   }
-  
-  onUpload(){
-    const fd = new FormData;
-    fd.append('image', this.selectedFile, this.selectedFile.name);
-    this.http.post('./assets/image', fd).subscribe(res=>{
-      console.log(res);
-    });
-  }
-  // OpenArtist(){
-  //   this.show = !this.show;
-  // }
 
+  processFile(imageInput: any) {
+    var file: File = imageInput.files[0];
+    var reader = new FileReader();
+    this.ProductData.image = file.name
+    reader.addEventListener('load', (event: any) => {
+      this.rest.uploadImage(file).subscribe((data: {}) => {
+        console.log(data);
+     });
+      
+    });
+
+    reader.readAsDataURL(file);
+  }
   
 }

@@ -41,7 +41,7 @@ import { ManagerProductComponent } from './components/admin/product/product.comp
 import { AddProductComponent } from './components/admin/add-product/add-product.component';
 
 import { DataTablesModule } from 'angular-datatables';
-
+import { FileSelectDirective } from 'ng2-file-upload';
 
 /* to load and set en.json as the default application language */
 export function setupTranslateFactory(service: TranslateService): Function {
@@ -74,6 +74,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     ArtistComponent,
     AddArtistComponent,
     UpdateArtistComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

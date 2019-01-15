@@ -1,8 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit,OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from '../../../rest.service';
 import {User} from "../../../models/user"
 import { AuthService } from "../../../services/auth.service";
+import { Http, Response } from '@angular/http';
+import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 declare var $: any;
 declare var jQuery: any;
 
@@ -11,11 +15,15 @@ declare var jQuery: any;
   templateUrl: './order-detail.component.html',
   styleUrls: ['./order-detail.component.scss']
 })
-export class OrderDetailComponent implements OnInit {
+export class OrderDetailComponent implements OnInit,OnDestroy  {
 
-  @ViewChild('dataTable') table;
-  dataTable: any;
   user:User;
+
+  data$: any[] = [];
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+
+
 
   OrderDetail:any[] = [];
   constructor(private authService : AuthService,public rest:RestService, private route: ActivatedRoute, private router: Router) { }
@@ -25,22 +33,23 @@ export class OrderDetailComponent implements OnInit {
     if(this.user==null){
       this.router.navigate(["/"]);
     }
-    this.dataTable = $(this.table.nativeElement);
-    this.dataTable.DataTable();
+
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
+
     this.rest.getOrderDetail(this.route.snapshot.params['id']).subscribe((data: {}) => {
       this.OrderDetail.push(data);
-      console.log(this.OrderDetail);
+      this.data$ = Object.values(data);
+      this.dtTrigger.next();
+      console.log(data);
     });
 
-    
   }
-
-  // getOrder(){
-  //   this.rest.getOrder(this.route.snapshot.params['id']).subscribe((data: {}) => {
-  //     console.log(data);
-  //     this.OrderDetail = data;
-  //   });
-  // }
-  
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
 
 }

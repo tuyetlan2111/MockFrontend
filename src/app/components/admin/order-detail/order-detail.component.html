@@ -1,7 +1,8 @@
 <app-menu></app-menu>
 <div class="col-10 order_detail">
    <!-- <button type="submit">Thêm hóa đơn</button> -->
-    <table #dataTable style="width:100%" class="table table-hover display">
+    <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions"
+    [dtTrigger]="dtTrigger">
       <thead>
           <tr>
               <th>#ID</th>
@@ -17,8 +18,6 @@
               <td>{{orderDetail.quantity}}</td>
               <td>{{orderDetail.createdOn}}</td>
               
-              
-              <!-- <td><i class="far fa-trash-alt"></i> Xóa</td> -->
           </tr>
          
       </tbody>

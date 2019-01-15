@@ -24,7 +24,13 @@ export class RestService {
     let body = res;
     return body || { };
   }
+  public uploadImage(image: File): Observable<any> {
+    const formData = new FormData();
 
+    formData.append('file', image);
+    return this.http.post(endpoint + 'file/uploadFile', formData).pipe(
+      map(this.extractData));
+  }
   ////////// USER API//////////
   loginUser(username, password): Observable<any> {
     return this.http.get(endpoint + 'user/login'+ username +"/"+ password).pipe(
@@ -72,15 +78,13 @@ getCartItem(): Observable<any> {
   
   addProduct (product): Observable<any> {
     console.log(product);
-    return this.http.post<any>(endpoint + 'product/ProductData', JSON.stringify(product), httpOptions).pipe(
-      tap((product) => console.log(`addProduct w/ id=${product.id}`)),
-      catchError(this.handleError<any>('addProduct'))
+    return this.http.post<any>(endpoint + 'product/create/', JSON.stringify(product), httpOptions).pipe(
+      map(this.extractData)
     );
   }
   updateProduct (id, product): Observable<any> {
     return this.http.put(endpoint + 'product/update/' + id, JSON.stringify(product), httpOptions).pipe(
-      tap(_ => console.log(`updated product id=${id}`)),
-      catchError(this.handleError<any>('updateProduct'))
+      map(this.extractData)
     );
   }
   
@@ -98,7 +102,7 @@ getCartItem(): Observable<any> {
       map(this.extractData));
   }
   getOrderDetail(id): Observable<any> {
-    return this.http.get(endpoint + 'order_detail/show/' + id, httpOptions).pipe(
+    return this.http.get(endpoint + 'orderDetail/show/' + id, httpOptions).pipe(
       map(this.extractData));
   }
 
