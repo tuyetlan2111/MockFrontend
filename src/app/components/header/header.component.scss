@@ -12,6 +12,12 @@
   .button-login{
     text-align: center;
 }
+#basicExampleNav{
+    background: black;
+    z-index: 1000;
+    position: relative;
+    padding: 0px 10px 0px 10px;
+}
 .login input{
     padding: 8px;
     border: 1px solid #ccc;

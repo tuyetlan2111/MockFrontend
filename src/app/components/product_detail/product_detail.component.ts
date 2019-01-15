@@ -8,6 +8,7 @@ import { User } from '../../models/user';
 import { IToastrService } from '../../services/toastr.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { UserService } from 'src/app/services/user.service';
+import { BillingService } from "../../services/cart.service";
 
 @Component({
   selector: 'app-detail',
@@ -21,11 +22,13 @@ export class DetailComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private toastrService : IToastrService,
-    private userService : UserService
+    private userService : UserService,
+    private billdingService: BillingService,
+
   ) { 
     this.getRatingProduct("");
   }
-  id ; product; number = 0; ratings;star = 0;
+  id ; product; number = 1; ratings;star = 0;
   rating : Rating = {}; user: User;
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("id");
@@ -38,8 +41,29 @@ export class DetailComponent implements OnInit {
      })
   }
   addProductToCart(product){
-    this.productService.addToCart(product);
-    console.log(product)
+    // this.productService.addToCart(product);
+    // console.log(product)
+
+        var cartItem = {
+          price: product.price,
+          quantity: this.number,
+          createdOn: new Date(),
+          createdBy: this.user.id,
+          changedOn: new Date(),
+          changedBy: this.user.id,
+          product: {
+            id: product.id,
+          },
+          cart: {
+            id: 1,
+          }
+        }
+  
+      this.billdingService.addProduct(cartItem)
+        .subscribe(item => {});
+        this.productService.addToCart(product);
+
+
    }
    addNumber(){
      if(this.number <10)
@@ -66,8 +90,17 @@ export class DetailComponent implements OnInit {
       return;
      }
      this.rating.user = this.user;
+     this.rating.stars = this.star;
+     this.rating.product = this.product
+     this.rating.createdBy = this.user.id;
+     this.rating.changedBy = this.user.id;
+     this.rating.createdOn =  new Date();
+     this.rating.changedOn =  new Date();
+
+     console.log(this.rating)
       this.productService.addRatingProduct(this.rating).then(() => {
       this.ratings = this.productService.ratingsCurrent;
+
       this.toastrService.showSuccess("Rating on product susscess full!!","Rating done"); 
 
      })

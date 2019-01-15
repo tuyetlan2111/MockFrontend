@@ -4,8 +4,9 @@ export interface Rating {
     productId?: string;
     stars?: any;
     user?:any;
-    changedBy?: string;
-    changedOn?: string;
-    createdBy?: string;
-    createdOn?: string;
+    product?:any;
+    changedBy?: any;
+    changedOn?: any;
+    createdBy?: any;
+    createdOn?: any;
 }
