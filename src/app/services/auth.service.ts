@@ -14,7 +14,6 @@ export class AuthService {
   ) {
       // logged in so return true
       this.user = userService.getUserCurent();
-
   }
 
   isLoggedIn(): boolean {
@@ -26,6 +25,7 @@ export class AuthService {
 
   logout() {
     this.user = null;
+    this.userService.user = null;
     localStorage.removeItem('currentUser');
     this.router.navigate(["/"]);
   }

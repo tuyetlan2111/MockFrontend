@@ -81,12 +81,13 @@ export class DetailComponent implements OnInit {
    }
    addRatingProduct(){
      this.user = this.userService.user;
+     console.log(this.user)
      if(this.user == null){
-      this.toastrService.showSuccess("Please login to rating product","Rating fail require login"); 
+      this.toastrService.showFail("Please login to rating product","Rating fail require login"); 
       return;
      }
      if(this.star == 0){
-      this.toastrService.showSuccess("Please check rating product","Rating fail require add star"); 
+      this.toastrService.showFail("Please check rating product","Rating fail require add star"); 
       return;
      }
      this.rating.user = this.user;

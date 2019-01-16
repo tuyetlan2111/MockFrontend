@@ -11,7 +11,9 @@ export class IToastrService {
   showSuccess(message, title){
   	this.toastr.success(message, title)
   }
-
+  showFail(message, title){
+  	this.toastr.error(message, title)
+  }
   showSuccessWithTimeout(message, title, timespan){
     this.toastr.success(message, title ,{
       timeOut : timespan

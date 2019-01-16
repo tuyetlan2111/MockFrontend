@@ -8,17 +8,19 @@ export class UserService {
   constructor(public rest:RestService) {
 
   }
+
   user : User = null;
   getUserLogin(email,password) : Promise<{}> {
     return new Promise<{}>((resolve, reject) => {
             this.rest.getUserLogin(email, password).subscribe((data: {}) => {
               this.user = <User>data;
               localStorage.setItem('currentUser', JSON.stringify(this.user));
-              console.log(data);
+              console.log(data, password, email);
               resolve(this.user);
             });
       });
   }
+  
   updateUser(user:User) : Promise<{}> {
     return new Promise<{}>((resolve, reject) => {
             this.rest.updateUser(user).subscribe((data: {}) => {
