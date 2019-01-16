@@ -37,7 +37,7 @@ export class AuthService {
   isAdmin(): boolean {
     const user = this.getLoggedInUser();
     if (user != null) {
-      if (user.isAdmin === "true") {
+      if (user.role === 1) {
         return true;
       }
     }
@@ -49,6 +49,24 @@ export class AuthService {
           resolve(this.user);
          })
         });
+    }
+  }
+  updateUser(user:User) : Promise<{}>{{
+    return new Promise<{}>((resolve, reject) => {
+      this.userService.updateUser(user).then(() => {
+        this.user = this.userService.user;
+        resolve(this.user);
+       })
+      });
+    }
+  }
+  register(user:User) : Promise<{}>{{
+    return new Promise<{}>((resolve, reject) => {
+      this.userService.register(user).then(() => {
+        this.user = this.userService.user;
+        resolve(this.user);
+       })
+      });
     }
   }
 }

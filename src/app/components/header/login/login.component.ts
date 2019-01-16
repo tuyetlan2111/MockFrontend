@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from "../../../services/auth.service";
 import { IToastrService } from "../../../services/toastr.service";
 import { User } from "../../../models/user";
+import {Md5} from "md5-typescript";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(email,password){
-
+    password = (Md5.init(password))
     this.authService.login(email,password).then(() => {
       this.user = this.authService.user;
       this.toastrService.showSuccessWithTimeout("Login done !!", "Well come back "+ this.user.firstName + " " + this.user.lastName, 3000)

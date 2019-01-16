@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from "../../../services/auth.service";
 import { IToastrService } from "../../../services/toastr.service";
 import { User } from "../../../models/user";
+import {Md5} from "md5-typescript";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -42,8 +43,15 @@ export class RegisterComponent implements OnInit {
     this.register(this.registerForm.value.email,this.registerForm.value.password);
   }
   register(email,password){
-
-    this.authService.login(email,password).then(() => {
+    var user: User = {};
+    user.password = Md5.init(password);
+    user.email = email
+    user.changed_by =1;
+    user.created_by = 1;
+    user.changed_on = new Date();
+    user.created_on = new Date();
+    user.role = 2;
+    this.authService.register(user).then(() => {
       this.user = this.authService.user;
       if(this.user !== null){
         this.closeModal();

@@ -11,7 +11,27 @@ export class UserService {
   user : User = null;
   getUserLogin(email,password) : Promise<{}> {
     return new Promise<{}>((resolve, reject) => {
-            this.rest.getUser(1).subscribe((data: {}) => {
+            this.rest.getUserLogin(email, password).subscribe((data: {}) => {
+              this.user = <User>data;
+              localStorage.setItem('currentUser', JSON.stringify(this.user));
+              console.log(data);
+              resolve(this.user);
+            });
+      });
+  }
+  updateUser(user:User) : Promise<{}> {
+    return new Promise<{}>((resolve, reject) => {
+            this.rest.updateUser(user).subscribe((data: {}) => {
+              this.user = <User>data;
+              localStorage.setItem('currentUser', JSON.stringify(this.user));
+              console.log(data);
+              resolve(this.user);
+            });
+      });
+  }
+  register(user:User) : Promise<{}> {
+    return new Promise<{}>((resolve, reject) => {
+            this.rest.register(user).subscribe((data: {}) => {
               this.user = <User>data;
               localStorage.setItem('currentUser', JSON.stringify(this.user));
               console.log(data);

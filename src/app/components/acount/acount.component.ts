@@ -24,17 +24,8 @@ export class AcountComponent implements OnInit {
     }
   public show:boolean = false;
 
-  ChangePass() {
-    this.show = !this.show;
-
-    // CHANGE THE NAME OF THE BUTTON.
-    // if(this.show)  
-    //   this.buttonName = "Hide";
-    // else
-    //   this.buttonName = "Show";
-  }
   ngOnInit() {
-    console.log(Md5.init('test'));
+    console.log(Md5.init('12345'));
     this.accoutForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -55,21 +46,15 @@ export class AcountComponent implements OnInit {
     if (this.accoutForm.invalid) {
         return;
     }
-   // this.login(this.loginForm.value.email,this.loginForm.value.password);
+  this.updateUser(this.user);
   }
 
-  updateUser(){
-
-    // this.authService.login(email,password).then(() => {
-    //   this.user = this.authService.user;
-    //   this.toastrService.showSuccessWithTimeout("Login done !!", "Well come back "+ this.user.firstName + " " + this.user.lastName, 3000)
-
-    //   if(this.user !== null){
-    //     this.closeModal();
-    //   }else{
-    //     //this.toastrService.error('Error login', 'Email or password not match!');
-    //   }
-    //  })
-    // this.user = this.authService.user;
+  updateUser(user:User){
+    user.password = (Md5.init(user.password))
+    this.authService.updateUser(user).then(() => {
+      this.user = this.authService.user;
+      this.toastrService.showSuccessWithTimeout("Change done !!", "Well come "+ this.user.firstName + " " + this.user.lastName, 3000)
+     })
+    this.user = this.authService.user;
   }
 }

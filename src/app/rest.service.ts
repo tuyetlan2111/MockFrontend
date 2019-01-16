@@ -32,8 +32,8 @@ export class RestService {
       map(this.extractData));
   }
   ////////// USER API//////////
-  loginUser(username, password): Observable<any> {
-    return this.http.get(endpoint + 'user/login'+ username +"/"+ password).pipe(
+  getUserLogin(username, password): Observable<any> {
+    return this.http.get(endpoint + 'user/login/'+ username +"/"+ password).pipe(
       map(this.extractData));
   }
   getUser(id): Observable<any> {
@@ -42,6 +42,16 @@ export class RestService {
   }
   getUsers(): Observable<any> {
     return this.http.get(endpoint + 'user/show/').pipe(
+      map(this.extractData));
+  }
+  updateUser (user): Observable<any> {
+    console.log(user);
+    return this.http.post<any>(endpoint + 'user/update/' + user.id, JSON.stringify(user), httpOptions).pipe(
+      map(this.extractData));
+  }
+  register (user): Observable<any> {
+    console.log(user);
+    return this.http.post<any>(endpoint + 'user/create' + user, JSON.stringify(user), httpOptions).pipe(
       map(this.extractData));
   }
   ////////// RATING API//////////
