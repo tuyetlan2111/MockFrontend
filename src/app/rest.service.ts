@@ -118,31 +118,29 @@ getCartItem(): Observable<any> {
     return this.http.get(endpoint + 'artist/show').pipe(
       map(this.extractData));
   }
+  getArtists(id): Observable<any> {
+    return this.http.get(endpoint + 'artist/show/' + id).pipe(
+      map(this.extractData));
+  }
   deleteArtist (id): Observable<any> {
     return this.http.delete<any>(endpoint + 'artist/delete/' + id, httpOptions).pipe(
       tap(_ => console.log(`delete aritist id=${id}`)),
       catchError(this.handleError<any>('deleteArtist'))
     );
   }
-  addArtist (product): Observable<any> {
-    console.log(product);
-    return this.http.post<any>(endpoint + 'artist/create/', JSON.stringify(product), httpOptions).pipe(
+  addArtist (artist): Observable<any> {
+    console.log(artist);
+    return this.http.post<any>(endpoint + 'artist/create/', JSON.stringify(artist), httpOptions).pipe(
       tap((product) => console.log(`addArtist w/ id=${product.id}`)),
       catchError(this.handleError<any>('addArtist'))
     );
   }
-  // selectedFile: File;
-  // onUpload() {
-  //   const uploadData = new FormData();
-  //   uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
-  //   this.http.post('my-backend.com/file-upload', uploadData, {
-  //     reportProgress: true,
-  //     observe: 'events'
-  //   })
-  //     .subscribe(event => {
-  //       console.log(event); // handle event here
-  //     });
-  // }
+  
+  UpdateArtist (id, artist): Observable<any> {
+    return this.http.put(endpoint + 'artist/update/' + id, JSON.stringify(artist), httpOptions).pipe(
+      map(this.extractData)
+    );
+  }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

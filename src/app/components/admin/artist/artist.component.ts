@@ -12,15 +12,9 @@ declare var jQuery: any;
   styleUrls: ['./artist.component.scss']
 })
 export class ArtistComponent implements OnInit {
-
-
-
   user:User;
   artist:any = [];
   constructor(private authService : AuthService,public rest:RestService, private route: ActivatedRoute, private router: Router) { }
-
-  @ViewChild('dataTable') table;
-  dataTable: any;
   ngOnInit() {
     
     this.user= this.authService.user;
@@ -28,8 +22,6 @@ export class ArtistComponent implements OnInit {
       this.router.navigate(["/"]);
     }
     this.getArtist();
-    this.dataTable = $(this.table.nativeElement);
-    this.dataTable.DataTable();
 
   }
 

@@ -1,3 +1,56 @@
-<p>
-  update-artist works!
-</p>
+<app-menu></app-menu>
+<div class="col-9 update_artist">
+  <!-- <h3>Thêm Artist</h3> -->
+  <form [formGroup]="updateartist" (ngSubmit)="onSubmitArtist()">
+  <div class="form-group">
+    <label for="name">FirstName</label>
+    <input type="text" class="form-control" id="firstName" placeholder="Nhập FirstName" name="firstName" [(ngModel)]="artist.firstName" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && fr.firstName.errors }">
+    <div *ngIf="submitted && fr.firstName.errors" class="invalid-feedback">
+        <div *ngIf="fr.firstName.errors.required">FirstName is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="name">Lastname</label>
+    <input type="text" class="form-control" id="lastName" placeholder="Nhập LastName" name="lastName" style="margin-left: 33px;" [(ngModel)]="artist.lastName" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && fr.lastName.errors }">
+    <div *ngIf="submitted && fr.lastName.errors" class="invalid-feedback">
+        <div *ngIf="fr.lastName.errors.required">LastName is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="name">LifeSpan</label>
+    <input type="text" class="form-control" id="lifeSpan" name="lifespan" placeholder="Nhập LifeSPan" style="margin-left: 39px;" [(ngModel)]="artist.lifeSpan" formControlName="lifeSpan" [ngClass]="{ 'is-invalid': submitted && fr.lifeSpan.errors }">
+    <div *ngIf="submitted && fr.lifeSpan.errors" class="invalid-feedback">
+        <div *ngIf="fr.lifeSpan.errors.required">LifeSpan is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="name">Country</label>
+    <input class="form-control" id="country" name="country" placeholder="Nhập Country" style="margin-left: 42px;" [(ngModel)]="artist.country" formControlName="country" [ngClass]="{ 'is-invalid': submitted && fr.country.errors }">
+    <div *ngIf="submitted && fr.country.errors" class="invalid-feedback">
+        <div *ngIf="fr.country.errors.required">Country is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="name">Description</label>
+      <input class="form-control" id="description" name="description" placeholder="Nhập Description" style="margin-left:21px"[(ngModel)]="artist.description" formControlName="description" [ngClass]="{ 'is-invalid': submitted && fr.description.errors }">
+      <div *ngIf="submitted && fr.description.errors" class="invalid-feedback">
+          <div *ngIf="fr.description.errors.required">Country is required</div>
+      </div>
+    </div>
+  <div class="form-group">
+      <label for="name">TotalProducts</label>
+      <input class="form-control" id="totalProducts" name="totalProducts" placeholder="Nhập TotalProducts" style="margin-left: 4px;" [(ngModel)]="artist.totalProducts" formControlName="totalProducts" [ngClass]="{ 'is-invalid': submitted && fr.totalProducts.errors }">
+      <div *ngIf="submitted && fr.totalProducts.errors" class="invalid-feedback">
+          <div *ngIf="fr.totalProducts.errors.required">Country is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <a routerLink="/admin/artist">
+        <button [disabled]="loading" class="btn btn-primary">Update Artist</button>
+      </a>
+    </div>
+  <!-- <a routerLink="/admin/artist">
+    <button [disabled]="loading" class="btn btn-primary">Add Artist</button>
+  </a> -->
+</form>
+</div>

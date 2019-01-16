@@ -16,6 +16,7 @@ import { UpdateProductComponent } from './components/admin/update-product/update
 import { OrderComponent } from './components/admin/order/order.component';
 import { OrderDetailComponent } from './components/admin/order-detail/order-detail.component';
 import { ArtistComponent } from './components/admin/artist/artist.component';
+import { UpdateArtistComponent } from 'src/app/components/admin/update-artist/update-artist.component';
 
 
 
@@ -26,12 +27,12 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'acount', component: AcountComponent },
   { path: 'payment', component: PaymentComponent },
-
   { path: 'admin', component: ManagerProductComponent},
   { path: 'admin/add_product', component: AddProductComponent },
   { path: 'admin/show_user', component: UserComponent },
   { path: 'admin/add_artist', component: AddArtistComponent },
   { path: 'admin/update_product/:id', component: UpdateProductComponent },
+  { path: 'admin/update_artist/:id', component: UpdateArtistComponent },
   { path: 'admin/order', component: OrderComponent },
   { path: 'admin/order_detail/:id', component: OrderDetailComponent },
   { path: 'admin/artist', component: ArtistComponent },

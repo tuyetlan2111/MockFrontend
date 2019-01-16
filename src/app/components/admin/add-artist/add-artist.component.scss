@@ -37,11 +37,13 @@
 }
 .add_product button{
     border: none;
+    margin: auto;
+    display: block;
     font-size: 18px;
     background: #000000;
     color: #ffffff;
     border-radius: 3px;
-    padding: 4px 8px;
+    padding: 12px 24px;
 }
 .add_product button:hover,.add_product button:focus{
     background: coral;

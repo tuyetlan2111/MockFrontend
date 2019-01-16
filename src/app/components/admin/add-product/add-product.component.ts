@@ -44,13 +44,12 @@ export class AddProductComponent implements OnInit {
   }
   onSubmitProduct() {
     this.submitted = true;
-
-    // stop here if form is invalid
     if (this.productForm.invalid) {
         return;
     }
     this.addProduct();
   }
+  
   addProduct() {
 
     this.rest.addProduct(this.ProductData).subscribe((result) => {
@@ -82,5 +81,4 @@ export class AddProductComponent implements OnInit {
 
     reader.readAsDataURL(file);
   }
-  
 }
