@@ -53,9 +53,7 @@ export class RestService {
   addRatingProduct (rating): Observable<any> {
     console.log(rating);
     return this.http.post<any>(endpoint + 'rating/create', JSON.stringify(rating), httpOptions).pipe(
-      tap((rating) => console.log(`added product w/ id=${rating.id}`)),
-      catchError(this.handleError<any>('addRating'))
-    );
+      map(this.extractData));
   }
 ////////// CART API//////////
 getCartItem(): Observable<any> {
