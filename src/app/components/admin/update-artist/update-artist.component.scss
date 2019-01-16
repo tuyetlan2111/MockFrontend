@@ -1,0 +1,57 @@
+.update_artist{
+    float: right;
+    padding: 0px;
+    margin: 50px 0px;
+}
+.update_artist h3{
+    margin: 18px 0px 36px;
+}
+.update_artist textarea{
+    margin-left: 0px;
+}
+.update_artist textarea{
+    margin-bottom: 0px;
+    height: 106px;
+    width: 74%;
+}
+.update_artist input{
+    margin-left: 30px;
+    width: 74%;
+    display: inline;
+}
+.update_artist select{
+    margin-left: 27px;
+    width: 74%;
+    display: inline;
+}
+.update_artist button.add{
+    padding: 10px 27px;
+    margin-bottom: 50px;
+    background: #000000;
+    text-align: center;
+    border: none;
+    margin: auto;
+    display: block;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 18px;
+}
+.update_artist button{
+    border: none;
+    margin: auto;
+    display: block;
+    font-size: 18px;
+    background: #000000;
+    color: #ffffff;
+    border-radius: 3px;
+    padding: 12px 24px;
+}
+.update_artist button:hover,.update_artist button:focus{
+    background: coral;
+    color: #ffffff;
+}
+.artist input{
+    margin-left: 126px !important;
+    margin-bottom: 23px!important;
+}
