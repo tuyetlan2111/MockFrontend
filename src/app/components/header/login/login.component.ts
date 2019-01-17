@@ -41,16 +41,15 @@ export class LoginComponent implements OnInit {
   login(email,password){
     password = (Md5.init(password))
     this.authService.login(email,password).then(() => {
-      this.user = this.authService.user;
-      this.toastrService.showSuccessWithTimeout("Login done !!", "Well come back "+ this.user.firstName + " " + this.user.lastName, 3000)
-
-      if(this.user !== null){
+      console.log(this.authService.user)
+      if(this.authService.user != undefined){
+        this.user = this.authService.user;
+        this.toastrService.showSuccessWithTimeout("Login done !!", "Well come back "+ this.user.firstName + " " + this.user.lastName, 3000)
         this.closeModal();
       }else{
-        //this.toastrService.error('Error login', 'Email or password not match!');
+        this.toastrService.showFail('Error login', 'Email or password not match!');
       }
      })
-    this.user = this.authService.user;
   }
     //call this wherever you want to close modal
     private closeModal(): void {

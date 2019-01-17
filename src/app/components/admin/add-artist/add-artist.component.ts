@@ -51,6 +51,7 @@ export class AddArtistComponent implements OnInit {
   addArtist() {
 
     this.rest.addArtist(this.artist).subscribe((result) => {
+      console.log(result)
       this.router.navigate(['/artist/']);
     });
   }

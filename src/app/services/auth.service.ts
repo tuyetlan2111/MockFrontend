@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-   if (this.user !== null) {
+   if (this.user !=  null) {
       return true;
     }
     return false;
@@ -25,7 +25,6 @@ export class AuthService {
 
   logout() {
     this.user = null;
-    this.userService.user = null;
     localStorage.removeItem('currentUser');
     this.router.navigate(["/"]);
   }
@@ -44,8 +43,8 @@ export class AuthService {
   }
   login(email,password) : Promise<{}>{{
       return new Promise<{}>((resolve, reject) => {
-        this.userService.getUserLogin(email,password).then(() => {
-          this.user = this.userService.user;
+        this.userService.getUserLogin(email,password).then((user) => {
+          this.user = user
           resolve(this.user);
          })
         });
@@ -53,8 +52,8 @@ export class AuthService {
   }
   updateUser(user:User) : Promise<{}>{{
     return new Promise<{}>((resolve, reject) => {
-      this.userService.updateUser(user).then(() => {
-        this.user = this.userService.user;
+      this.userService.updateUser(user).then((user) => {
+        this.user = user;
         resolve(this.user);
        })
       });
@@ -62,8 +61,8 @@ export class AuthService {
   }
   register(user:User) : Promise<{}>{{
     return new Promise<{}>((resolve, reject) => {
-      this.userService.register(user).then(() => {
-        this.user = this.userService.user;
+      this.userService.register(user).then((user) => {
+        this.user = user;
         resolve(this.user);
        })
       });

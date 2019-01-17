@@ -8,15 +8,18 @@ export class UserService {
   constructor(public rest:RestService) {
 
   }
-
-  user : User = null;
   getUserLogin(email,password) : Promise<{}> {
     return new Promise<{}>((resolve, reject) => {
             this.rest.getUserLogin(email, password).subscribe((data: {}) => {
-              this.user = <User>data;
-              localStorage.setItem('currentUser', JSON.stringify(this.user));
-              console.log(data, password, email);
-              resolve(this.user);
+              console.log(JSON.stringify(data));
+              if(JSON.stringify(data) == "{}"){
+                console.log("data");
+                resolve(null);
+              }else{
+                resolve(data);
+                localStorage.setItem('currentUser', JSON.stringify(data));
+              }
+              reject();
             });
       });
   }
@@ -24,28 +27,24 @@ export class UserService {
   updateUser(user:User) : Promise<{}> {
     return new Promise<{}>((resolve, reject) => {
             this.rest.updateUser(user).subscribe((data: {}) => {
-              this.user = <User>data;
-              localStorage.setItem('currentUser', JSON.stringify(this.user));
               console.log(data);
-              resolve(this.user);
+              resolve(data);
             });
       });
   }
   register(user:User) : Promise<{}> {
     return new Promise<{}>((resolve, reject) => {
             this.rest.register(user).subscribe((data: {}) => {
-              this.user = <User>data;
-              localStorage.setItem('currentUser', JSON.stringify(this.user));
+              localStorage.setItem('currentUser', JSON.stringify(data));
               console.log(data);
-              resolve(this.user);
+              resolve(data);
             });
       });
   }
   getUserCurent() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if( localStorage.getItem('currentUser')){
-      this.user = currentUser;
-      return this.user;
+      return currentUser;
 
     }
     return null;

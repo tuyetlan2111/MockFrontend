@@ -7,7 +7,7 @@ import { Product } from '../../models/product';
 import { User } from '../../models/user';
 import { IToastrService } from '../../services/toastr.service';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { BillingService } from "../../services/cart.service";
 
 @Component({
@@ -22,7 +22,7 @@ export class DetailComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private toastrService : IToastrService,
-    private userService : UserService,
+    private authService : AuthService,
     private billdingService: BillingService,
 
   ) { 
@@ -80,7 +80,7 @@ export class DetailComponent implements OnInit {
      })
    }
    addRatingProduct(){
-     this.user = this.userService.user;
+     this.user = this.authService.user;
      console.log(this.user)
      if(this.user == null){
       this.toastrService.showFail("Please login to rating product","Rating fail require login"); 
