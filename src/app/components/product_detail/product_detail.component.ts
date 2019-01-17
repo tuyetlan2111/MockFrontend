@@ -28,6 +28,7 @@ export class DetailComponent implements OnInit {
   ) { 
     this.getRatingProduct("");
   }
+  flag = true;
   id ; product; number = 1; ratings;star = 0;
   rating : Rating = {}; user: User;
   ngOnInit() {
@@ -41,16 +42,21 @@ export class DetailComponent implements OnInit {
      })
   }
   addProductToCart(product){
-    // this.productService.addToCart(product);
-    // console.log(product)
-
+    this.flag = true;
+    for (var i = 0; i < this.billdingService.cartItems.length; i++) {
+      if (product.id == this.billdingService.cartItems[i].product.id) {
+        this.flag = false;
+        alert("Sản phẩm đã có trong giỏ hàng !!!")
+      }
+    }
+    if (this.flag == true) {
         var cartItem = {
           price: product.price,
           quantity: this.number,
           createdOn: new Date(),
-          createdBy: this.user.id,
+          createdBy: 1,
           changedOn: new Date(),
-          changedBy: this.user.id,
+          changedBy: 1,
           product: {
             id: product.id,
           },
@@ -62,7 +68,7 @@ export class DetailComponent implements OnInit {
       this.billdingService.addProduct(cartItem)
         .subscribe(item => {});
         this.productService.addToCart(product);
-
+      }
 
    }
    addNumber(){
