@@ -17,45 +17,37 @@ export class CartComponent implements OnInit {
   cartItems: any;
   count: number = 0;
   constructor(private http: HttpClient,
-    private service: BillingService,
+    private billdingService: BillingService,
     private productService : ProductService) { }
 
   ngOnInit() {
     this.showConfig();
   }
-  configUrl = 'http://localhost:8080/cartItem/show';
-  getConfig() {
-    return this.http.get(this.configUrl);
-  }
 
   showConfig() {
-    this.getConfig()
-      .subscribe(data => {
-        this.cartItems = data;
-        console.log(this.cartItems);
-        this.totalPrice();
-      });
+    this.billdingService.getConfig().subscribe(data => {
+      this.cartItems = data;
+      console.log(this.cartItems);
+      this.totalPrice();
+      
+    });
   }
-  totalPrice() {
-    this.total = 0;
+  
+  totalPrice(): Promise<{}> {
+    return new Promise<{}>((resolve, reject) => { 
+      this.total = 0;
     for (let i = 0; i < this.cartItems.length; i++) {
       this.total += this.cartItems[i].price * this.cartItems[i].quantity;
     }
     this.productService.calculateLocalCartProdCounts();
-
+  })
   }
 
   deleteProductToCart(cartItem) {
-    this.service.deleteProduct(cartItem.id).subscribe(data => {
+    this.billdingService.deleteProduct(cartItem.id).subscribe(data => {
       this.showConfig();
     });
   }
-
-  // updateProductToCart(cartItem){
-  //   this.service.updateProduct(cartItem).subscribe(data => {
-  //     this.showConfig();
-  //   }); 
-  // }
 
   cartItem: any;
   listCartItem: any = [];
@@ -75,7 +67,7 @@ export class CartComponent implements OnInit {
         id: p.cart.id,
       }
     }
-    this.service.updateProduct(this.cartItem)
+    this.billdingService.updateProduct(this.cartItem)
       .subscribe(item => {
         this.listCartItem.push(item);
         this.showConfig();
@@ -99,13 +91,13 @@ export class CartComponent implements OnInit {
           id: p.cart.id,
         }
       }
-      this.service.updateProduct(this.cartItem)
+      this.billdingService.updateProduct(this.cartItem)
         .subscribe(item => {
-          this.listCartItem.push(item);
           this.showConfig();
         });
     }
   }
+
   minUpdateProductToCart(p) {
     if (p.quantity > 1) {
       this.cartItem = {
@@ -123,7 +115,7 @@ export class CartComponent implements OnInit {
           id: p.cart.id,
         }
       }
-      this.service.updateProduct(this.cartItem)
+      this.billdingService.updateProduct(this.cartItem)
         .subscribe(item => {
           this.listCartItem.push(item);
           this.showConfig();

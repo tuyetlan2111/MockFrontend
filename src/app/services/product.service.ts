@@ -107,8 +107,9 @@ export class ProductService {
 // 	}
 
 	// Fetching Locat CartsProducts
-	calculateLocalCartProdCounts(){
-		this.getCartItem().then(() => {
+	calculateLocalCartProdCounts(): Promise<{}>{
+		return new Promise<{}>((resolve, reject) => { 
+			this.getCartItem().then(() => {
 			var sum = 0;
 			this.cartItem.forEach(element => {
 				sum+= parseInt(element.quantity);
@@ -116,6 +117,7 @@ export class ProductService {
 
 			this.navbarCartCount = sum
 		})
+	})
 	}
 }
 

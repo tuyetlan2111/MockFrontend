@@ -24,6 +24,7 @@ export class ProductComponent implements OnInit {
       this.products = this.productService.products;
     })
     this.showConfig();
+    this.billdingService.showConfig();
   }
 
   configUrl = 'http://localhost:8080/product/show';
@@ -45,35 +46,34 @@ export class ProductComponent implements OnInit {
 
   cartItem: any;
   listCartItem: any = [];
+
   addProductToCart(p) {
-    // this.flag = true;
-    // for (var i = 0; i < this.cartItem.length; i++) {
-    //   if (p.id === this.cartItem[i].id){
-    //     this.flag = false;
-    //     this.cartItem[i].quantity++;
-    //     this.cartItem[i].totalPrice = this.cartItem[i].price * this.cartItem[i].quantity;
-    //   } 
-    // }
-
-    if (this.flag == true) {
-      this.cartItem = {
-        price: p.price,
-        quantity: 1,
-        createdOn: "2018-12-31T17:00:00.000+0000",
-        createdBy: 1,
-        changedOn: "2018-12-31T17:00:00.000+0000",
-        changedBy: 1,
-        product: {
-          id: p.id,
-        },
-        cart: {
-          id: 1,
-        }
+    this.flag = true;
+    for (var i = 0; i < this.billdingService.cartItems.length; i++) {
+      if (p.id == this.billdingService.cartItems[i].product.id) {
+        this.flag = false;
+        alert("Sản phẩm đã có trong giỏ hàng !!!")
+        // this.billdingService.plusProductToCart(this.billdingService.cartItems[i]);
       }
-
     }
-    this.billdingService.addProduct(this.cartItem)
-      .subscribe(item => this.listCartItem.push(item));
-      this.productService.addToCart(p);
+    if (this.flag == true) {
+        this.cartItem = {
+          price: p.price,
+          quantity: 1,
+          createdOn: new Date(),
+          createdBy: 1,
+          changedOn: new Date(),
+          changedBy: 1,
+          product: {
+            id: p.id,
+          },
+          cart: {
+            id: 1,
+          }
+        }
+        this.billdingService.addProduct(this.cartItem)
+          .subscribe(item => this.listCartItem.push(item));
+        this.productService.addToCart(p);
+      }
   }
 }
