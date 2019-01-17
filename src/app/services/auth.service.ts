@@ -43,6 +43,7 @@ export class AuthService {
   }
   login(email,password) : Promise<{}>{{
       return new Promise<{}>((resolve, reject) => {
+    
         this.userService.getUserLogin(email,password).then((user) => {
           this.user = user
           resolve(this.user);
