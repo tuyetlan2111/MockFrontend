@@ -2,79 +2,124 @@
   <div class="container">
     <div class="row">
       <div class="col-4" style="margin-top: 25px;">
-        <ul>
-          <li>
-            <i class="fas fa-box-open"></i>
-            <p>Acount of</p>
-            <span>{{user.email}}</span>
-          </li>
-          <li>
-            <i class="far fa-user"></i>My Acount</li>
-          <li>
-            <i class="fas fa-address-book"></i>Orders management</li>
-        </ul>
+          <div >
+            <ul class="nav nav-tabs" >
+              <li class="active">
+                  <a class="nav-link" data-toggle="tab" href="#nav-info" selected="true"><i class="far fa-user" ></i>My Acount</a></li>
+              <li>
+                  <a class="nav-link"data-toggle="tab" href="#nav-pass" ><i class="fas fa-key" ></i>Change Password</a></li>
+              <li>
+                  <a class="nav-link" data-toggle="tab" href="#nav-order" ><i class="fas fa-address-book" ></i>Order List</a></li>
+            </ul>
+        </div>
       </div>
       <div class="col-8">
-        <h3>Information acount</h3>
-        <form [formGroup]="accoutForm" (ngSubmit)="onSubmitUpdate()">
+          <div class="tab-content">
+              <div class="tab-pane fade show active" id="nav-info" >
+                  <h3>Information acount</h3>
+                  <form [formGroup]="accoutForm" (ngSubmit)="onSubmitUpdate()">
 
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
-              value="{{user.firstName}}" />
-            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-              <div *ngIf="f.firstName.errors.required">First name is required</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
-              value="{{user.lastName}}" />
-            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-              <div *ngIf="f.lastName.errors.required">Last name is required</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>City</label>
-            <input type="text" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
-              value="{{user.city}}" />
-            <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
-              <div *ngIf="f.city.errors.required">City is required</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Country</label>
-            <input type="text" formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.country.errors }"
-              value="{{user.country}}" />
-            <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
-              <div *ngIf="f.country.errors.required">Last name is required</div>
-            </div>
-          </div>
+                    <div class="form-group">
+                      <label>First Name</label>
+                      <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+                        value="{{user.firstName}}" />
+                      <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <div>First name is required</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Last Name</label>
+                      <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+                        value="{{user.lastName}}" />
+                      <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                        <div >Last name is required</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>City</label>
+                      <input type="text" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
+                        value="{{user.city}}" />
+                      <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                        <div >City is required</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Country</label>
+                      <input type="text" formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.country.errors }"
+                        value="{{user.country}}" />
+                      <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                        <div >Last name is required</div>
+                      </div>
+                    </div>
 
-          <div >
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                    <div class="form-group">
+                      <button [disabled]="loading" class="btn btn-primary">Update</button>
+                    </div>
+                    <br>          <br>
+                  </form>
               </div>
-            </div>
-            <div class="form-group">
-              <label>Re Password</label>
-              <input type="password" formControlName="rePassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.rePassword.errors }" />
-              <div *ngIf="submitted && f.rePassword.errors" class="invalid-feedback">
-                <div *ngIf="f.rePassword.errors.required">Password is required</div>
-                <div *ngIf="f.rePassword.errors.minlength">Password must be at least 6 characters</div>
-                <div *ngIf="is_match">Password not match</div>
+              <div class="tab-pane fade " id="nav-pass" >
+                  <h3>Change Password</h3>
+                  <form [formGroup]="passForm" (ngSubmit)="onSubmitPassUpdate()">
+                      <div class="form-group">
+                          <label>Old Password</label>
+                          <input type="password" formControlName="old_password" class="form-control" [ngClass]="{ 'is-invalid': submitted_pass && fp.old_password.errors }" />
+                          <div *ngIf="submitted_pass && fp.old_password.errors" class="invalid-feedback">
+                            <div *ngIf="fp.old_password.errors.required">Password is required</div>
+                            <div *ngIf="fp.old_password.errors.minlength">Password must be at least 6 characters</div>
+                          </div>
+                        </div>
+                     
+                        <div class="form-group">
+                          <label>Password</label>
+                          <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted_pass && fp.password.errors }" />
+                          <div *ngIf="submitted_pass && fp.password.errors" class="invalid-feedback">
+                            <div *ngIf="fp.password.errors.required">Password is required</div>
+                            <div *ngIf="fp.password.errors.minlength">Password must be at least 6 characters</div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label>Re Password</label>
+                          <input type="password" formControlName="rePassword" class="form-control" [ngClass]="{ 'is-invalid': submitted_pass && fp.rePassword.errors }" />
+                          <div *ngIf="submitted_pass && fp.rePassword.errors" class="invalid-feedback">
+                            <div *ngIf="fp.rePassword.errors.required">Password is required</div>
+                            <div *ngIf="fp.rePassword.errors.minlength">Password must be at least 6 characters</div>
+                          </div>
+                          <div *ngIf="!is_match" class="invalid-feedback">Password must be at match</div>
+
+                        </div>
+                      <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-primary">Update</button>
+                      </div>
+                      <br>          <br>
+                    </form>
               </div>
-            </div>
+              <div class="tab-pane fade " id="nav-order"  >
+                  <h3>Order List</h3>
+                  <div class="col-12 show_order">
+                        <table #dataTable style="width:100%" class="table table-hover display">
+                          <thead>
+                              <tr>
+                                  <th>#ID</th>
+                                  <th>Order Date</th>
+                                  <th>Total Price</th>
+                                  <th>Order Number</th>
+                               </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let order of OrderData  |paginate: { itemsPerPage: 8, currentPage: p}">
+                                  <td>{{order.id}}</td>
+                                  <td>{{order.orderDate | date:'medium'}}</td>
+                                  <td>{{order.totalPrice}}</td>
+                                  <td>{{order.orderNumber}}</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </div>
+                    
+                </div>
           </div>
-          <div class="form-group">
-            <button [disabled]="loading" class="btn btn-primary">Update</button>
-          </div>
-          <br>          <br>
-        </form>
       </div>
     </div>
   </div>

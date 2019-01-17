@@ -13,12 +13,12 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   user : User;
-  toastrService : IToastrService;
-  @ViewChild('btCloseRegiter') btCloseRegiter: ElementRef;
+  @ViewChild('btCloseRegister') btCloseRegister: ElementRef;
      // convenience getter for easy access to form fields
      get fr() { return this.registerForm.controls; }
 
   constructor(
+    private toastrService : IToastrService,
     private formBuilder: FormBuilder,
     public authService: AuthService,) { 
     
@@ -46,17 +46,25 @@ export class RegisterComponent implements OnInit {
     var user: User = {};
     user.password = Md5.init(password);
     user.email = email
-    user.changed_by =1;
-    user.created_by = 1;
-    user.changed_on = new Date();
-    user.created_on = new Date();
-    user.role = 2;
+    user.changedBy =1;
+    user.createdBy = 1;
+    user.changedOn = new Date();
+    user.createdOn = new Date();
+    user.role = 2;  
+    user.orderCount = 0;
+    user.signupDate =  new Date();
+    user.city = ""
+    user.country = ""
+    user.lastName = this.fr.lastName.value;
+    user.firstName = this.fr.firstName.value;
     this.authService.register(user).then(() => {
       this.user = this.authService.user;
       if(this.user !== null){
+        console.log(this.user)
+        this.toastrService.showSuccessWithTimeout("Register done !!", "Well come  "+ this.user.firstName + " " + this.user.lastName, 3000)
         this.closeModal();
       }else{
-        //this.toastrService.error('Error login', 'Email or password not match!');
+        this.toastrService.showFail('Error register', 'Email is exists!');
       }
       
      })
@@ -65,7 +73,7 @@ export class RegisterComponent implements OnInit {
 
     //call this wherever you want to close modal
     private closeModal(): void {
-      this.btCloseRegiter.nativeElement.click();
+      this.btCloseRegister.nativeElement.click();
     }
   
 }

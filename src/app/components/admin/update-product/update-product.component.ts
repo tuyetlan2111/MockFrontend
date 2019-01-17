@@ -30,7 +30,7 @@ export class UpdateProductComponent implements OnInit {
 
   updateProduct() {
     this.rest.updateProduct(this.route.snapshot.params['id'], this.ProductData).subscribe((result) => {
-      this.router.navigate(['update/']);
+      this.router.navigate(['/admin']);
     }, (err) => {
       console.log(err);
     });

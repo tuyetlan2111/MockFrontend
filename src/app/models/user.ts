@@ -1,16 +1,16 @@
 export interface User {
     id?: string;
-    orderCount?: string;
-    signupDate?: string;
+    orderCount?: any;
+    signupDate?: any;
     email?: string;
     firstName?: string;
     lastName?: string;
     city?: string;
     country?: string;
-    changed_by?: any;
-    changed_on?: any;
-    created_by?: any;
-    created_on?: any;
+    changedBy?: any;
+    changedOn?: any;
+    createdBy?: any;
+    createdOn?: any;
     password?:string;
     role?: any;
 }

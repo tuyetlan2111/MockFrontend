@@ -24,14 +24,6 @@ export class UserService {
       });
   }
   
-  updateUser(user:User) : Promise<{}> {
-    return new Promise<{}>((resolve, reject) => {
-            this.rest.updateUser(user).subscribe((data: {}) => {
-              console.log(data);
-              resolve(data);
-            });
-      });
-  }
   register(user:User) : Promise<{}> {
     return new Promise<{}>((resolve, reject) => {
             this.rest.register(user).subscribe((data: {}) => {

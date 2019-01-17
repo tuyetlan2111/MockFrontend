@@ -44,7 +44,7 @@ export class UpdateArtistComponent implements OnInit {
   }
   UpdateArtist() {
     this.rest.UpdateArtist(this.route.snapshot.params['id'], this.artist).subscribe((result) => {
-      this.router.navigate(['/artist/']);
+      this.router.navigate(['/admin/artist/']);
     }, (err) => {
       console.log(err);
     });

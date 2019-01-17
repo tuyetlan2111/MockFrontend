@@ -46,12 +46,16 @@ export class RestService {
   }
   updateUser (user): Observable<any> {
     console.log(user);
-    return this.http.post<any>(endpoint + 'user/update/' + user.id, JSON.stringify(user), httpOptions).pipe(
+    return this.http.put<any>(endpoint + 'user/update/' + user.id, JSON.stringify(user), httpOptions).pipe(
+      map(this.extractData));
+  }
+  updatePassword (old_password, password): Observable<any> {
+    return this.http.get<any>(endpoint + 'user/password/' + old_password + "/"+password, httpOptions).pipe(
       map(this.extractData));
   }
   register (user): Observable<any> {
     console.log(user);
-    return this.http.post<any>(endpoint + 'user/create' + user, JSON.stringify(user), httpOptions).pipe(
+    return this.http.post<any>(endpoint + 'user/create', JSON.stringify(user), httpOptions).pipe(
       map(this.extractData));
   }
   ////////// RATING API//////////

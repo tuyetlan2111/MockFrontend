@@ -3,12 +3,13 @@ import { Observable } from "rxjs";
 import { User } from "../models/user";
 import { Router } from "@angular/router";
 import { UserService } from "./user.service";
+import { RestService } from '../rest.service';
 
 @Injectable()
 export class AuthService {
   user = null;
   constructor(
-    
+    public rest:RestService,
     private router: Router,
     private userService: UserService
   ) {
@@ -53,10 +54,19 @@ export class AuthService {
   }
   updateUser(user:User) : Promise<{}>{{
     return new Promise<{}>((resolve, reject) => {
-      this.userService.updateUser(user).then((user) => {
-        this.user = user;
-        resolve(this.user);
-       })
+      this.rest.updateUser(user).subscribe((data: {}) => {
+        this.user = data;
+        resolve(data);
+      });
+    });
+  }
+  }
+  updatePassword(old_password, password) : Promise<{}>{{
+    return new Promise<{}>((resolve, reject) => {
+      this.rest.updatePassword(old_password, password).subscribe((data: {}) => {
+        console.log(data);
+        resolve(data);
+      });
       });
     }
   }

@@ -2,6 +2,8 @@
     background: #F4F4F4;
     color: #807d7d;
     padding-bottom:70px;
+    border: 1px solid #807d7d;
+    border-radius: 3px;
 }
 .form_acount i{
     float: left;
@@ -16,8 +18,13 @@
     padding-left: 29px;
 }
 .form_acount li{
-    padding: 15px 0px;
-    padding-left: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    margin-left: 10px;
+    transition: 0.2s all;
+}
+.form_acount li a{
+    color: #807d7d;
     transition: 0.2s all;
 }
 .form_acount li:hover{
@@ -77,4 +84,17 @@ table{
     color: #ffffff;
     padding: 10px 36px;
     border: none;
+}
+.show_order{
+    float: right;
+    padding: 5px;
+    margin-left: 0px;
+    background: #ffffff;
+}
+.show_order h3{
+    padding: 20px;
+}
+.show_order a{
+    color: #000000 !important;
+    text-decoration: none;
 }
