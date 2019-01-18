@@ -11,28 +11,14 @@ import { CartItem } from '../models/cart_item';
 @Injectable()
 export class ProductService {
 
-	// NavbarCounts
-	navbarCartCount = 0;
 	products : Product[];
 	productCurrent: Product;
 	ratingsCurrent: Rating[];
 	cartItem : CartItem[];
 	constructor(public rest:RestService, private iToastrService: IToastrService){
 		this.getProducts();
-		this.calculateLocalCartProdCounts();
 	}
 	
-  
-	getCartItem(): Promise<{}> {
-		return new Promise<{}>((resolve, reject) => {
-			this.rest.getCartItem().subscribe((data: {}) => {
-			  this.cartItem = <CartItem[]>data;
-			  console.log(this.products);
-			  resolve(this.products);
-			});
-
-		});
-	}
 
 	getProducts(): Promise<{}> {
 		return new Promise<{}>((resolve, reject) => {
@@ -76,48 +62,5 @@ export class ProductService {
 		});
 	}
 
-
-
-	/*
-   ----------  Cart Product Function  ----------
-  */
-
-	// Adding new Product to cart db if logged in else localStorage
-	addToCart(product: Product): void {
-		setTimeout(() => {
-			this.calculateLocalCartProdCounts();
-			this.iToastrService.showSuccessWithTimeout("Add to Cart done !!", product.title , 50000)
-		}, 500);
-	}
-
-// 	// Removing cart from local
-// 	removeLocalCartProduct(product: Product) {
-// 		const products: Product[] = JSON.parse(localStorage.getItem('avct_item'));
-
-// 		for (let i = 0; i < products.length; i++) {
-// 			if (products[i].productId === product.productId) {
-// 				products.splice(i, 1);
-// 				break;
-// 			}
-// 		}
-// 		// ReAdding the products after remove
-// 		localStorage.setItem('avct_item', JSON.stringify(products));
-
-// 		this.calculateLocalCartProdCounts();
-// 	}
-
-	// Fetching Locat CartsProducts
-	calculateLocalCartProdCounts(): Promise<{}>{
-		return new Promise<{}>((resolve, reject) => { 
-			this.getCartItem().then(() => {
-			var sum = 0;
-			this.cartItem.forEach(element => {
-				sum+= parseInt(element.quantity);
-			});
-
-			this.navbarCartCount = sum
-		})
-	})
-	}
 }
 

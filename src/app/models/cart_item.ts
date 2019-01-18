@@ -1,11 +1,13 @@
 export interface CartItem {
-    id?: string;
-    price?: string;
-    productId?: string;
-    quantity?: string;
-    cartId?: string;    
-    changedBy?: string;
-    changedOn?: string;
-    createdBy?: string;
-    createdOn?: string;
+    id?: any;
+    price?: any;
+    productId?: any;
+    quantity?: any;
+    cartId?: any;    
+    changedBy?: any;
+    changedOn?: any;
+    createdBy?: any;
+    createdOn?: any;
+    cart?: any;
+    product?:any;
 }

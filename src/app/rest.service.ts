@@ -49,8 +49,8 @@ export class RestService {
     return this.http.put<any>(endpoint + 'user/update/' + user.id, JSON.stringify(user), httpOptions).pipe(
       map(this.extractData));
   }
-  updatePassword (old_password, password): Observable<any> {
-    return this.http.get<any>(endpoint + 'user/password/' + old_password + "/"+password, httpOptions).pipe(
+  updatePassword (email,old_password, password): Observable<any> {
+    return this.http.get<any>(endpoint + 'user/password/'+email+ "/" + old_password + "/"+password, httpOptions).pipe(
       map(this.extractData));
   }
   register (user): Observable<any> {
@@ -70,10 +70,33 @@ export class RestService {
       map(this.extractData));
   }
 ////////// CART API//////////
-getCartItem(): Observable<any> {
-  return this.http.get(endpoint + 'cartItem/show').pipe(
+getCartItems(cookie_cart): Observable<any> {
+  return this.http.get(endpoint + 'cartItem/show/'+cookie_cart).pipe(
     map(this.extractData));
 }
+checkAndSetCart (cart): Observable<any> {
+  console.log(cart);
+  return this.http.post<any>(endpoint + 'cart/check-set-cart', JSON.stringify(cart), httpOptions).pipe(
+    map(this.extractData));
+}
+checkAndSetCartItem(cartItem): Observable<any> {
+  console.log(cartItem);
+  return this.http.post<any>(endpoint + 'cartItem/check-set-cart-item', JSON.stringify(cartItem), httpOptions).pipe(
+    map(this.extractData));
+}
+
+deleteCartItem(cartItem): Observable<any> {
+  console.log(cartItem);
+  return this.http.delete<any>(endpoint + 'cartItem/delete/' + cartItem.id, httpOptions).pipe(
+    map(this.extractData));
+}
+
+updateCartItem(cartItem): Observable<any> {
+  console.log(cartItem);
+  return this.http.put<any>(endpoint + 'cartItem/update/' + cartItem.id, JSON.stringify(cartItem), httpOptions).pipe(
+    map(this.extractData));
+}
+
   ///////// ADMIN //////////////
 
 

@@ -61,9 +61,9 @@ export class AuthService {
     });
   }
   }
-  updatePassword(old_password, password) : Promise<{}>{{
+  updatePassword(email,old_password, password) : Promise<{}>{{
     return new Promise<{}>((resolve, reject) => {
-      this.rest.updatePassword(old_password, password).subscribe((data: {}) => {
+      this.rest.updatePassword(email, old_password, password).subscribe((data: {}) => {
         console.log(data);
         resolve(data);
       });

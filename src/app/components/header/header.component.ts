@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import { ProductService } from "../../services/product.service";
+import { CartService } from "../../services/cart.service";
 import { IToastrService } from "../../services/toastr.service";
 import { User } from "../../models/user";
 import { TranslateService } from "../../services/translate.service";
@@ -23,6 +24,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     public productService: ProductService,
     public translate: TranslateService,
+    private cartService : CartService
   ) {
     // console.log(translate.data);
   }

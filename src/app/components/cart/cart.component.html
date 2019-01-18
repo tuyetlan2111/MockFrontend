@@ -23,14 +23,14 @@
             <td>{{cartItem.price}}</td>
 
             <td style="text-align: center;">
-              <button type="button" class="soluong"><a (click) = "minUpdateProductToCart(cartItem)">-</a></button>
+              <button type="button" class="soluong"><a (click) = "updateCartItemMinus(cartItem)">-</a></button>
               <input class="qty" type="number" min="1" max="100" #quantity="ngModel" [(ngModel)]="cartItem.quantity" disabled>
-              <button type="button" class="soluong"><a (click) = "plusUpdateProductToCart(cartItem)">+</a></button>
+              <button type="button" class="soluong"><a (click) = "updateCartItemAdd(cartItem)">+</a></button>
             </td>
 
             <td>
                   <button class="del">
-                    <a (click) = "deleteProductToCart(cartItem)">
+                    <a (click) = "deleteCartItem(cartItem)">
                       <i class="far fa-trash-alt"></i>
                     </a>
                   </button>

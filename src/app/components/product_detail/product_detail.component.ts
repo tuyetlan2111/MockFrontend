@@ -4,11 +4,13 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Rating } from '../../models/rating';
 import { ProductService } from "../../services/product.service";
 import { Product } from '../../models/product';
+import { Cart } from '../../models/cart';
+import { CartItem } from '../../models/cart_item';
 import { User } from '../../models/user';
 import { IToastrService } from '../../services/toastr.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthService } from 'src/app/services/auth.service';
-import { BillingService } from "../../services/cart.service";
+import { CartService } from "../../services/cart.service";
 
 @Component({
   selector: 'app-detail',
@@ -23,7 +25,7 @@ export class DetailComponent implements OnInit {
     private productService: ProductService,
     private toastrService : IToastrService,
     private authService : AuthService,
-    private billdingService: BillingService,
+    private cartService: CartService,
 
   ) { 
     this.getRatingProduct("");
@@ -42,35 +44,29 @@ export class DetailComponent implements OnInit {
      })
   }
   addProductToCart(product){
-    this.flag = true;
-    for (var i = 0; i < this.billdingService.cartItems.length; i++) {
-      if (product.id == this.billdingService.cartItems[i].product.id) {
-        this.flag = false;
-        alert("Sản phẩm đã có trong giỏ hàng !!!")
-      }
-    }
-    if (this.flag == true) {
-        var cartItem = {
-          price: product.price,
-          quantity: this.number,
-          createdOn: new Date(),
-          createdBy: 1,
-          changedOn: new Date(),
-          changedBy: 1,
-          product: {
-            id: product.id,
-          },
-          cart: {
-            id: 1,
-          }
-        }
-  
-      this.billdingService.addProduct(cartItem)
-        .subscribe(item => {});
-        this.productService.addToCart(product);
-      }
-
+    //check cart
+    this.cartService.checkAndSetCart().then((data) => {
+      console.log(data);
+      this.addItemCart(data, product)
+    }); 
    }
+   
+  addItemCart(cart: Cart, product: Product){
+    var cartItem :CartItem ={}
+    cartItem.cart=  cart;
+    cartItem.cartId = cart.id;
+    cartItem.productId = product.id;
+    cartItem.price = product.price;
+    cartItem.quantity = this.number;
+    cartItem.changedOn = new Date();
+    cartItem.changedBy = 1;
+    cartItem.createdOn = new Date();
+    cartItem.createdBy = 1;
+    cartItem.product = product;
+    this.cartService.checkAndSetCartItem(cartItem).then((data) => {
+      console.log(data);
+  }); 
+  }
    addNumber(){
      if(this.number <10)
       this.number++;
@@ -85,6 +81,7 @@ export class DetailComponent implements OnInit {
       this.ratings = this.productService.ratingsCurrent;
      })
    }
+   
    addRatingProduct(){
      this.user = this.authService.user;
      console.log(this.user)

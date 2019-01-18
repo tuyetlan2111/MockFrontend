@@ -19,7 +19,7 @@ export class AcountComponent implements OnInit {
 
   submitted = false;
   submitted_pass = false;
-  is_match = false;
+  is_not_match = false;
   user: User;
   OrderData:any = [];
   OrderDetail:any = [];
@@ -73,6 +73,12 @@ export class AcountComponent implements OnInit {
     if (this.passForm.invalid) {
         return;
     }
+    if(this.fp.password.value != this.fp.rePassword.value){
+      this.is_not_match = true
+      return;
+    }else{
+      this.is_not_match = false
+    }
   this.updatePassword();
   }
 
@@ -98,12 +104,15 @@ export class AcountComponent implements OnInit {
   }
   updatePassword(){
 
-    var old_password = (Md5.init(this.fp.old_password))
-    var password = (Md5.init(this.fp.password))
+    var old_password = (Md5.init(this.fp.old_password.value))
+    var password = (Md5.init(this.fp.password.value))
 
-    this.authService.updatePassword(old_password, password).then(() => {
-      this.user = this.authService.user;
-      this.toastrService.showSuccessWithTimeout("Change done !!", "Password is chang susscess full!", 3000)
+    this.authService.updatePassword(this.user.email,old_password, password).then((data) => {
+      if(JSON.stringify(data)!=="{}"){
+        this.toastrService.showSuccessWithTimeout("Change done !!", "Password is chang susscess full!", 3000)
+      }else{
+        this.toastrService.showFail("Change fail !!", "Password is not change!");
+      }
      })
   }
   getOrder(){

@@ -19,7 +19,7 @@ import { TranslatePipe } from "./pipes/translate.pipe";
 import { ProductService } from './services/product.service';
 import { AuthService } from "./services/auth.service";
 import { UserService } from "./services/user.service";
-import {BillingService} from "./services/cart.service";
+import { CartService} from "./services/cart.service";
 import { SliderComponent } from './components/header/slider/slider.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/header/login/login.component';
@@ -39,7 +39,7 @@ import { UpdateArtistComponent } from './components/admin/update-artist/update-a
 import { MenuComponent } from './components/admin/menu/menu.component';
 import { ManagerProductComponent } from './components/admin/product/product.component';
 import { AddProductComponent } from './components/admin/add-product/add-product.component';
-
+import { CookieService } from 'ngx-cookie-service';
 import { DataTablesModule } from 'angular-datatables';
 import { FileSelectDirective } from 'ng2-file-upload';
 
@@ -100,7 +100,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     ,AuthService
     ,ProductService
     ,UserService
-    ,BillingService
+    ,CartService
+    ,CookieService
 	],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
