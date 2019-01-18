@@ -2,34 +2,30 @@
     background: #F4F4F4;
     padding:60px 0px;
 }
+.name{
+    overflow: hidden;
+    height: 52px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+}
 h3.title{
     font-size: 19px;
     padding-bottom: 20px;
 }
 .order_customer{
     background: #ffffff;
+    padding: 10px;
+    width: 100%;
     float: left;
-    padding: 20px;
-}
-.order_customer span{
-    display: inherit;
 }
 .order_customer button{
     margin-top: 20px;
 }
-.order_customer button.send{
-    margin-top: 20px;
-    background: #F8694A;
-    border: none;
-    padding: 4px 8px;
-    color: #ffffff;
-    margin-right: 11px;
-}
-.order_customer button{
-    background: #f3f2f2;
-    border: 1px solid #ccc;
-    padding: 4px 10px;
-    margin-right: 10px;
+button{
+    float: right
 }
 .form_custom{
     padding: 20px;
@@ -39,7 +35,6 @@ h3.title{
 // }
 .form_custom h6{
     display: inline;
-    float: right;
     font-size: 14px;
     color: #F8694A;
 }

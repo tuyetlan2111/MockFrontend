@@ -5,6 +5,8 @@ import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { CartItem } from 'src/app/models/cart_item';
 import { IToastrService } from "../../services/toastr.service";
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -21,6 +23,8 @@ export class CartComponent implements OnInit {
   constructor(private http: HttpClient,
     private cartService: CartService,
     private iToastrService : IToastrService,
+    private authService : AuthService,
+    private router: Router,
     private productService : ProductService) { }
 
   ngOnInit() {
@@ -34,13 +38,11 @@ export class CartComponent implements OnInit {
   }
 
   
-  getTotalPrice(): Promise<{}> {
-    return new Promise<{}>((resolve, reject) => { 
-      this.total = 0;
+  getTotalPrice() {
+    this.total = 0;
     for (let i = 0; i < this.cartItems.length; i++) {
       this.total += this.cartItems[i].price * this.cartItems[i].quantity;
     }
-  })
   }
 
   deleteCartItem(cartItem) {
@@ -80,6 +82,12 @@ export class CartComponent implements OnInit {
       this.iToastrService.showFail("Cannot Minus item","The minimum quanlity");
     }
     console.log(cartItem)
-    
+  }
+  checkPayment(){
+    if(!this.authService.isLoggedIn()){
+      this.iToastrService.showFail("Cannot Check Out","Please login or register before check out");
+    }else{
+      this.router.navigate(["/payment"]);
+    }
   }
 }

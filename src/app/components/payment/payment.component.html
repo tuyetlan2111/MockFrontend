@@ -1,45 +1,91 @@
 <div class="payment">
     <div class="container">
         <div class="row">
-          <h3 class="title">2. Địa chỉ giao hàng</h3>
           <div class="col-12" style="padding:0px">
-              <div class="order_customer col-5">
-                  <h3 style="font-size: 18px;">VÕ THỊ TUYẾT LAN</h3>
-                  <span>Địa chỉ: Quận 9, tp HCM</span>
-                  <span>Số điện thoại: 0988123456</span>
-                  <button type="button" class="send">Giao đến địa chỉ này</button>
-                  <button type="button">Sửa</button>
-                  <button type="button">Xóa</button>
-              </div>
-              <div class="col-2"></div>
-              <div class="order_customer form_custom col-5" style="float: right;">
-                  <h3 style="font-size: 18px;">VÕ THỊ TUYẾT LAN</h3>
-                  <h6>Mặc định</h6>
-                  <span>Địa chỉ: Quận 9, tp HCM</span>
-                  <span>Số điện thoại: 0988123456</span>
-                  <button type="button" class="send">Giao đến địa chỉ này</button>
-                  <button type="button">Sửa</button>
-                </div>
-          </div>
-          <div class="col-12" style="padding:0px">
-                <h3 class="title">3. Thanh toán và đặt mua</h3>
-                <div class="order_customer col-5">
-                        <h3 style="font-size: 18px;">VÕ THỊ TUYẾT LAN</h3>
-                        <span>Địa chỉ: Quận 9, tp HCM</span>
-                </div>
-                
-                <div class="order_customer form_custom col-5" style="float: right;">
-                        <span>Đơn hàng (1 sản phẩm)</span>
-                        <div>
-                            <span>1</span> * <span>Tên sản phẩm</span> <span>215.000đ</span>
-                        </div><hr>
-                        <div>
-                            Thành tiền : <span>215.000đ</span>
+                <div class=" col-6" style="float: left;">
+                        <h3 class="title">1. Order List</h3>
+                        <div >
+                                <span>Đơn hàng (1 sản phẩm)</span>
+                        </div>
+                        <div class="order_customer form_custom"> 
+                                <div>
+                                        <table class="table">
+                                                <thead>
+                                                  <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Image</th>
+                                                    <th scope="col" style="width: 25%;">Name</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col" style="text-align: center;">Quantity</th>
+                                                  </tr>
+                                                </thead>
+                                             <tbody>
+                                                <tr *ngFor="let cartItem of cartItems">
+                                                  <td>{{cartItem.id}}</td>
+                                                  <td style=" width: 24%;">
+                                                    <img src="http://localhost:8080/file/downloadFile/{{cartItem.product.image}}" alt="Product" style="width: 50%;">
+                                                  </td>
+                                                  <td class="name" >{{cartItem.product.title}}</td>
+                                                  <td>{{cartItem.price}}</td>
+                                                  <td>{{cartItem.quantity}}</td>
+                                                </tr>
+                                              </tbody>
+                                        </table>
+                                    <div>
+                                        Thành tiền : <span>{{this.total}} đ</span>
+                                    </div>
+
+                            </div>
                         </div>
 
                 </div>
-          </div>
-         
-        </div>
-      </div>
+                <div class="col-5" style="float: right">
+                        <h3 class="title">2. Payment Method</h3>
+
+                        <div class="order_customer" style="margin-bottom: 30px" >
+                            <input type="radio" checked=true value="Cash"/> Payment when delivery
+                        </div>
+                        
+                        <h3 class="title">3. Payment Infomation</h3>
+
+                        <div class="order_customer">
+                                <form [formGroup]="paymentForm" (ngSubmit)="onSubmitPayment()">
+
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"/>
+                                            <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                                <div>Address is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Phone</label>
+                                            <input type="text" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                                            <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                                <div >Phone is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                                                value="{{user.firstName + ' ' + user.lastName}}" />
+                                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                                <div >Name is required</div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="form-group">
+                                            <button [disabled]="loading" class="btn btn-success">Payment</button>
+                                        </div>
+                                        <br> <br>
+                                        
+                                </form>
+                        </div>
+                        
+                </div>
+                
+            </div>
+       </div>
+    </div>
 </div>
