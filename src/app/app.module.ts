@@ -17,6 +17,8 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { TranslateService } from './services/translate.service';
 import { TranslatePipe } from "./pipes/translate.pipe";
 import { ProductService } from './services/product.service';
+import { OrderService } from './services/order.service';
+import { PaymentService } from './services/payment.service';
 import { AuthService } from "./services/auth.service";
 import { UserService } from "./services/user.service";
 import { CartService} from "./services/cart.service";
@@ -101,6 +103,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     ,ProductService
     ,UserService
     ,CartService
+    ,OrderService
+    ,PaymentService
     ,CookieService
 	],
   bootstrap: [AppComponent],

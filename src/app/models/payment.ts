@@ -5,6 +5,9 @@ export interface Payment {
     name?: string;
     totalPrice?: any;
     userId?: any;
+    orderDate?: any;
+    status?: any;
+
     changedBy?: any;
     changedOn?: any;
     createdBy?: any;

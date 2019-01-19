@@ -96,7 +96,11 @@ updateCartItem(cartItem): Observable<any> {
   return this.http.put<any>(endpoint + 'cartItem/update/' + cartItem.id, JSON.stringify(cartItem), httpOptions).pipe(
     map(this.extractData));
 }
-
+////////// PAYMENT API//////////
+addPayment(payment,cookie): Observable<any> {
+  return this.http.post<any>(endpoint + 'payment/create/'+cookie , JSON.stringify(payment), httpOptions).pipe(
+    map(this.extractData));
+}
   ///////// ADMIN //////////////
 
 
@@ -134,6 +138,11 @@ updateCartItem(cartItem): Observable<any> {
 
   getOrders(): Observable<any>{
     return this.http.get(endpoint + 'order/show').pipe(
+      map(this.extractData));
+  }
+  getOrdersUser(id): Observable<any>{
+    console.log(id)
+    return this.http.get(endpoint + 'order/show/' + id).pipe(
       map(this.extractData));
   }
   getOrderDetail(id): Observable<any> {

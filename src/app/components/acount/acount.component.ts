@@ -117,15 +117,15 @@ export class AcountComponent implements OnInit {
   }
   getOrder(){
       this.OrderData = [];
-      this.rest.getOrders().subscribe((data: {}) => {
+      this.rest.getOrdersUser(this.user.id).subscribe((data: {}) => {
         this.OrderData = data;
-        // console.log(data);
+         console.log(data, this.user);
       });
       this.dataTable = $(this.table.nativeElement);
       this.dataTable.DataTable();
-      this.rest.getOrderDetail(this.route.snapshot.params['id']).subscribe((data: {}) => {
-        console.log(data);
-        this.OrderDetail = data;
-      });
+      // this.rest.getOrderDetail(this.route.snapshot.params['id']).subscribe((data: {}) => {
+      //   console.log(data);
+      //   this.OrderDetail = data;
+      // });
   }
 }

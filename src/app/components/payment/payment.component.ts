@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
+import { PaymentService } from 'src/app/services/payment.service';
 import { CartItem } from 'src/app/models/cart_item';
 import { Cart } from 'src/app/models/cart';
 import { Payment } from 'src/app/models/payment';
@@ -9,6 +10,7 @@ import { IToastrService } from "../../services/toastr.service";
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-payment',
@@ -17,7 +19,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PaymentComponent implements OnInit {
   total: number = 0;
-  cartItems: any;
+  cartItems: CartItem[] =[];
   count: number = 0;
   paymentForm: FormGroup;
   submitted = false;
@@ -28,8 +30,10 @@ export class PaymentComponent implements OnInit {
     private formBuilder: FormBuilder,
     public authService: AuthService,
     private cartService: CartService,
+    private cookieService : CookieService,
     private iToastrService : IToastrService,
     private router: Router,
+    private paymentService : PaymentService,
     private productService : ProductService) { }
 
   ngOnInit() {
@@ -39,13 +43,16 @@ export class PaymentComponent implements OnInit {
       name: ['', [Validators.required]]
     });
     this.cartService.getCartItems().then((data)=>{
-        this.cartItems = data;
+        this.cartItems = this.cartService.cartItems;
         this.getTotalPrice();
         console.log(this.cartItems);
+        if(this.cartItems.length == 0){
+          this.router.navigate(["/"]);
+        }
     });
     console.log(this.cartItems);
 
-    if(this.authService.isLoggedIn){
+    if(this.authService.isLoggedIn ){
       this.user = this.authService.getLoggedInUser()
     }else{
       this.router.navigate(["/"]);
@@ -66,8 +73,25 @@ export class PaymentComponent implements OnInit {
     payment.phone = this.f.phone.value;
     payment.name = this.f.name.value;
     payment.user = this.user;
-
-    
+    payment.changedBy = 1;
+    payment.changedOn = new Date();
+    payment.createdBy = 1;
+    payment.createdOn = new Date();
+    payment.orderDate = new Date();
+    payment.totalPrice = this.total;
+    payment.status = 1;
+    this.paymentService.addPayment(payment,this.cartService.getCookie()).then((data)=>{
+      console.log(data);
+      if(data==null){
+        this.iToastrService.showFail("Cannot Check Out","Please contact us then check out");
+      }else{
+        this.iToastrService.showSuccess("Check Out Done","Please keep contact the order will delivery");
+        this.cartService.createNewCookie();
+        this.cartService.getCartItems().then((data)=>{
+          this.router.navigate(["/"]);
+        })
+      }
+  });
   }
   getTotalPrice() {
     this.total = 0;

@@ -1,9 +1,7 @@
 
 import { Injectable } from "@angular/core";
 import { Cart } from '../models/cart';
-import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { map, catchError, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 import { RestService } from '../rest.service';
 import { IToastrService } from '../services/toastr.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -24,12 +22,17 @@ export class CartService {
               private iToastrService :IToastrService,
               private cookieService: CookieService) {  
       if(!this.cookieService.check(this.COOKIE_CART)){
-        this.cookieService.set( this.COOKIE_CART, new Date().getTime() + "");
+        this.createNewCookie();
       }
       this.getCartItems();
       console.log(this.cookieService.get(this.COOKIE_CART));
      }
-
+    getCookie(): String{
+      return this.cookieService.get(this.COOKIE_CART);
+    }
+    createNewCookie(){
+      this.cookieService.set( this.COOKIE_CART, new Date().getTime() + "");
+    }
   checkAndSetCart() : Promise<{}> {
     //return cart exit
     if(this.cart.id > 0){
