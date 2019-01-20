@@ -187,7 +187,6 @@ body {
   
   .section-title {
     position: relative;
-    margin-bottom: 15px;
     margin-top: 50px;
     border-bottom: 1px solid #DADADA;
   }
@@ -197,15 +196,15 @@ body {
     text-transform: uppercase;
   }
   
-  .section-title:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -1.5px;
-    height: 3px;
-    width: 168px;
-    background-color: #F8694A;
-  }
+  // .section-title:after {
+  //   content: "";
+  //   position: absolute;
+  //   left: 0;
+  //   bottom: -1.5px;
+  //   height: 3px;
+  //   width: 168px;
+  //   background-color: #F8694A;
+  // }
   
   /*----------------------------*\
       Breadcrumb

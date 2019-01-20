@@ -2,12 +2,18 @@ import { Pipe, PipeTransform } from "@angular/core";
 import { TranslateService } from "../services/translate.service";
 
 @Pipe({
-  name: "translate"
+  name: 'filter',
+  
 })
 export class TranslatePipe implements PipeTransform {
+
   constructor(private translate: TranslateService) {}
 
-  transform(key: any): any {
-    return this.translate.data[key] || key;
-  }
+  transform(items: any, term: any): any {
+    if (term === undefined) return items;
+
+    return items.filter(function(Product) {
+        return Product.title.includes(term);
+    })
+}
 }

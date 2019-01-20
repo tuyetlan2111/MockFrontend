@@ -5,7 +5,7 @@
                 <div class=" col-6" style="float: left;">
                         <h3 class="title">1. Order List</h3>
                         <div >
-                                <span>Đơn hàng ({{this.cartItems.length}} sản phẩm)</span>
+                                <p>Order ({{this.cartItems.length}} product)</p>
                         </div>
                         <div class="order_customer form_custom"> 
                                 <div>
@@ -26,13 +26,15 @@
                                                     <img src="http://localhost:8080/file/downloadFile/{{cartItem.product.image}}" alt="Product" style="width: 50%;">
                                                   </td>
                                                   <td class="name" >{{cartItem.product.title}}</td>
-                                                  <td>{{cartItem.price}}</td>
+                                                  <td>{{cartItem.price}} $</td>
                                                   <td>{{cartItem.quantity}}</td>
                                                 </tr>
                                               </tbody>
                                         </table>
                                     <div>
-                                        Thành tiền : <span>{{this.total}} đ</span>
+                                        Total price : <span style="    color: red;
+                                        font-weight: bold;
+                                        font-size: 18px;">{{this.total}} $</span>
                                     </div>
                             </div>
                         </div>
