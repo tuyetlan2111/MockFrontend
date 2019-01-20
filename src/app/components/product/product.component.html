@@ -1,260 +1,134 @@
 
 <app-slider></app-slider>
+
 <div id="demo" class="carousel slide" data-ride="carousel">
 
   <div style="background:#F4F4F4; padding-bottom: 65px;">
       <div class="container">
           <div class="row">
+              <div class="col-md-12">
+                  <form class="form-search"> 
+                  
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search in Shop Market" aria-label="Search in Shop Market" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <div>
+
+                              <ul class="navbar-nav mr-auto">
+                                  <li class="nav-item dropdown  " dropdown>
+                                    
+                                    <div class="dropdown">
+                                      <button class="btn btn-secondary dropdown-toggle button-search" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-bolt"> </i><span class="caret"> On Review  </span>
+                                      </button>
+                                      <div class="dropdown-menu category" aria-labelledby="dropdownMenuButton">
+                                          <a class="dropdown-item waves-light" href="javascript:;;" (click)="selectCategory(null)">
+                                              --- All Star --- </a>
+                                        <a class="dropdown-item waves-light" href="javascript:;;" (click)="selectCategory(artist)">
+                                          1 star</a>
+                                        <a class="dropdown-item waves-light" href="javascript:;;" (click)="selectCategory(artist)">
+                                          2 star</a>
+                                          <a class="dropdown-item waves-light" href="javascript:;;" (click)="selectCategory(artist)">
+                                              3 star</a>
+                                      </div>
+                                    </div>
+                                  </li>
+                                  <!-- <li class="nav-item">
+                                    <a class="nav-link" href="#">Pricing</a>
+                                  </li> -->
+                                </ul>
+                          </div>
+                          <div >
+                            <ul class="navbar-nav">
+                                <li class="nav-item " dropdown>
+        
+                                    <div class="dropdown button-search">
+                                      <a  class="btn button-search dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-dollar-sign mr-1"> </i><span class="caret">Price</span>
+                                      </a>
+                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item waves-light" href="javascript:;;" (click)="setLang('en')">
+                                          English </a>
+                                        <a class="dropdown-item waves-light" href="javascript:;;" (click)="setLang('vn')">
+                                          Việt Nam </a>
+                                      </div>
+                                    </div>
+                                  </li>
+                            </ul>
+                          </div>
+
+
+
+                          <button class="btn button-search" style="  border-top-right-radius: 5px 5px;border-bottom-right-radius: 5px 5px;" type="button"> <i class="fas fa-search"></i> Search </button>
+                        </div>
+                      </div>
+                  </form>
+                </div>
+                
+                
             <!-- section title -->
             <div class="col-md-12">
-              <div class="section-title">
-                <h2 class="title">Products</h2>
+                <div class="section-title">
+                  <h5 class="title">Hot  Products</h5>
+                </div>
               </div>
-            </div>
-            <!-- section title -->
-          
-            <!-- Product Single -->
-
-            <div class="item col-md-3 col-sm-6 col-xs-6" *ngFor = "let p of product">
-              <div class="product product-single" >
-                  
-                <a routerLink="/detail/{{p.id}}">
-                    <div class="product-thumb">
-                        <img src="http://localhost:8080/file/downloadFile/{{p.image}}" alt="">     
+              <div class="item col-md-3 col-sm-6 col-xs-6" *ngFor = "let p of product">
+                <div class="product product-single" >
+                    
+                  <a routerLink="/detail/{{p.id}}">
+                      <div class="product-thumb">
+                          <img src="http://localhost:8080/file/downloadFile/{{p.image}}" alt="">     
+                        </div>
+                  </a>
+                  <div class="product-body">
+                      <h2 class="product-name"><a routerLink="/detail/{{p.id}}">{{p.title}}</a></h2>
+                    <p class="product-price">{{p.price}} đ</p>
+                    <div class="product-rating">
+                        <i ng-click="changeicon(this)" class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star-o empty"></i>
                       </div>
-                </a>
-                <div class="product-body">
-                    <h2 class="product-name"><a routerLink="/detail/{{p.id}}">{{p.title}}</a></h2>
-                  <p class="product-price">{{p.price}} đ</p>
-                  <div class="product-rating">
-                      <i ng-click="changeicon(this)" class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star-o empty"></i>
+                    <div class="product-btns">
+                        <a (click) = "addProductToCart(p)"><button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart">Add to Cart</i> </button></a>
+  
+                     </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="section-title">
+                    <h5 class="title">All  Products</h5>
+                  </div>
+                </div>
+                <div class="item col-md-3 col-sm-6 col-xs-6" *ngFor = "let p of product">
+                  <div class="product product-single" >
+                      
+                    <a routerLink="/detail/{{p.id}}">
+                        <div class="product-thumb">
+                            <img src="http://localhost:8080/file/downloadFile/{{p.image}}" alt="">     
+                          </div>
+                    </a>
+                    <div class="product-body">
+                        <h2 class="product-name"><a routerLink="/detail/{{p.id}}">{{p.title}}</a></h2>
+                      <p class="product-price">{{p.price}} đ</p>
+                      <div class="product-rating">
+                          <i ng-click="changeicon(this)" class="far fa-star"></i>
+                          <i class="far fa-star"></i>
+                          <i class="far fa-star"></i>
+                          <i class="far fa-star"></i>
+                          <i class="far fa-star-o empty"></i>
+                        </div>
+                      <div class="product-btns">
+                          <a (click) = "addProductToCart(p)"><button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart">Add to Cart</i> </button></a>
+    
+                       </div>
                     </div>
-                  <div class="product-btns">
-                      <a (click) = "addProductToCart(p)"><button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart">Add to Cart</i> </button></a>
-
-                   </div>
-                </div>
-              </div>
-            </div>
-            <!-- /Product Single -->
-          
-            <!-- Product Single -->
-            <!-- <div class="item col-md-3 col-sm-6 col-xs-6">
-              <div class="product product-single">
-                <div class="product-thumb">
-                  <div class="product-label">
-                    <span>New</span>
-                    <span class="sale">-20%</span>
-                  </div>
-                  <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                  <img src="./assets/img/product02.jpg" alt="">
-                </div>
-                <div class="product-body">
-                  <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                  <div class="product-rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o empty"></i>
-                  </div>
-                  <h2 class="product-name"><a href="#">Product Name</a></h2>
-                  <div class="product-btns">
-                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                    <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                   </div>
                 </div>
-              </div>
-            </div> -->
-          
-            <!-- Product Single -->
-            <!-- <div class="item col-md-3 col-sm-6 col-xs-6">
-              <div class="product product-single">
-                <div class="product-thumb">
-                  <div class="product-label">
-                    <span>New</span>
-                    <span class="sale">-20%</span>
-                  </div>
-                  <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                  <img src="./assets/img/product03.jpg" alt="">
-                </div>
-                <div class="product-body">
-                  <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                  <div class="product-rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o empty"></i>
-                  </div>
-                  <h2 class="product-name"><a href="#">Product Name</a></h2>
-                  <div class="product-btns">
-                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                    <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-           -->
-            <!-- Product Single -->
-            <!-- <div class="item col-md-3 col-sm-6 col-xs-6">
-              <div class="product product-single">
-                <div class="product-thumb">
-                  <div class="product-label">
-                    <span>New</span>
-                  </div>
-                  <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                  <img src="./assets/img/product04.jpg" alt="">
-                </div>
-                <div class="product-body">
-                  <h3 class="product-price">$32.50</h3>
-                  <div class="product-rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o empty"></i>
-                  </div>
-                  <h2 class="product-name"><a href="#">Product Name</a></h2>
-                  <div class="product-btns">
-                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                    <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- /Product Single -->
           </div>
-          <div class="row">
-            <!-- <div class="col-md-3 col-sm-6 col-xs-6">
-              <div class="product product-single">
-                <div class="product-thumb">
-                  <div class="product-label">
-                    <span>New</span>
-                    <span class="sale">-20%</span>
-                  </div>
-                  <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                  <img src="./assets/img/product07.jpg" alt="">
-                </div>
-                <div class="product-body">
-                  <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                  <div class="product-rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o empty"></i>
-                  </div>
-                  <h2 class="product-name"><a href="#">Product Name</a></h2>
-                  <div class="product-btns">
-                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                    <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                  </div>
-                </div>
-              </div>
-            </div> -->
           
-            <!-- Product Single -->
-            <!-- <div class="col-md-3 col-sm-6 col-xs-6">
-              <div class="product product-single">
-                <div class="product-thumb">
-                  <div class="product-label">
-                    <span>New</span>
-                    <span class="sale">-20%</span>
-                  </div>
-                  <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                  <img src="./assets/img/product07.jpg" alt="">
-                </div>
-                <div class="product-body">
-                  <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                  <div class="product-rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o empty"></i>
-                  </div>
-                  <h2 class="product-name"><a href="#">Product Name</a></h2>
-                  <div class="product-btns">
-                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                    <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- /Product Single -->
-          
-            <!-- Product Single -->
-            <!-- <div class="col-md-3 col-sm-6 col-xs-6">
-              <div class="product product-single">
-                <div class="product-thumb">
-                  <div class="product-label">
-                    <span>New</span>
-                    <span class="sale">-20%</span>
-                  </div>
-                  <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                  <img src="./assets/img/product06.jpg" alt="">
-                </div>
-                <div class="product-body">
-                  <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                  <div class="product-rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o empty"></i>
-                  </div>
-                  <h2 class="product-name"><a href="#">Product Name</a></h2>
-                  <div class="product-btns">
-                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                    <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- /Product Single -->
-          
-            <!-- Product Single -->
-            <!-- <div class="col-md-3 col-sm-6 col-xs-6">
-              <div class="product product-single">
-                <div class="product-thumb">
-                  <div class="product-label">
-                    <span>New</span>
-                    <span class="sale">-20%</span>
-                  </div>
-                  <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                  <img src="./assets/img/product05.jpg" alt="">
-                </div>
-                <div class="product-body">
-                  <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                  <div class="product-rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o empty"></i>
-                  </div>
-                  <h2 class="product-name"><a href="#">Product Name</a></h2>
-                  <div class="product-btns">
-                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                    <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- /Product Single -->
-          </div>
         </div>
   </div>
 

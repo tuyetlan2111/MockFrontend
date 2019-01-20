@@ -141,7 +141,7 @@ addPayment(payment,cookie): Observable<any> {
       map(this.extractData));
   }
   getOrdersUser(id): Observable<any>{
-    console.log(id)
+    console.log(id) 
     return this.http.get(endpoint + 'order/show/' + id).pipe(
       map(this.extractData));
   }

@@ -20,11 +20,16 @@
 							<h3 class="product-price">{{product.price}} đ</h3>
 							<div>
 								<div class="product-rating">
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star-o empty"></i>
+										<i class="fas fa-star" *ngIf ="product.avgStars > 0"></i>
+										<i class="fas fa-star" *ngIf ="product.avgStars > 1"></i>
+										<i class="fas fa-star" *ngIf ="product.avgStars > 2"></i>
+										<i class="fas fa-star" *ngIf ="product.avgStars > 3"></i>
+										<i class="fas fa-star" *ngIf ="product.avgStars > 4"></i>
+										<i class="fas fa-star" *ngIf ="product.avgStars < 1"></i>
+										<i class="far fa-star" *ngIf ="product.avgStars < 2"></i>
+										<i class="far fa-star" *ngIf ="product.avgStars < 3"></i>
+										<i class="far fa-star" *ngIf ="product.avgStars < 4"></i>
+										<i class="far fa-star" *ngIf ="product.avgStars < 5"></i>
 								</div>
 								<a href="#">{{ratings.length}} Review(s)</a>
 							</div>
@@ -89,6 +94,8 @@
 																<i class="far fa-star" *ngIf ="rating.stars < 5"></i>
 																
 															</div>
+															<div><i class="fas fa-clock"></i> {{rating.content}}</div>
+
 														</div>
 														<div class="review-body">
 															<!-- <p>{{rating.body}}</p> -->
@@ -101,10 +108,10 @@
 												<h4 class="text-uppercase">Write Your Review</h4>
 												<form class="review-form">
 													<div class="form-group">
-														<textarea class="input" placeholder="Your review"></textarea>
+														<input class="input" type="text" placeholder="Your review" id="review" name="review" formControlName="review"[ngModel]="rating.content" (ngModelChange)="review = $event">
 													</div>
 													<div class="form-group">
-														<div class="input-rating">
+														<div class="input-rating"  >
 															<strong class="text-uppercase">Your Rating: </strong>
 															<div class="stars">
 																<input type="radio" id="star5" name="rating" value="5" (click)="setStar(5)" /><label for="star5"><i class="far fa-star"></i></label>
@@ -115,7 +122,7 @@
 															</div>
 														</div>
 													</div>
-													<button class="primary-btn" (click)="addRatingProduct()" >Submit</button>
+													<button class="primary-btn" (click)="addRatingProduct(review)" >Submit {{rating.content}}</button>
 												</form>
 											</div>
 										</div>

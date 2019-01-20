@@ -1,4 +1,4 @@
-.navbar {background-color: black; height: 55px;box-shadow: inset 0 -1px 0px 0px #f8694a;};
+.navbar {background-color: black; height: 58px;box-shadow: inset 0 -1px 0px 0px #f8694a;};
 .dropdown-toggle{background-color: black};
 .navbar {
     top: 0;
@@ -6,6 +6,9 @@
   
   /deep/ .dropdown-menu {
     margin-left: -6rem;
+  }
+  .category {
+    margin-left: 0 !important
   }
   
   /***********modal**************/

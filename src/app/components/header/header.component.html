@@ -16,10 +16,19 @@
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="javascript:;;" [routerLink]="[ '/' ]">{{this.translate.data["HOME"] | translate}}
-          <span class="sr-only">(current)</span>
-        </a>
+      <li class="nav-item dropdown  " dropdown>
+        
+        <div class="dropdown">
+          <button style="border: none" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-list-ul"> </i><span class="caret">  Category Product  </span>
+          </button>
+          <div class="dropdown-menu category" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item waves-light" href="javascript:;;" (click)="selectCategory(null)">
+                  --- All Category Product --- </a>
+            <a class="dropdown-item waves-light" href="javascript:;;" (click)="selectCategory(artist)" *ngFor="let artist of artists">
+              {{artist.firstName + " " + artist.lastName}} </a>
+          </div>
+        </div>
       </li>
       <!-- <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
@@ -56,8 +65,8 @@
       <li class="nav-item dropdown" dropdown>
         
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-globe"> </i><span class="caret"></span>
+          <button style="border: none" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-globe mr-1"> </i><span class="caret"></span>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item waves-light" href="javascript:;;" (click)="setLang('en')">

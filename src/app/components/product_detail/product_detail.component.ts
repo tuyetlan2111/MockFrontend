@@ -28,15 +28,16 @@ export class DetailComponent implements OnInit {
     private cartService: CartService,
 
   ) { 
-    this.getRatingProduct("");
   }
   flag = true;
   id ; product; number = 1; ratings;star = 0;
-  rating : Rating = {}; user: User;
+  rating : Rating = {}; user: User;content ="123";
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("id");
     console.log(this.id);
     this.getDetailProduct(this.id);
+    this.getRatingProduct(this.id +"");
+
   }
   getDetailProduct(id){
     this.productService.getProduct(id).then(() => {
@@ -82,7 +83,7 @@ export class DetailComponent implements OnInit {
      })
    }
    
-   addRatingProduct(){
+   addRatingProduct(content){
      this.user = this.authService.user;
      console.log(this.user)
      if(this.user == null){
@@ -95,6 +96,7 @@ export class DetailComponent implements OnInit {
      }
      this.rating.user = this.user;
      this.rating.stars = this.star;
+     this.rating.content =  content
      this.rating.product = this.product
      this.rating.createdBy = this.user.id;
      this.rating.changedBy = this.user.id;
