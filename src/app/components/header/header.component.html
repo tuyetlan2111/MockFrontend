@@ -29,10 +29,7 @@
               {{artist.firstName + " " + artist.lastName}} </a>
           </div>
         </div>
-      </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li> -->
+
     </ul>
     <!-- Links -->
 
@@ -56,11 +53,11 @@
       </li>
       <li class="nav-item" *ngIf="!authService.isLoggedIn()" data-toggle="modal"  data-target="#mylogin">
         <a class="nav-link" >
-          <i class="fa fa-sign-in mr-1"></i> {{this.translate.data["SIGNIN"] | translate}}</a>
+          <i class="fa fa-sign-in mr-1"></i> SIGNIN</a>
       </li>
       <li class="nav-item" *ngIf="authService.isLoggedIn()">
         <a class="nav-link" (click)="logout()">
-          <i class="fa fa-sign-in mr-1"></i>{{this.translate.data["LOGOUT"] | translate}}</a>
+          <i class="fa fa-sign-in mr-1"></i>LOGOUT</a>
       </li>
       <li class="nav-item dropdown" dropdown>
         

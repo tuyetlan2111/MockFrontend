@@ -16,7 +16,7 @@ export class UpdateArtistComponent implements OnInit {
   updateartist: FormGroup;
   submitted = false;
   user:User;
-  @Input() artist:any = { firstName:'', lastName: '', lifeSpan: '', country:'',description:'', totalProducts:0, createdOn:'2018-12-31', createdBy: 1, changedOn:'2018-12-31', changedBy: 1};
+  @Input() artist:any = { firstName:'', lastName: '', lifeSpan: '', country:'',description:'', totalProducts:0, createdOn:new Date(), createdBy: 1, changedOn:new Date(), changedBy: 1};
   constructor(public rest:RestService, private authService : AuthService,private router: Router,private formBuilder: FormBuilder,private route: ActivatedRoute,) { }
 
   ngOnInit() {

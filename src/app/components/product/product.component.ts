@@ -4,6 +4,7 @@ import { ProductService } from "../../services/product.service";
 import { CartService } from "../../services/cart.service";
 import { Product } from '../../models/product';
 import { Cart } from '../../models/cart';
+import { RestService } from './../../rest.service';
 import { IToastrService } from '../../services/toastr.service';
 import { CartItem } from 'src/app/models/cart_item';
 
@@ -14,9 +15,12 @@ import { CartItem } from 'src/app/models/cart_item';
 })
 export class ProductComponent implements OnInit {
   products: Product[];
+  searchItem : string;
+  artists:any = [];
   product: any;
   flag = true;
   constructor(
+    public rest: RestService, 
     private http: HttpClient,
     public productService: ProductService,
     private toastrService: IToastrService,
@@ -24,15 +28,15 @@ export class ProductComponent implements OnInit {
   ) { }
   ngOnInit() {
     this.getProducts();
+    this.getArtist();
+  
   }
 
   getProducts() {
     this.productService.getProducts().then((data)=>{
       this.product = data;
-      console.log(this.product);
     })
   }
-
   changeicon(x) {
     x.classList.toggle("fas fa-star");
   }
@@ -43,7 +47,7 @@ export class ProductComponent implements OnInit {
   addProductToCart(product) {
     //check cart
     this.cartService.checkAndSetCart().then((data) => {
-        console.log(data);
+
         this.addItemCart(data, product)
     }); 
   }
@@ -60,7 +64,16 @@ export class ProductComponent implements OnInit {
     cartItem.createdBy = 1;
     cartItem.product = product;
     this.cartService.checkAndSetCartItem(cartItem).then((data) => {
-      console.log(data);
+
   }); 
   }
+  getArtist(){
+    this.artists = [];
+    this.rest.getArtist().subscribe((data: {}) => {
+      this.artists = data;
+
+    });
+  }
+
+
 }

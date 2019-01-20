@@ -12,7 +12,7 @@
     overflow: hidden;
     height: 32px;
     text-overflow: ellipsis;
-    display: -webkit-box;
+    display: inherit;
     line-height: 16px;     /* fallback */
     max-height: 32px;      /* fallback */
     -webkit-line-clamp: 2; /* number of lines to show */
@@ -92,8 +92,6 @@
     -webkit-box-shadow: 0px 6px 10px -6px rgba(0, 0, 0, 0.175);
     box-shadow: 0px 0px 10px 0px rgb(103, 88, 88);
   
-  }
-  .product.product-single:hover .product-thumb{
   }
 
   .product.product-single .product-thumb {
@@ -808,4 +806,67 @@
 
 
 
+  .search{
+    float: left;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    text-align: right;
+    padding: 0px;
+  }
+  .search input{
+    padding: 4px 16px;
+  }
+  .search button{
+    border: none;
+    background: #060d0e;
+    padding: 6px 13px;
+    color: #ffffff;
+  }
+  .search button:focus{
+    background: #ce671e;
+  }
+  select{
+    font-size: 18px;
+    padding: 6px 11px;
+    background: #ffffff;
+  }
+  .dropdown-menu{
+    text-align: right;
+    top: -48px!important;
+    left: 97px!important;
+
+    display: block;
+    background-color:#f4f4f4!important;
+    border: none;
+  }
+  .dropdown-menu button{
+    padding: 6px 16px 6px 16px;
+    background: #f7f6f6 !important;
+    border: 2px solid #ccc;
+    padding-bottom: 6px;
+    width: 100%;
+    padding-left: 10px;
+    border-radius: 0 !important;
+    color: #000000 !important;
+    outline: none;
+
+  }
+  .dropdown-menu a{
+    background: #ffffff;
+    display: none;
+    cursor: pointer;
+    text-align: center;
+  }
+  .dropdown-menu button:focus,.dropdown-menu button:hover{
+    background: #ce671e;
+    border-color: #ccc;
+  }
+  .dropdown-menu:focus a,.dropdown-menu:hover a{
+    display: block;
+  }
+  .dropdown-menu a:focus,.dropdown-menu a:hover{
+    background: #FFB656;
+    color: #ffffff;
+  }
   

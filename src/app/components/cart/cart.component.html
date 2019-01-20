@@ -20,7 +20,7 @@
               <img src="http://localhost:8080/file/downloadFile/{{cartItem.product.image}}" alt="Product" style="width: 50%;">
             </td>
             <td>{{cartItem.product.title}}</td>
-            <td>{{cartItem.price}}</td>
+            <td>{{cartItem.price}} $</td>
 
             <td style="text-align: center;">
               <button type="button" class="soluong" (click) = "updateCartItemMinus(cartItem)"> - </button>
@@ -46,20 +46,20 @@
       </table>
       <div class="total col-3">
         <p>Total:
-          <span>{{total}}</span>
+          <span>{{total}} $</span>
         </p>
       </div>
-      <div class="col-6">
+      <div class="col-6" style="padding:0px">
         <a routerLink="">
 
             <button type="button" class="btn btn-info continue">
-                <i class="fas fa-undo"></i>Tiếp tục mua hàng</button>
+                <i class="fas fa-undo"></i>Continue buying</button>
         </a>
        
       </div>
       <div class="col-6 pay">
           <a >
-            <button type="button" (click)="checkPayment()" class="btn btn-success">Thanh toán
+            <button type="button" (click)="checkPayment()" class="btn btn-success">Payment
                 <i class="fas fa-arrow-alt-circle-right"></i>
             </button>
           </a>

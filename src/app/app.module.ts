@@ -44,6 +44,7 @@ import { AddProductComponent } from './components/admin/add-product/add-product.
 import { CookieService } from 'ngx-cookie-service';
 import { DataTablesModule } from 'angular-datatables';
 import { FileSelectDirective } from 'ng2-file-upload';
+import { ArtistPipe } from './artist.pipe';
 
 /* to load and set en.json as the default application language */
 export function setupTranslateFactory(service: TranslateService): Function {
@@ -76,7 +77,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     ArtistComponent,
     AddArtistComponent,
     UpdateArtistComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    ArtistPipe
   ],
   imports: [
     BrowserModule,
