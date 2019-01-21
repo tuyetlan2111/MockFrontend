@@ -31,19 +31,20 @@ export class DetailComponent implements OnInit {
   }
   flag = true;
   id ; product; number = 1; ratings;star = 0;
-  rating : Rating = {}; user: User;content ="123";
+  rating : Rating = {}; user: User; review ="";
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("id");
     console.log(this.id);
     this.getDetailProduct(this.id);
     this.getRatingProduct(this.id +"");
-
   }
   getDetailProduct(id){
     this.productService.getProduct(id).then(() => {
       this.product = this.productService.productCurrent;
+      console.log(this.product,"product")
      })
   }
+
   addProductToCart(product){
     //check cart
     this.cartService.checkAndSetCart().then((data) => {
@@ -83,7 +84,7 @@ export class DetailComponent implements OnInit {
      })
    }
    
-   addRatingProduct(content){
+   addRatingProduct(review){
      this.user = this.authService.user;
      console.log(this.user)
      if(this.user == null){
@@ -96,7 +97,7 @@ export class DetailComponent implements OnInit {
      }
      this.rating.user = this.user;
      this.rating.stars = this.star;
-     this.rating.content =  content
+     this.rating.content =  review + "";
      this.rating.product = this.product
      this.rating.createdBy = this.user.id;
      this.rating.changedBy = this.user.id;
@@ -104,10 +105,13 @@ export class DetailComponent implements OnInit {
      this.rating.changedOn =  new Date();
 
      console.log(this.rating)
-      this.productService.addRatingProduct(this.rating).then(() => {
-      this.ratings = this.productService.ratingsCurrent;
-
-      this.toastrService.showSuccess("Rating on product susscess full!!","Rating done"); 
+      this.productService.addRatingProduct(this.rating).then((data) => {
+      if(JSON.stringify(data) == "{}"){
+        this.toastrService.showFail("Rating on product fail","Rating fail order or review first"); 
+      }else{
+        this.toastrService.showSuccess("Rating on product susscess full!!","Rating done"); 
+        this.getRatingProduct(this.id +"");
+      }
 
      })
   }

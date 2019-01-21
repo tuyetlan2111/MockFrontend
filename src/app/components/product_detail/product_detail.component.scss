@@ -405,20 +405,20 @@
   
   /*-- review form --*/
   
-  .review-form textarea.input {
+  textarea.input {
     height: 90px;
   }
   
-  .review-form .input-rating .stars {
+  .input-rating .stars {
     display: inline-block;
     vertical-align: top;
   }
   
-  .review-form .input-rating .stars input[type="radio"] {
+  .input-rating .stars input[type="radio"] {
     display: none;
   }
   
-  .review-form .input-rating .stars>label {
+  .input-rating .stars>label {
     float: right;
     cursor: pointer;
     padding: 0px 3px;
@@ -427,13 +427,13 @@
     transition: 0.3s all;
   }
   
-  .review-form .input-rating .stars>label:hover, .review-form .input-rating .stars>label:hover~label {
+  .input-rating .stars>label:hover, .input-rating .stars>label:hover~label {
     -webkit-transform: scale(1.5);
     -ms-transform: scale(1.5);
     transform: scale(1.5);
   }
   
-  .review-form .input-rating .stars>label:before {
+  .input-rating .stars>label:before {
     content: "<i class="far fa-star"></i>";
     font-family: FontAwesome;
     font-style: normal;
@@ -444,12 +444,12 @@
     transition: 0.3s all;
   }
   
-  .review-form .input-rating .stars>label:hover:before, .review-form .input-rating .stars>label:hover~label i {
+  .input-rating .stars>label:hover:before, .input-rating .stars>label:hover~label i {
     // content: "\f005";
     color: #FFB656;
   }
   
-  .review-form .input-rating .stars>input:checked label:before, .review-form .input-rating .stars>input:checked~label i{
+  .input-rating .stars>input:checked label:before, .input-rating .stars>input:checked~label i{
     // content: "\f005";
     color: #FFB656;
   }

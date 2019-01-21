@@ -1,91 +1,85 @@
 <header>
-<!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark indigo">
-
-  <!-- Navbar brand -->
-  <a class="navbar-brand" href="javascript:;;" [routerLink]="[ '/' ]">  <img src="./assets/img/logo-light.png" alt="" width="auto" height="40"></a>
-
-  <!-- Collapse button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <!-- Collapsible content -->
-  <div class="collapse navbar-collapse" id="basicExampleNav">
-
-    <!-- Links -->
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown  " dropdown>
-        
-        <div class="dropdown">
-          <button style="border: none" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-list-ul"> </i><span class="caret">  Category Product  </span>
-          </button>
-          <div class="dropdown-menu category" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item waves-light" href="javascript:;;" (click)="selectCategory(null)">
-                  --- All Category Product --- </a>
-            <a class="dropdown-item waves-light" href="javascript:;;" (click)="selectCategory(artist)" *ngFor="let artist of artists">
-              {{artist.firstName + " " + artist.lastName}} </a>
-          </div>
-        </div>
-
-    </ul>
-    <!-- Links -->
-
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item" *ngIf="authService.isLoggedIn() && authService.isAdmin()">
-            <a class="nav-link" routerLink="/admin">
-            <i class="fas fa-cogs mr-1"></i>Manager Admin</a>
-        </li>
-        <li class="nav-item">
-        <div>
-          <a class="nav-link" href="javascript:;;" [routerLink]="['/cart']">
-            <i class="fa fa-shopping-cart">
-              <span class="mt-2"> {{cartService.navbarCartCount}}</span>
-            </i>
-          </a>
-        </div>
-      </li>
-      <li class="nav-item" *ngIf="authService.isLoggedIn()">
-          <a class="nav-link" routerLink="/acount">
-          <i class="fa fa-user mr-1"></i>{{authService.user.firstName + " " + authService.user.lastName}}</a>
-      </li>
-      <li class="nav-item" *ngIf="!authService.isLoggedIn()" data-toggle="modal"  data-target="#mylogin">
-        <a class="nav-link" >
-          <i class="fa fa-sign-in mr-1"></i> SIGNIN</a>
-      </li>
-      <li class="nav-item" *ngIf="authService.isLoggedIn()">
-        <a class="nav-link" (click)="logout()">
-          <i class="fa fa-sign-in mr-1"></i>LOGOUT</a>
-      </li>
-      <li class="nav-item dropdown" dropdown>
-        
-        <div class="dropdown">
-          <button style="border: none" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-globe mr-1"> </i><span class="caret"></span>
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item waves-light" href="javascript:;;" (click)="setLang('en')">
-              English </a>
-            <a class="dropdown-item waves-light" href="javascript:;;" (click)="setLang('vn')">
-              Việt Nam </a>
-          </div>
-        </div>
-      </li>
-     
-    </ul>
-  </div>
-  <!-- Collapsible content -->
-
-</nav>
-<!--/.Navbar-->
-</header>
-
-<div class="modal" id="mylogin">
- <app-login></app-login>
-</div>
-
-<div class="modal" id="myregister">
-   <app-register></app-register>
-</div>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark indigo">
+    
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="javascript:;;" [routerLink]="[ '/' ]">  <img src="./assets/img/logo-light.png" alt="" width="auto" height="40"></a>
+    
+      <!-- Collapse button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse" id="basicExampleNav">
+    
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="javascript:;;" [routerLink]="[ '/' ]">HOME
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li> -->
+        </ul>
+        <!-- Links -->
+    
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item" *ngIf="authService.isLoggedIn() && authService.isAdmin()">
+                <a class="nav-link" routerLink="/admin">
+                <i class="fas fa-cogs mr-1"></i>Manager Admin</a>
+            </li>
+            <li class="nav-item">
+            <div>
+              <a class="nav-link" href="javascript:;;" [routerLink]="['/cart']">
+                <i class="fa fa-shopping-cart">
+                  <span class="mt-2"> {{cartService.navbarCartCount}}</span>
+                </i>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item" *ngIf="authService.isLoggedIn()">
+              <a class="nav-link" routerLink="/acount">
+              <i class="fa fa-user mr-1"></i>{{authService.user.firstName + " " + authService.user.lastName}}</a>
+          </li>
+          <li class="nav-item" *ngIf="!authService.isLoggedIn()" data-toggle="modal"  data-target="#mylogin">
+            <a class="nav-link" >
+              <i class="fa fa-sign-in mr-1"></i> SIGNIN</a>
+          </li>
+          <li class="nav-item" *ngIf="authService.isLoggedIn()">
+            <a class="nav-link" (click)="logout()">
+              <i class="fa fa-sign-in mr-1"></i>LOGOUT</a>
+          </li>
+          <li class="nav-item dropdown" dropdown>
+            
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-globe"> </i><span class="caret"></span>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item waves-light" href="javascript:;;" (click)="setLang('en')">
+                  English </a>
+                <a class="dropdown-item waves-light" href="javascript:;;" (click)="setLang('vn')">
+                  Việt Nam </a>
+              </div>
+            </div>
+          </li>
+         
+        </ul>
+      </div>
+      <!-- Collapsible content -->
+    
+    </nav>
+    <!--/.Navbar-->
+    </header>
+    
+    <div class="modal" id="mylogin">
+     <app-login></app-login>
+    </div>
+    
+    <div class="modal" id="myregister">
+       <app-register></app-register>
+    </div>
