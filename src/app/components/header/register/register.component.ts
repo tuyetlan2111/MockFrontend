@@ -14,7 +14,6 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   user : User;
   @ViewChild('btCloseRegister') btCloseRegister: ElementRef;
-     // convenience getter for easy access to form fields
      get fr() { return this.registerForm.controls; }
 
   constructor(

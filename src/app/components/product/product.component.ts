@@ -7,7 +7,8 @@ import { Cart } from '../../models/cart';
 import { RestService } from './../../rest.service';
 import { IToastrService } from '../../services/toastr.service';
 import { CartItem } from 'src/app/models/cart_item';
-
+import { ActivatedRoute } from '@angular/router';
+import { Array } from 'core-js/library/web/timers';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -17,6 +18,7 @@ export class ProductComponent implements OnInit {
   products: Product[];
   searchItem : string;
   artists:any = [];
+  avgStars : string;
   product: any;
   flag = true;
   constructor(
@@ -25,18 +27,40 @@ export class ProductComponent implements OnInit {
     public productService: ProductService,
     private toastrService: IToastrService,
     private cartService: CartService,
+    private route: ActivatedRoute,
   ) { }
   ngOnInit() {
+    let id = +this.route.snapshot.paramMap.get('id');
+    console.log("asda"+id);
     this.getProducts();
-    this.getArtist();
-  
+     this.getArtist();
+    
+  }
+  getPro(id){
+    console.log(id);
   }
 
+  getProductsByID(id) {
+    this.product=[];
+    this.productService.getProducts().then((data)=>{
+      // this.product = data;
+      let product:any;
+      product = data;
+      console.log(product.length);
+      for(let i= 0 ; i < product.length; i++){
+        if(product[i].artist.id == id){
+          this.product.push(product[i]);
+          
+        }
+      }
+    }).catch(error =>{console.log("error")})
+  }
   getProducts() {
     this.productService.getProducts().then((data)=>{
       this.product = data;
-    })
+    }).catch(error =>{console.log("error")})
   }
+ 
   changeicon(x) {
     x.classList.toggle("fas fa-star");
   }

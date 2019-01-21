@@ -9,7 +9,7 @@
 }
 
 .product-name{
-    overflow: hidden;
+    // overflow: hidden;
     height: 32px;
     text-overflow: ellipsis;
     display: inherit;
@@ -794,18 +794,19 @@
   .search{
     float: left;
     position: absolute;
-    right: 0;
-    bottom: 0;
-    text-align: right;
+    left: 15px;
+    top: 1px;
+    top: 20;
+    text-align: left;
     padding: 0px;
   }
   .search input{
-    padding: 4px 16px;
+   padding: 6px 24px;
   }
   .search button{
     border: none;
     background: #060d0e;
-    padding: 6px 13px;
+    padding: 8px 13px;
     color: #ffffff;
   }
   .search button:focus{
@@ -818,11 +819,11 @@
   }
   .dropdown-menu{
     text-align: right;
-    top: -48px!important;
-    left: 97px!important;
-
+    top: 56px;
+    left: 111px;
+   width: 13%;
     display: block;
-    background-color:#f4f4f4!important;
+    background-color: #f4f4f4 !important;
     border: none;
   }
   .dropdown-menu button{
@@ -839,7 +840,6 @@
   }
   .dropdown-menu a{
     background: #ffffff;
-    display: none;
     cursor: pointer;
     text-align: center;
   }
@@ -854,4 +854,31 @@
     background: #FFB656;
     color: #ffffff;
   }
-  
+  .quanty_entries
+  {
+    text-align: right;
+    position: absolute;
+    top: 11px;
+    right: 154px;
+  }
+  .pagination {
+  display: inline-block;
+  float: right;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a:focus,.pagination a:hover{
+  border:1px solid #e67145;
+  background-color: #e67145;
+  cursor: pointer;
+  color: white;
+}
+.checked {
+  color: orange;
+}

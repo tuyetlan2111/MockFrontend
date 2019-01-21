@@ -1,33 +1,40 @@
-
 <app-slider></app-slider>
 <div id="demo" class="carousel slide" data-ride="carousel">
 
   <div style="background:#F4F4F4; padding-bottom: 65px;">
+      <div class="section-title col-12" style="padding: 0px;">
+          <div class="dropdown-menu"> 
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              List Artist
+            </button>
+            <!-- routerLink="/product/artist/{{a.id}}" -->
+              <a name="artist" class="dropdown-item" *ngFor="let a of artists" (click)="getProductsByID(a.id)"  routerLink="/product/artist/{{a.id}}">{{a.firstName}}  {{a.lastName}}</a>                  
+          </div>
+          <form class="col-4 search" id="filter">
+                <input name="term" [(ngModel)]="term" type="text" name="search" placeholder="Search.." autofocus >
+                <button type="submit"><i class="fas fa-search"></i></button>
+          </form>
+          <!-- <div class="quanty_entries col-8">
+              <label>Show</label>
+              <select name="quanty_entries" style="font-size: 18px;padding: 1px 0px 2px 0px; margin: 0px 5px;">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="75">75</option>
+                <option value="100">100</option>
+              </select>
+              <label>entries</label>
+            </div> -->
+        
+      <!-- </div> -->
       <div class="container">
           <div class="row">
             <!-- section title -->
             <div class="col-md-12" style="border-bottom: 1px solid #ccc;padding: 0px;margin: 40px 0px; position: relative;">
-              <div class="section-title col-8" style="padding: 0px;">
-                  <div class="dropdown-menu"> 
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                      List Artist
-                    </button>
-                      <a name="artist" class="dropdown-item" *ngFor="let a of artists" routerLink="/product/artist/{{a.id}}">{{a.firstName}}  {{a.lastName}}</a>                  
-                    </div>
-                
-              </div>
-              <form class="col-4 search" id="filter">
-                <input name="term" [(ngModel)]="term" type="text" name="search" placeholder="Search.." autofocus >
-                <button type="submit"><i class="fas fa-search"></i></button>
-              </form>
-            </div>
-            <!-- section title -->
-          
-            <!-- Product Single -->
-
-            <div class="item col-md-3 col-sm-6 col-xs-6" *ngFor = "let p of product | filter: term| filter: loadproduct">
+         </div>
+            <div class="item col-md-3 col-sm-6 col-xs-6" *ngFor = "let p of product | filter: term | filter: loadproduct | paginate: { itemsPerPage: 8, currentPage: p}" >
               <div class="product product-single" >
-                  
                 <a routerLink="/detail/{{p.id}}">
                     <div class="product-thumb">
                         <img src="http://localhost:8080/file/downloadFile/{{p.image}}" alt="">     
@@ -37,11 +44,13 @@
                     <h2 class="product-name"><a routerLink="/detail/{{p.id}}">{{p.title}}</a></h2>
                   <p class="product-price">{{p.price}} $</p>
                   <div class="product-rating">
+                      <!-- <i ng-click="changeicon(this)" class="far fa-star checked">{{p.avgStars}}</i> -->
+                      <!-- <star-rating-comp [starType]="'svg'" [rating]="p.avgStars"></star-rating-comp> -->
                       <i ng-click="changeicon(this)" class="far fa-star"></i>
                       <i class="far fa-star"></i>
                       <i class="far fa-star"></i>
                       <i class="far fa-star"></i>
-                      <i class="far fa-star-o empty"></i>
+                      <i class="far fa-star-o empty"></i> 
                     </div>
                   <div class="product-btns">
                       <a (click) = "addProductToCart(p)"><button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart">Add to Cart</i> </button></a>
@@ -49,8 +58,19 @@
                    </div>
                 </div>
               </div>
-            </div>      
+            </div>   
+             <pagination-controls (pageChange)="p = $event"></pagination-controls> 
           </div>
-        </div>
+          <!-- <div class="pagination">
+              <a>&laquo;</a>
+              <a>1</a>
+              <a>2</a>
+              <a>3</a>
+              <a>4</a>
+              <a>5</a>
+              <a>6</a>
+              <a>&raquo;</a>
+          </div>           -->
+      </div>
   </div>
 

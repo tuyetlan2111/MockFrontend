@@ -26,8 +26,7 @@ export class ManagerProductComponent implements OnInit {
       this.router.navigate(["/"]);
     }
     this.getProducts();
-    this.dataTable = $(this.table.nativeElement);
-    this.dataTable.DataTable();
+   
   }
 
   getProducts() {

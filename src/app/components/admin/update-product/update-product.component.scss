@@ -7,7 +7,7 @@
 .update_product textarea{
     margin-bottom: 0px;
     height: 106px;
-    margin-left: 14px;
+    margin-left: 42px;
     width: 74%;
 }
 .update_product input{
@@ -19,6 +19,8 @@
     margin-left: 92px;
     width: 74%;
     display: inline;
+    padding: 5px 8px;
+    border-color: #ccc;
 }
 .update_product button{
     padding: 10px 27px;
@@ -40,4 +42,13 @@
 a{
     color: #000000;
     text-decoration: none;
+}
+ul{
+    height: 52px;
+}
+ul li ul li{
+    text-align: center;
+    font-size: 17px;
+    padding: 5px 0px;
+    cursor: pointer;
 }

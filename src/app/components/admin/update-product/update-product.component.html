@@ -1,38 +1,52 @@
 
 <app-menu></app-menu>
 <div class="col-9 update_product">
-  <form action="">
-      <h3>Sửa sản phẩm</h3>
+  <form [formGroup]="updateproduct" (ngSubmit)="onSubmitProduct()">
+      <!-- <h3>Sửa sản phẩm</h3> -->
       <div class="form-group">
-        <label for="name">Tên sản phẩm</label>
-        <input type="text" class="form-control" id="title" name="title" [(ngModel)]="ProductData.title">
-      </div>
-      <div class="form-group">
-        <label for="name">Artist</label>
-          <select class="form-control">
-            <option *ngFor="let artist of artist" [(ngModel)]="ProductData.artist.country">{{artist.country}}</option>
-          </select>
+        <label for="name">Name Product</label>
+        <input type="text" class="form-control" id="title" name="title" [(ngModel)]="productdata.title" formControlName="title"  [ngClass]="{ 'is-invalid': submitted && fr.title.errors }">
+        <div *ngIf="submitted && fr.title.errors" class="invalid-feedback">
+            <div *ngIf="fr.title.errors.required">Tilte is required</div>
         </div>
-      <div class="form-group">
-        <label for="name">Giá sản phẩm</label>
-        <input type="text" class="form-control" id="price" name="price" [(ngModel)]="ProductData.price" style="margin-left: 33px;">
       </div>
       <div class="form-group">
-          <label for="name">Mô tả sản phẩm</label>
-        <textarea name="descreption" id="descreption" cols="30" rows="10" [(ngModel)]="ProductData.description"></textarea>
+        <label for="name" style="float: left;">Artist</label>
+        <select name="artist" id="artist">
+          <option *ngFor="let a of artist" value="{{a.id}}">{{a.firstName}}  {{a.lastName}}</option>
+        </select>
       </div>
       <div class="form-group">
-          <label for="fileupload">Hình sản phẩm</label> 
-          <!-- <input type="hidden" name="fileHidden" formControlName="avatar">   -->
-          <input name="image" type="file">
+        <label for="name">Price Product</label>
+        <input type="text" class="form-control" id="price" name="price" [(ngModel)]="productdata.price" style="margin-left: 33px;" formControlName="price"  [ngClass]="{ 'is-invalid': submitted && fr.price.errors }">
+        <div *ngIf="submitted && fr.price.errors" class="invalid-feedback">
+            <div *ngIf="fr.price.errors.required">Price is required</div>
+        </div>
       </div>
-  
-      <div style="margin-bottom: 150px;">
+      <div class="form-group">
+          <label for="name">Descreption</label>
+        <textarea name="descreption" id="description" cols="30" rows="10" [(ngModel)]="productdata.description" formControlName="description"  [ngClass]="{ 'is-invalid': submitted && fr.description.errors }"></textarea>
+        <div *ngIf="submitted && fr.descreption.errors" class="invalid-feedback">
+            <div *ngIf="fr.descreption.errors.required">Descreption is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="name">Select Image</label>
+       <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)" formControlName="image"  [ngClass]="{ 'is-invalid': submitted && fr.image.errors }">
+       <div *ngIf="submitted && fr.image.errors" class="invalid-feedback">
+          <div *ngIf="fr.image.errors.required">Image is required</div>
+      </div>
+      </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary" (click)="updateProduct()">Update Product</button>
+    </div>
+      <!-- <div style="margin-bottom: 150px;"> -->
 
-     <a routerLink="/admin">
+     <!-- <a routerLink="/admin">
       <button type="button" class="btn btn-success" (click)="updateProduct()">Cập nhật</button>
-    </a>
-  </div>
+    </a> -->
+    
+  <!-- </div> -->
 
 
   </form>
