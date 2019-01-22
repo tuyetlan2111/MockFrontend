@@ -1,141 +1,141 @@
-
-	<div class="section" style="background: #F4F4F4;">
-		<div class="container">
-			<div class="row">
-				<div class="product product-details clearfix">
-					<div class="col-md-4 image">
-						 <div id="product-main-view">
-							<div class="product-view">
-								<img src="http://localhost:8080/file/downloadFile/{{product.image}}" alt="">
-							</div>
+<div class="section" style="background: #F4F4F4;">
+	<div class="container">
+		<div class="row">
+			<div class="product product-details clearfix">
+				<div class="col-md-4 image">
+					<div id="product-main-view">
+						<div class="product-view">
+							<img src="http://localhost:8080/file/downloadFile/{{product.image}}" alt="">
 						</div>
 					</div>
-					<div class="col-md-8 body">
-						<div class="product-body">
-							<!-- <div class="product-label">
-								<span>New</span>
-								<span class="sale">-20%</span>
-							</div> -->
-							<h2 class="product-name">{{product.title}}</h2>
-							<h3 class="product-price">{{product.price}} $</h3>
-							<div>
-								<div class="product-rating">
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star-o empty"></i>
-								</div>
-								<a href="#">{{ratings.length}} Review(s)</a>
+				</div>
+				<div class="col-md-8 body">
+					<div class="product-body">
+						<h2 class="product-name">{{product.title}}</h2>
+						<h3 class="product-price">{{product.price}} $</h3>
+						<div>
+							<div class="product-rating">
+								<i class="fas fa-star" *ngIf="product.avgStars > 0"></i>
+								<i class="fas fa-star" *ngIf="product.avgStars > 1"></i>
+								<i class="fas fa-star" *ngIf="product.avgStars > 2"></i>
+								<i class="fas fa-star" *ngIf="product.avgStars > 3"></i>
+								<i class="fas fa-star" *ngIf="product.avgStars > 4"></i>
+								<i class="fas fa-star" *ngIf="product.avgStars < 1"></i>
+								<i class="far fa-star" *ngIf="product.avgStars < 2"></i>
+								<i class="far fa-star" *ngIf="product.avgStars < 3"></i>
+								<i class="far fa-star" *ngIf="product.avgStars < 4"></i>
+								<i class="far fa-star" *ngIf="product.avgStars < 5"></i>
 							</div>
-							<p>{{product.description}}</p>
-							<div class="product-btns">
-								<div class="qty-input">
-									<span style="font-size: 19px;">Quantity:  </span>
-									<button class="soluong" type="button" style="padding: 3px 12px 4px 12px;" (click)="mineNumber()">-</button>
-									<input class="qty" max="10" min="1" type="text" style="width: 10%; font-size: 20px" value="  {{number}}">
-									<button class="soluong" type="button" style="padding: 1px 9px;" (click)="addNumber()">+</button>
-								</div>
-								<button class="primary-btn add-to-cart"  (click)="addProductToCart(product)"><i class="fa fa-shopping-cart"  ></i> Add to Cart</button>
-								
+							<a href="#">{{ratings.length}} Review(s)</a>
+						</div>
+						<p>{{product.description}}</p>
+						<div class="product-btns">
+							<div class="qty-input">
+								<span style="font-size: 19px;">Quantity: </span>
+								<button class="soluong" type="button" style="padding: 3px 12px 4px 12px;" (click)="mineNumber()">-</button>
+								<input class="qty" max="10" min="1" type="text" style="width: 10%; font-size: 20px" value="  {{number}}">
+								<button class="soluong" type="button" style="padding: 1px 9px;" (click)="addNumber()">+</button>
 							</div>
+							<button class="primary-btn add-to-cart" (click)="addProductToCart(product)">
+								<i class="fa fa-shopping-cart"></i> Add to Cart</button>
+
 						</div>
 					</div>
-					<!-- <div class="col-3 shop">
-							<i class="fas fa-home" style="color:coral"></i>
-						<p>
-							E-Shop<br>
-							Cam kết chính hiệu 100%
-						</p>
-						<p><i class="fas fa-dollar-sign" style="color:coral"></i>
-							E-shop hoàn tiền 111% <br>
-							Nếu phát hiện hàng giả</p>
-						<p><i class="fas fa-phone-volume" style="margin-top: 35px;
-							font-size: 20px;"></i>Liên hệ<br>
-							Hotline đặt hàng 1800 6963<br>
-							(Miễn phí, 8-21h cả T7, CN)</p>
-					<p><i class="far fa-envelope" style="margin-top: 6px;"></i>tuyetlan2111@gmail.com</p>
-					</div> -->
-					<div class="col-md-12">
-						<div class="product-tab">
-								<nav>
-										<div class="nav nav-tabs" id="nav-tab" role="tablist">
-										  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Reviews ({{ratings.length}})</a>
-										  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Details</a>
-										</div>
-									  </nav>
-									  <div class="tab-content" id="nav-tabContent">
-										<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-												<div style="height: 30px"> </div>
+				</div>
+				<div class="col-md-12">
+					<div class="product-tab">
+						<nav>
+							<div class="nav nav-tabs" id="nav-tab" role="tablist">
+								<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
+								 aria-selected="true">Reviews ({{ratings.length}})</a>
+								<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
+								 aria-selected="false">Details</a>
+							</div>
+						</nav>
+						<div class="tab-content" id="nav-tabContent">
+							<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+								<div style="height: 30px"> </div>
 
-									<div class="row">
-											
-											<div class="col-md-6">
-												<div class="product-reviews" >
-													<div class="single-review" *ngFor = "let rating of ratings | paginate: { itemsPerPage: 5, currentPage: p }">
-														<div class="review-heading">
-															<div><i class="fas fa-user"></i> {{rating.user.firstName + " " + rating.user.lastName}}</div>
-															<div><i class="fas fa-clock"></i> {{rating.createdOn | date:'medium'}}</div>
-															<div class="review-rating pull-right"  >
-																<i class="fas fa-star" *ngIf ="rating.stars > 0"></i>
-																<i class="fas fa-star" *ngIf ="rating.stars > 1"></i>
-																<i class="fas fa-star" *ngIf ="rating.stars > 2"></i>
-																<i class="fas fa-star" *ngIf ="rating.stars > 3"></i>
-																<i class="fas fa-star" *ngIf ="rating.stars > 4"></i>
-																<i class="fas fa-star" *ngIf ="rating.stars < 1"></i>
-																<i class="far fa-star" *ngIf ="rating.stars < 2"></i>
-																<i class="far fa-star" *ngIf ="rating.stars < 3"></i>
-																<i class="far fa-star" *ngIf ="rating.stars < 4"></i>
-																<i class="far fa-star" *ngIf ="rating.stars < 5"></i>
-																
-															</div>
+								<div class="row">
+
+									<div class="col-md-6">
+										<div class="product-reviews">
+											<div class="single-review" *ngFor="let rating of ratings | paginate: { itemsPerPage: 5, currentPage: p }">
+												<div class="review-heading">
+													<div>
+														<i class="fas fa-user"></i> {{rating.user.firstName + " " + rating.user.lastName}}</div>
+													<div>
+														<i class="fas fa-clock"></i> {{rating.createdOn | date:'medium'}}</div>
+													<div class="review-rating pull-right">
+														<i class="fas fa-star" *ngIf="rating.stars > 0"></i>
+														<i class="fas fa-star" *ngIf="rating.stars > 1"></i>
+														<i class="fas fa-star" *ngIf="rating.stars > 2"></i>
+														<i class="fas fa-star" *ngIf="rating.stars > 3"></i>
+														<i class="fas fa-star" *ngIf="rating.stars > 4"></i>
+														<i class="fas fa-star" *ngIf="rating.stars < 1"></i>
+														<i class="far fa-star" *ngIf="rating.stars < 2"></i>
+														<i class="far fa-star" *ngIf="rating.stars < 3"></i>
+														<i class="far fa-star" *ngIf="rating.stars < 4"></i>
+														<i class="far fa-star" *ngIf="rating.stars < 5"></i>
 													</div>
-														<div class="review-body">
-															<!-- <p>{{rating.body}}</p> -->
-														</div>
-													</div>
-													<pagination-controls (pageChange)="p = $event"></pagination-controls>
+													<div>
+														<i class="far fa-comment"></i> {{rating.content}}</div>
+												</div>
+												<div class="review-body">
+													<!-- <p>{{rating.body}}</p> -->
 												</div>
 											</div>
-											<div class="col-md-6">
-												<h4 class="text-uppercase">Write Your Review</h4>
-												<form class="review-form">
-													<div class="form-group">
-														<textarea class="input" placeholder="Your review"></textarea>
-													</div>
-													<div class="form-group">
-														<div class="input-rating">
-															<strong class="text-uppercase">Your Rating: </strong>
-															<div class="stars">
-																<input type="radio" id="star5" name="rating" value="5" (click)="setStar(5)" /><label for="star5"><i class="far fa-star"></i></label>
-																<input type="radio" id="star4" name="rating" value="4" (click)="setStar(4)"/><label for="star4"><i class="far fa-star"></i></label>
-																<input type="radio" id="star3" name="rating" value="3" (click)="setStar(3)"/><label for="star3"><i class="far fa-star"></i></label>
-																<input type="radio" id="star2" name="rating" value="2" (click)="setStar(2)"/><label for="star2"><i class="far fa-star"></i></label>
-																<input type="radio" id="star1" name="rating" value="1" (click)="setStar(1)"/><label for="star1"><i class="far fa-star"></i></label>
-															</div>
-														</div>
-													</div>
-													<button class="primary-btn" (click)="addRatingProduct()" >Submit</button>
-												</form>
+											<pagination-controls (pageChange)="p = $event"></pagination-controls>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<h4 class="text-uppercase">Write Your Review</h4>
+
+										<input class="input" type="text" placeholder="Your review"  [(ngModel)]="review" (ngModelChange)="review = $event">
+										<br>
+										<div class="input-rating">
+											<strong class="text-uppercase">Your Rating: </strong>
+											<div class="stars">
+												<input type="radio" id="star5" name="rating" value="5" (click)="setStar(5)" />
+												<label for="star5">
+													<i class="far fa-star"></i>
+												</label>
+												<input type="radio" id="star4" name="rating" value="4" (click)="setStar(4)" />
+												<label for="star4">
+													<i class="far fa-star"></i>
+												</label>
+												<input type="radio" id="star3" name="rating" value="3" (click)="setStar(3)" />
+												<label for="star3">
+													<i class="far fa-star"></i>
+												</label>
+												<input type="radio" id="star2" name="rating" value="2" (click)="setStar(2)" />
+												<label for="star2">
+													<i class="far fa-star"></i>
+												</label>
+												<input type="radio" id="star1" name="rating" value="1" (click)="setStar(1)" />
+												<label for="star1">
+													<i class="far fa-star"></i>
+												</label>
 											</div>
 										</div>
-										
-
-
-
-										</div>
-										<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-											<div style="height: 30px"> </div>
-											<p>{{product.description}}</p></div>
-									  </div>
+										<br>
+										<button class="primary-btn" (click)="addRatingProduct(review)">Submit</button>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+								<div style="height: 30px"> </div>
+								<p>{{product.description}}</p>
+							</div>
 						</div>
 					</div>
-
 				</div>
-				<!-- /Product Details -->
+
 			</div>
-			<!-- /row -->
+			<!-- /Product Details -->
 		</div>
-		<!-- /container -->
+		<!-- /row -->
 	</div>
-	<!-- /section -->
+	<!-- /container -->
+</div>
+<!-- /section -->

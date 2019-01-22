@@ -54,9 +54,7 @@ export class ProductService {
 	addRatingProduct(rating: Rating): Promise<{}>  {
 		return new Promise<{}>((resolve, reject) => {
 			this.rest.addRatingProduct(rating).subscribe((data: {}) => {
-			  this.ratingsCurrent.push(rating);
-			 // console.log(this.ratingsCurrent);
-			  resolve(this.ratingsCurrent);
+			  resolve(data);
 			});
 
 		});

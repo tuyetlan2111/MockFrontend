@@ -2,7 +2,7 @@ export interface OrderProduct {
     id?: string;
     itemCount?: string;
     orderDate?: string;
-    orderNumber?: string;
+    orderNumber?: any;
     totalPrice?: string;
     userId?: string;
     changedBy?: string;

@@ -3,7 +3,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { CartItem } from 'src/app/models/cart_item';
-import { Cart } from 'src/app/models/cart';
+import { OrderProduct } from 'src/app/models/order_product';
 import { Payment } from 'src/app/models/payment';
 import { User } from 'src/app/models/user';
 import { IToastrService } from "../../services/toastr.service";
@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { OrderDetailComponent } from '../admin/order-detail/order-detail.component';
 
 @Component({
   selector: 'app-payment',
@@ -68,12 +69,14 @@ export class PaymentComponent implements OnInit {
     this.payment();
   }
   payment(){
+    var order : OrderProduct = {}
     var payment : Payment = {};
     payment.address = this.f.address.value;
     payment.phone = this.f.phone.value;
     payment.name = this.f.name.value;
     payment.user = this.user;
     payment.changedBy = 1;
+    payment.order = order;
     payment.changedOn = new Date();
     payment.createdBy = 1;
     payment.createdOn = new Date();

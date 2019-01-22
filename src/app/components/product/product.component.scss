@@ -290,7 +290,6 @@
   .aside .aside-title {
     position: relative;
     border-bottom: 1px solid #DADADA;
-    text-transform: uppercase;
     padding-bottom: 15px;
     margin-bottom: 30px;
     margin-top: 15px;
@@ -791,6 +790,22 @@
   .add-to-cart{
       width: 100%;
   }
+  .form-search{
+    padding: 15px 25px 15px 25px;
+    background-color: #00000014;
+    border-radius: 5px;
+    margin-top: 50px;
+  }
+  .button-search{
+    border-left: 1px solid;
+    color: white;
+    border-radius: 0px;
+    background: #cd0000;
+  }
+
+
+
+
   .search{
     float: left;
     position: absolute;

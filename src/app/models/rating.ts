@@ -9,4 +9,5 @@ export interface Rating {
     changedOn?: any;
     createdBy?: any;
     createdOn?: any;
+    content?:string;
 }

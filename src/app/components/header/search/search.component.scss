@@ -1,0 +1,44 @@
+.navbar {
+    background-color: rgb(221, 221, 221);    
+    padding: 25px 45px 25px 45px;
+    border-radius: 5px;
+    margin: 50px 150px 30px 150px;};
+.navbar {
+    top: 0;
+  }
+  .dropdown-menu {
+    margin-left: -6rem;
+    left: 80px !important;
+  }
+  .content-search{
+      background-color: #F4F4F4;
+      width: 100%;
+  }
+  .button-search{
+    border-left: 1px solid;
+    color: white;
+    width: 140px;
+    border-radius: 0px;
+    background: #cd0000 !important;
+  }
+  #basicExampleNav{
+    border-left: 1px solid;
+    color: white;
+    z-index: 1000;
+    position: relative;
+}
+.modal i{
+    text-align: center;
+    font-size: 60px;
+    margin-top: 19px;
+    color: #1c6fa0;
+}
+.stars>label:hover:before, .stars>label:hover~label:before {
+    content: "\f005";
+    color: #FFB656;
+  }
+  
+.stars>input:checked label:before, .stars>input:checked~label:before {
+    content: "\f005";
+    color: #FFB656;
+  }
