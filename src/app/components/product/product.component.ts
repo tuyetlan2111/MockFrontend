@@ -9,6 +9,7 @@ import { IToastrService } from '../../services/toastr.service';
 import { CartItem } from 'src/app/models/cart_item';
 import { ActivatedRoute } from '@angular/router';
 import { Array } from 'core-js/library/web/timers';
+import {ArtistPipe} from './../../artist.pipe';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',

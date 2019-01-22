@@ -2,13 +2,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TranslateService } from "./services/translate.service";
 
 @Pipe({
-  name: 'artist'
+  name: 'avgStars'
 })
 export class ArtistPipe implements PipeTransform {
 
 constructor(private translate: TranslateService){}
-  transform(items: any, artist: any): any {
-   console.log("ahihi");
+  transform(value, arsg: string[]): any {
+    let sr =[];
+    for(let i = 0; i < value; i++){
+      sr.push(i);
+    }
+    return sr;
   }
 
 }

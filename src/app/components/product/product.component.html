@@ -44,17 +44,10 @@
                     <h2 class="product-name"><a routerLink="/detail/{{p.id}}">{{p.title}}</a></h2>
                   <p class="product-price">{{p.price}} $</p>
                   <div class="product-rating">
-                      <!-- <i ng-click="changeicon(this)" class="far fa-star checked">{{p.avgStars}}</i> -->
-                      <!-- <star-rating-comp [starType]="'svg'" [rating]="p.avgStars"></star-rating-comp> -->
-                      <i ng-click="changeicon(this)" class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star-o empty"></i> 
+                      <i ng-click="changeicon(this)" class="far fa-star" *ngFor="let i of p.avgStars | avgStars"></i>
                     </div>
                   <div class="product-btns">
                       <a (click) = "addProductToCart(p)"><button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart">Add to Cart</i> </button></a>
-
                    </div>
                 </div>
               </div>
