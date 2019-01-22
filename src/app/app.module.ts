@@ -45,7 +45,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { DataTablesModule } from 'angular-datatables';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { ArtistPipe } from './artist.pipe';
-import { StarRatingModule } from 'angular-star-rating';
 import { SearchComponent } from './components/header/search/search.component';
 /* to load and set en.json as the default application language */
 export function setupTranslateFactory(service: TranslateService): Function {
